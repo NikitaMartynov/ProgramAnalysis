@@ -1,0 +1,19 @@
+package ast.bool;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+
+public class BoolValueExpr extends BoolExpr {
+
+	private boolean value;
+	
+	public BoolValueExpr(boolean value) {
+		this.value = value;
+	}
+	
+	@Override
+	public boolean evaluate(Environment env) throws VariableNotDefinedException {
+		return value;
+	}
+
+}

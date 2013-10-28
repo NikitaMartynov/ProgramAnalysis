@@ -1,0 +1,30 @@
+package ast;
+
+import while_language.DuplicateDefinitionException;
+import while_language.Environment;
+import while_language.VariableNotDefinedException;
+import while_language.ast.declaration.Declaration;
+import while_language.ast.statement.Statement;
+
+public class Program {
+	Declaration declaration;
+	Statement statement;
+
+	public Program(Declaration declaration, Statement statement) {
+		this.declaration = declaration;
+		this.statement = statement;
+	}
+
+	public Program(Statement statement) {
+		this.declaration = null;
+		this.statement = statement;
+	}
+
+	public void evaluate(Environment env) throws DuplicateDefinitionException, VariableNotDefinedException {
+		if(this.declaration != null)
+			this.declaration.evaluate(env);
+		this.statement.evaluate(env);
+		
+	}
+
+}

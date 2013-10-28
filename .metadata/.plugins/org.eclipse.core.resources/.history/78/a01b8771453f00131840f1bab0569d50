@@ -1,0 +1,14 @@
+package graphes.pg;
+
+import ast.statement.Statement;
+
+class ProgramGraphFactory {
+	static void create(Statement st, int initialNode, int finalNode) {
+		//if(st instanceof IfStatement)
+		//	new IfProgramGraph((IfStatement) st, initialNode, finalNode);
+		//else if( st instanceof WhileStatement)
+		//new IfProgramGraph(st, initialNode, finalNode);
+		//else … //for all the statements
+	}
+		
+}

@@ -1,0 +1,27 @@
+package ast.statement;
+
+import ast.arith.ArithExpr;
+import ast.dynamicAnalysis.Environment;
+import ast.dynamicAnalysis.VariableNotDefinedException;
+
+/**
+ * Unfinished evaluate method
+ * read A[a];
+ * @author zhenli
+ *
+ */
+public class ReadArrayStatement extends Statement{
+	String name;
+	ArithExpr arrayExpression;
+	
+	public ReadArrayStatement(String name, ArithExpr arrayExpression) {
+		this.name = name;
+		this.arrayExpression = arrayExpression;
+	}
+	
+	@Override
+	public void evaluate(Environment env) throws VariableNotDefinedException {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,30 @@
+package ast;
+
+import ast.declaration.*;
+import ast.dynamicAnalysis.DuplicateDefinitionException;
+import ast.dynamicAnalysis.Environment;
+import ast.dynamicAnalysis.VariableNotDefinedException;
+import ast.statement.*;
+
+public class Program {
+	Declaration declaration;
+	Statement statement;
+
+	public Program(Declaration declaration, Statement statement) {
+		this.declaration = declaration;
+		this.statement = statement;
+	}
+
+	public Program(Statement statement) {
+		this.declaration = null;
+		this.statement = statement;
+	}
+
+	public void evaluate(Environment env) throws DuplicateDefinitionException, VariableNotDefinedException {
+		if(this.declaration != null)
+			this.declaration.evaluate(env);
+		this.statement.evaluate(env);
+		
+	}
+
+}

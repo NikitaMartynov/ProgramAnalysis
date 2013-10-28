@@ -1,0 +1,10 @@
+package ast.bool;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+
+public abstract class BoolExpr {
+
+	public abstract boolean evaluate(Environment env) throws VariableNotDefinedException;
+	
+}

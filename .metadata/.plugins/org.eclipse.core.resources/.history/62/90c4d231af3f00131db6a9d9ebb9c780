@@ -1,0 +1,12 @@
+package graphes.pg;
+
+class SeqProgramGraph {
+
+}
+Class SeqProgramGraph extends ProgramGraph {
+public SeqProgramGraph (SeqStatement st, int initialNode, int finalNode) {   //constructor  
+// Create factory 
+ProgramGraphFactory.create(st.getStatement(), initNode, 0);
+ProgramGraphFactory.create(st.getStatement(),edges.last().qt, finalNode);
+}
+}

@@ -1,0 +1,15 @@
+package ast.statement;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+
+public class SkipStatement extends Statement {
+
+	public SkipStatement() { }
+	
+	@Override
+	public void evaluate(Environment env) throws VariableNotDefinedException {
+		return;
+	}
+
+}

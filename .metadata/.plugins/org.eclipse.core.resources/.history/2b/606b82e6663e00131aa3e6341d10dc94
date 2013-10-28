@@ -1,0 +1,24 @@
+package ast.statement;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+import ast.arith.ArithExpr;
+
+public class ArrayAssignStatement extends Statement{
+
+	private String name;
+	private ArithExpr arrayIndexExpression;
+	private ArithExpr valueExpression;
+	
+	public ArrayAssignStatement(String name, ArithExpr a1, ArithExpr a2) {
+		this.name = name;
+		this.arrayIndexExpression = a1;
+		this.valueExpression = a2;
+	}
+	
+	@Override
+	public void evaluate(Environment env) throws VariableNotDefinedException {
+		int value = valueExpression.evaluate(env);
+		env.setVariable(name, value);
+	}
+}

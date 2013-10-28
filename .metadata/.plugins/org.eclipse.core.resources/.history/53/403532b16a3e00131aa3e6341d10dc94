@@ -1,0 +1,20 @@
+package ast.declaration;
+
+import ast.dynamicAnalysis.DuplicateDefinitionException;
+import ast.dynamicAnalysis.Environment;
+
+public class ArrayDeclaration extends Declaration{
+
+	private String name;
+	private int size;
+	
+	public ArrayDeclaration(String name, int size) {
+		this.name = name;
+		this.size = size;
+	}
+	
+	@Override
+	public void evaluate(Environment env) throws DuplicateDefinitionException{
+		env.newArray(name, size);
+	}
+}

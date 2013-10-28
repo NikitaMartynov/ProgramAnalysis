@@ -1,0 +1,20 @@
+package ast.arith;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+
+public class ParenExpr extends ArithExpr {
+	
+	private ArithExpr expression;
+	
+	public ParenExpr(ArithExpr expression){
+		this.expression = expression;
+	}
+
+	@Override
+	public int evaluate(Environment env) throws VariableNotDefinedException{
+		return expression.evaluate(env);
+		
+	}
+	
+}

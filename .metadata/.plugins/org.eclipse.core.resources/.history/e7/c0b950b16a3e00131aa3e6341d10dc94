@@ -1,0 +1,10 @@
+package ast.statement;
+
+import ast.dynamicAnalysis.Environment;
+import ast.dynamicAnalysis.VariableNotDefinedException;
+
+public abstract class Statement {
+
+	public abstract void evaluate(Environment env) throws VariableNotDefinedException;
+	
+}

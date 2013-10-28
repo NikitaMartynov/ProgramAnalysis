@@ -1,0 +1,22 @@
+package ast.bool;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+import ast.arith.ArithExpr;
+
+public class GreaterThanExpr extends BoolExpr {
+
+	private ArithExpr expression1;
+	private ArithExpr expression2;
+	
+	public GreaterThanExpr(ArithExpr expression1, ArithExpr expression2) {
+		this.expression1 = expression1;
+		this.expression2 = expression2;
+	}
+	
+	@Override
+	public boolean evaluate(Environment env) throws VariableNotDefinedException {
+		return expression1.evaluate(env) > expression2.evaluate(env);
+	}
+
+}

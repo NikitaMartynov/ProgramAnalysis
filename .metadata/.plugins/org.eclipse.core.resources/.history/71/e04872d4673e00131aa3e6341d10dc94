@@ -1,0 +1,14 @@
+package ast.statement;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+
+public class ReadArrayStatement extends Statement{
+	String A;
+	String a;
+	@Override
+	public void evaluate(Environment env) throws VariableNotDefinedException {
+		// TODO Auto-generated method stub
+		
+	}
+}

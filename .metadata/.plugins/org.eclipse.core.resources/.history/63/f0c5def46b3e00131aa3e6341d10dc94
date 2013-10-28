@@ -1,0 +1,28 @@
+package ast.statement;
+
+import ast.arith.ArithExpr;
+import ast.dynamic_analysis.Environment;
+import ast.dynamic_analysis.VariableNotDefinedException;
+
+/**
+ * x := a;
+ * @author zhenli
+ *
+ */
+public class AssignStatement extends Statement {
+
+	private String name; // variable name
+	private ArithExpr expression; // value expression
+	
+	public AssignStatement(String name, ArithExpr expression) {
+		this.name = name;
+		this.expression = expression;
+	}
+	
+	@Override
+	public void evaluate(Environment env) throws VariableNotDefinedException {
+		int value = expression.evaluate(env);
+		env.setVariable(name, value);
+	}
+
+}

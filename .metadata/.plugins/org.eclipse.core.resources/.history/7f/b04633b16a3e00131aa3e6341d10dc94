@@ -1,0 +1,21 @@
+package ast.arith;
+
+import ast.dynamicAnalysis.Environment;
+import ast.dynamicAnalysis.VariableNotDefinedException;
+
+public class ArrayExpr extends ArithExpr {
+
+	private String name;
+	private ArithExpr index;
+	
+	public ArrayExpr(String name, ArithExpr index) {
+		this.name = name;
+		this.index = index;
+	}
+	
+	@Override
+	public int evaluate(Environment env) throws VariableNotDefinedException {
+		return env.getArray(name,index.evaluate(env));
+	}
+
+}

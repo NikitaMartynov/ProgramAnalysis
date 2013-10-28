@@ -1,0 +1,38 @@
+package ast;
+
+import org.antlr.runtime.ANTLRFileStream;
+import org.antlr.runtime.CommonTokenStream;
+
+import parser.TheLangLexer;
+import parser.TheLangParser;
+
+/**
+ * print the AST built
+ * @author zhenli
+ *
+ */
+public class AST {
+
+	public static void main(String args[]) throws Exception {
+
+		if (args.length == 0) {
+			System.out.println("Error: No program specified.");
+			return;
+		}
+
+		// parsing
+        TheLangLexer lex = new TheLangLexer(new ANTLRFileStream(args[0]));
+        CommonTokenStream tokens = new CommonTokenStream(lex);
+
+        // building ast
+        TheLangParser parser = new TheLangParser(tokens);
+        Program program = parser.program();
+        
+        // then take the program as the input for graph generation
+        // such as FlowGraph fg = new FlowGraph(program.getStatement());
+        // ...
+
+        System.out.println(program.toString());
+
+	}
+}

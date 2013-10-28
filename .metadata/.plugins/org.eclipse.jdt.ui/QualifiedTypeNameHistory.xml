@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="ast.declaration.Declaration"/>
+<fullyQualifiedTypeName name="parser.TheLangLexer"/>
+<fullyQualifiedTypeName name="ast.arith.ArithExpr"/>
+<fullyQualifiedTypeName name="graphes.Block"/>
+<fullyQualifiedTypeName name="ast.Program"/>
+<fullyQualifiedTypeName name="antlr.collections.impl.Vector"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="ast.statement.Statement"/>
+<fullyQualifiedTypeName name="ast.statement.IfStatement"/>
+<fullyQualifiedTypeName name="ast.statement.WhileStatement"/>
+<fullyQualifiedTypeName name="ast.statement.SeqStatement"/>
+<fullyQualifiedTypeName name="ast.statement.AssignStatement"/>
+<fullyQualifiedTypeName name="ast.statement.WriteStatement"/>
+<fullyQualifiedTypeName name="ast.statement.ReadStatement"/>
+<fullyQualifiedTypeName name="ast.statement.ReadArrayStatement"/>
+<fullyQualifiedTypeName name="ast.statement.SkipStatement"/>
+<fullyQualifiedTypeName name="graphes.pg.ProgramGraphFactory"/>
+<fullyQualifiedTypeName name="graphes.pg.ProgramGraph"/>
+</qualifiedTypeNameHistroy>

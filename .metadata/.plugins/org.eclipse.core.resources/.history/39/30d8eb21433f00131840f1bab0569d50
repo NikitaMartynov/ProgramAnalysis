@@ -1,0 +1,7 @@
+package graphes.pg;
+
+public class Edge {
+	int qs;
+	String block;
+	int qt;
+}

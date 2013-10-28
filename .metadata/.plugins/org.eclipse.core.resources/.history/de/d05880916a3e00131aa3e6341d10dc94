@@ -1,0 +1,8 @@
+package ast.declaration;
+
+import ast.DuplicateDefinitionException;
+import ast.Environment;
+
+public abstract class Declaration {
+	public abstract void evaluate(Environment env) throws DuplicateDefinitionException;
+}

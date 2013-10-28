@@ -1,0 +1,24 @@
+package ast.statement;
+
+import ast.Environment;
+import ast.VariableNotDefinedException;
+import ast.bool.BoolExpr;
+
+public class WhileStatement extends Statement {
+
+	private BoolExpr condition;
+	private Statement body;
+	
+	public WhileStatement(BoolExpr condition, Statement body) {
+		this.condition = condition;
+		this.body = body;
+	}
+	
+	@Override
+	public void evaluate(Environment env) throws VariableNotDefinedException {
+		while (condition.evaluate(env)) {
+			body.evaluate(env);	
+		}
+	}
+
+}

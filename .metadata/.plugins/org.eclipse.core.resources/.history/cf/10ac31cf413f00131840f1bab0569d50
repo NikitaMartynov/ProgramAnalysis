@@ -1,0 +1,5 @@
+package graphes.pg;
+
+public abstract class ProgramGraph {
+
+}
