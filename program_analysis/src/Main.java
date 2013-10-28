@@ -1,7 +1,7 @@
 
 
-import graphes.pg.ProgramGraph;
-import graphes.pg.ProgramGraphFactory;
+import graphs.fg.*;
+import graphs.pg.*;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -34,11 +34,15 @@ public class Main {
         // print the ast
         System.out.println(program.toString());
         
+        System.out.println("\nProgram graph: ");
         ProgramGraph pg = new ProgramGraph(program.getStatement());
         System.out.println(pg.toString());
         
         // then take the program as the input for graph generation
-        // such as FlowGraph fg = new FlowGraph(program.getStatement());
+        // such as 
+        System.out.println("\nFlow graph:");
+        FlowGraph fg = FlowGraphFactory.create(program.getStatement());
+        System.out.println(fg.toString());
         // ...
 	}
 }

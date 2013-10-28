@@ -1,6 +1,6 @@
 package ast.bool;
 
-import graphes.Block;
+import graphs.Block;
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 
