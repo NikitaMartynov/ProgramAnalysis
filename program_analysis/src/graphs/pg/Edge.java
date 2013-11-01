@@ -8,13 +8,6 @@ public class Edge {
 	}
 	
 	int qs;
-	String block; // see some comments below
-	/* 
-	 * how about to change String to Block. The Block class is located in package graphs?
-	 * For example, if we have a := 10; we might want to get a or get 10 when we do analysis.
-	 * If we use String, then it requires some additional work to get the symbol we need.
-	 * 
-	 * -Zhen
-	 */
+	String block;
 	int qt;
 }

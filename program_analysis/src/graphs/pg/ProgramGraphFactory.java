@@ -10,7 +10,6 @@ import ast.statement.Statement;
 import ast.statement.WhileStatement;
 import ast.statement.WriteStatement;
 
-//TODO Nikita check if explicit type cast works here
 public class ProgramGraphFactory {
 	
 	public static void create(Statement st, int initialNode, int finalNode) {
