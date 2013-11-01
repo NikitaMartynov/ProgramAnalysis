@@ -1,7 +1,0 @@
-package graphes.pg;
-
-import java.util.ArrayList;
-
-public abstract class ProgramGraph {
-	static ArrayList < Edge >  edges = new ArrayList < Edge > (); 
-}
