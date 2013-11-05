@@ -1,4 +1,11 @@
-package program_slice;
+package free_variables;
+
+/**
+ * Extracts free variables present in each line of program,
+ * their position within the statement and labels in which they occur
+ * @author anushasivakumar
+ *
+ */
 
 import graphs.Block;
 import graphs.fg.FlowGraph;
@@ -34,7 +41,7 @@ public class FreeVariableGenerator {
 				varsArray = vars.subList(0, vars.indexOf("="));
 				if (varsArray != null) {
 					for (String str : varsArray) {
-						fv = new FreeVariable(str, "left", labelCounter);
+						fv = new FreeVariable(str, VariablePosition.left, labelCounter);
 						if (!freeVariables.contains(fv))
 							freeVariables.add(fv);
 					}
@@ -44,7 +51,7 @@ public class FreeVariableGenerator {
 				varsArray = vars.subList(vars.indexOf("=") + 1, vars.size());
 				if (varsArray != null) {
 					for (String str : varsArray) {
-						fv = new FreeVariable(str, "right", labelCounter);
+						fv = new FreeVariable(str, VariablePosition.right, labelCounter);
 						if (!freeVariables.contains(fv))
 							freeVariables.add(fv);
 					}
@@ -55,7 +62,7 @@ public class FreeVariableGenerator {
 				// The position of variable is not required in further
 				// processing
 				for (String str : vars) {
-					fv = new FreeVariable(str, "none", labelCounter);
+					fv = new FreeVariable(str, VariablePosition.none, labelCounter);
 					freeVariables.add(fv);
 				}
 			}
@@ -90,6 +97,16 @@ public class FreeVariableGenerator {
 			ret += "(" + fv.toString() + ") ";
 		}
 		return ret;
+	}
+	
+	// Returns names of all variables used in a program
+	public Vector<String> getAllVariables(){
+		Vector<String> allVariables = new Vector<String> ();
+		for(FreeVariable fv:freeVariables){
+			if(!allVariables.contains(fv.getVariableName()))
+					allVariables.add(fv.getVariableName());		
+		}
+		return allVariables;
 	}
 
 }

@@ -1,8 +1,8 @@
 
 
+import free_variables.FreeVariableGenerator;
 import graphs.fg.*;
 import graphs.pg.*;
-import program_slice.FreeVariableGenerator;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
