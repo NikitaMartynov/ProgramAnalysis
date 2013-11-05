@@ -1,5 +1,7 @@
 package ast.bool;
 
+import java.util.Vector;
+
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 import ast.arith.ArithExpr;
@@ -17,6 +19,23 @@ public class GreaterThanEqualsExpr extends BoolExpr {
 	@Override
 	public boolean evaluate(Environment env) throws VariableNotDefinedException {
 		return expression1.evaluate(env) >= expression2.evaluate(env);
+	}
+	@Override
+	public Vector<String> getVariables() {
+		Vector<String> vars = new Vector<String>();
+		try {
+			vars.addAll(expression1.getVariables());
+		}
+		catch(Exception e){
+		}
+		try{
+			vars.addAll(expression2.getVariables());
+		} catch (Exception e) {
+		}
+			if (!vars.isEmpty())
+				return vars;
+			else
+				return null;
 	}
 	@Override
 	public String toString() {

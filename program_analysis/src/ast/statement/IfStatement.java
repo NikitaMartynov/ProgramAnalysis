@@ -1,5 +1,7 @@
 package ast.statement;
 
+import java.util.Vector;
+
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 import ast.bool.BoolExpr;
@@ -32,6 +34,28 @@ public class IfStatement extends Statement {
 		}
 	}
 
+	@Override
+	public Vector<String> getVariables() {
+		Vector<String> vars = new Vector<String>();
+		try {
+			vars.addAll(condition.getVariables());
+		}
+		catch(Exception e){
+		}
+		try{
+			vars.addAll(ifBranch.getVariables());
+		}
+		catch(Exception e){
+		}
+		try{
+			vars.addAll(elseBranch.getVariables());
+		} catch (Exception e) {
+		}
+			if (!vars.isEmpty())
+				return vars;
+			else
+				return null;
+	}
 	@Override
 	public String toString() {
 		return "if " + condition + " then " + ifBranch + " else " + elseBranch

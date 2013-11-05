@@ -2,6 +2,8 @@ package ast.bool;
 
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
+import java.lang.String;
+import java.util.Vector;
 
 public class BoolValueExpr extends BoolExpr {
 
@@ -15,7 +17,10 @@ public class BoolValueExpr extends BoolExpr {
 	public boolean evaluate(Environment env) throws VariableNotDefinedException {
 		return value;
 	}
-	
+	@Override
+	public Vector<String> getVariables(){
+		return null;
+	}
 	@Override
 	public String toString() {
 		if (value)

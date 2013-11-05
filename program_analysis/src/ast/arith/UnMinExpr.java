@@ -1,5 +1,7 @@
 package ast.arith;
 
+import java.util.Vector;
+
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 
@@ -14,6 +16,16 @@ public class UnMinExpr extends ArithExpr {
 	@Override
 	public int evaluate(Environment env) throws VariableNotDefinedException {
 		return -expression.evaluate(env);
+	}
+	@Override
+	public Vector<String> getVariables() {
+		Vector<String> vars = new Vector<String>();
+		try {
+		vars.addAll(expression.getVariables());
+			return vars;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@Override

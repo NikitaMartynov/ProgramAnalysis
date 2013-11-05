@@ -2,6 +2,7 @@
 
 import graphs.fg.*;
 import graphs.pg.*;
+import program_slice.FreeVariableGenerator;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -44,5 +45,7 @@ public class Main {
         FlowGraph fg = FlowGraphFactory.create(program.getStatement());
         System.out.println(fg.toString());
         // ...
+        FreeVariableGenerator fvg = new FreeVariableGenerator();
+        System.out.println(fvg.toString());
 	}
 }

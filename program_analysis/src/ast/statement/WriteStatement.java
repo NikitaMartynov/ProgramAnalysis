@@ -1,5 +1,7 @@
 package ast.statement;
 
+import java.util.Vector;
+
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 import ast.arith.ArithExpr;
@@ -17,6 +19,18 @@ public class WriteStatement extends Statement{
 		this.expression = expression;
 	}
 
+	@Override
+	public Vector<String> getVariables() {
+		Vector<String> vars = new Vector<String>();
+		try {
+			vars.addAll(expression.getVariables());
+		} catch (Exception e) {
+		}
+			if (!vars.isEmpty())
+				return vars;
+			else
+				return null;
+	}
 	@Override
 	public void evaluate(Environment env) throws VariableNotDefinedException {
 		// TODO Auto-generated method stub

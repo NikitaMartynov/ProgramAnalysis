@@ -1,5 +1,7 @@
 package ast.statement;
 
+import java.util.Vector;
+
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 import ast.arith.ArithExpr;
@@ -24,12 +26,30 @@ public class AssignStatement extends Statement {
 		int value = expression.evaluate(env);
 		env.setVariable(name, value);
 	}
-	
+	@Override
+	public Vector<String> getVariables() {
+		Vector<String> vars = new Vector<String>();
+		try {
+			if(name!=null){
+				vars.add(name);
+			}
+		}
+		catch(Exception e){
+		}
+		vars.add("=");
+		try{
+			vars.addAll(expression.getVariables());
+		} catch (Exception e) {
+		}
+			if (!vars.isEmpty())
+				return vars;
+			else
+				return null;
+	}
 	@Override
 	public String toString() {
 		return name + " := " + expression + ";";
 	}
-
 	//getters and setters
 	public String getName() {
 		return name;

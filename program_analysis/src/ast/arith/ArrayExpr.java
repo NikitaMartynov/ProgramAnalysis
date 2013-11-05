@@ -1,5 +1,7 @@
 package ast.arith;
 
+import java.util.Vector;
+
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 
@@ -21,6 +23,24 @@ public class ArrayExpr extends ArithExpr {
 	@Override
 	public int evaluate(Environment env) throws VariableNotDefinedException {
 		return env.getArray(name,arrayIndexExpression.evaluate(env));
+	}
+	public Vector<String> getVariables(){
+		
+		Vector<String> vars = new Vector<String>();
+		try {
+			if(name!=null)
+				vars.add(name);	
+		} catch (Exception e) {
+		}
+		try{
+			vars.addAll(arrayIndexExpression.getVariables());
+		}
+		catch (Exception e) {
+		}
+			if (!vars.isEmpty())
+				return vars;
+			else
+				return null;
 	}
 
 	@Override

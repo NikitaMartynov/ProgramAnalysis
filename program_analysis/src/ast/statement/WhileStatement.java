@@ -1,5 +1,7 @@
 package ast.statement;
 
+import java.util.Vector;
+
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
 import ast.bool.BoolExpr;
@@ -25,7 +27,25 @@ public class WhileStatement extends Statement {
 			body.evaluate(env);	
 		}
 	}
-	
+	@Override
+	public Vector<String> getVariables() {
+		Vector<String> vars = new Vector<String>();
+		try {
+			vars.addAll(condition.getVariables());
+		}
+		catch(Exception e){
+		}
+		try{
+			vars.addAll(body.getVariables());
+		}
+		catch(Exception e)
+		{
+		} 
+		if (!vars.isEmpty())
+				return vars;
+			else
+				return null;
+	}
 	@Override
 	public String toString() {
 		return "while " + condition + " do " + body + " od";
