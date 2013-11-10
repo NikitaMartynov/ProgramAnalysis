@@ -47,5 +47,9 @@ public class ArrayExpr extends ArithExpr {
 	public String toString() {
 		return name + "[" +arrayIndexExpression.toString() + "]";
 	}
+	
+	public String getName(){
+		return name;
+	}
 
 }

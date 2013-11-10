@@ -32,5 +32,9 @@ public class UnMinExpr extends ArithExpr {
 	public String toString() {
 		return "-" + expression.toString();
 	}
+	
+	public ArithExpr getExpression(){
+		return expression;
+	}
 
 }

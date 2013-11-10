@@ -27,4 +27,8 @@ public class ArrayDeclaration extends Declaration{
 	public String toString() {
 		return "int " + name + "[" + size + "];";
 	}
+	
+	public String getName(){
+		return name;
+	}
 }

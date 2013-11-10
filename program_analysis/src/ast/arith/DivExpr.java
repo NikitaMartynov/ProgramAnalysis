@@ -45,4 +45,11 @@ public Vector<String> getVariables(){
 		return expression1.toString() + "/" + expression2.toString();
 	}
 
+	public ArithExpr getExpression1(){
+		return expression1;
+	}
+	
+	public ArithExpr getExpression2(){
+		return expression2;
+	}
 }

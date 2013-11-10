@@ -12,4 +12,25 @@ public class Edge {
 	int qs;
 	Block block;
 	int qt;
+	
+	public void setQs(int qs){
+		this.qs = qs;
+	}
+	public int getQs(){
+		return qs;
+	}
+	
+	public void setQs(Block block){
+		this.block = block;
+	}
+	public Block getBlock(){
+		return block;
+	}
+	
+	public void setQt(int qt){
+		this.qt = qt;
+	}
+	public int getQt(){
+		return qt;
+	}
 }

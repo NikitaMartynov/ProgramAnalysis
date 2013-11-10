@@ -25,4 +25,8 @@ public class VariableDeclaration extends Declaration{
 	public String toString() {
 		return "int " + name + ";";
 	}
+	
+	public String getName(){
+		return name;
+	}
 }

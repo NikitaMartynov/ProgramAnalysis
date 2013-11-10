@@ -26,4 +26,8 @@ public class NumExpr extends ArithExpr {
 	public String toString() {
 		return "" + value;
 	}
+	
+	public int getValue(){
+		return value;
+	}
 }

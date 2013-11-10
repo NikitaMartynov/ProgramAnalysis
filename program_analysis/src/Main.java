@@ -7,6 +7,7 @@ import graphs.pg.*;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 
+import detectionOfSign_analysis.DetectionOfSign;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
@@ -47,5 +48,11 @@ public class Main {
         // ...
         FreeVariableGenerator fvg = new FreeVariableGenerator();
         System.out.println(fvg.toString());
+        
+        //Detect signs
+        DetectionOfSign ds = new DetectionOfSign();
+        ds.initialize(fvg.getAllVariables());
+        ds.detectSign(ProgramGraph.edges.get(1));;
+        System.out.println(ds.signsToString());
 	}
 }
