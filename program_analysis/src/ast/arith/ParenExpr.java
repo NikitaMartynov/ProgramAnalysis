@@ -33,4 +33,7 @@ public class ParenExpr extends ArithExpr {
 		return "(" + expression.toString() + ")";
 	}
 	
+	public ArithExpr getExpression() {
+		return this.expression;
+	}
 }

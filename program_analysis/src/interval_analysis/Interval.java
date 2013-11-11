@@ -4,48 +4,64 @@ public class Interval {
 	public static int _minusInfinity = Integer.MIN_VALUE;
 	public static int _plusInfinity = Integer.MAX_VALUE;
 
-	private int lowBoundary;
-	private int highBoundary;
+	private int low;
+	private int high;
 
 	// constructors
+	// assign boundaries to be all possible values
 	public Interval() {
+		low = _minusInfinity;
+		high = _plusInfinity;
 	}
 
 	// NumInterval
+	// A[[n]]
 	public Interval(int num) {
-
-		if (num < IntervalAnalysis.getMin() && num >= IntervalAnalysis.getMax())
-			lowBoundary = highBoundary = num;
-		else if (num > IntervalAnalysis.getMax()) {
-			lowBoundary = IntervalAnalysis.getMax() + 1;
-			highBoundary = _plusInfinity;
-		} 
-		else {// num < IntervalAnalysis.getMin()
-			lowBoundary = _minusInfinity;
-			highBoundary = IntervalAnalysis.getMin() - 1;
-		}
+		setBoundaries(num);
 	}
 
 	public Interval(int low, int high) {
-		this.lowBoundary = low;
-		this.highBoundary = high;
+		setBoundaries(low, high);
 	}
 
 	// getters and setters
 	public int getLowBoundary() {
-		return lowBoundary;
+		return low;
 	}
 
 	public void setLowBoundary(int lowBoundary) {
-		this.lowBoundary = lowBoundary;
+		this.low = lowBoundary;
 	}
 
 	public int getHighBoundary() {
-		return highBoundary;
+		return high;
 	}
 
 	public void setHighBoundary(int highBoundary) {
-		this.highBoundary = highBoundary;
+		this.high = highBoundary;
+	}
+	
+	public void setBoundaries(Interval i) {
+		low = i.getLowBoundary();
+		high = i.getHighBoundary();
+	}
+	
+	public void setBoundaries(int num) {
+		if (num < IntervalAnalysis.getMin() && num >= IntervalAnalysis.getMax())
+			low = high = num;
+		else if (num > IntervalAnalysis.getMax()) {
+			low = IntervalAnalysis.getMax() + 1;
+			high = _plusInfinity;
+		} 
+		else {// num < IntervalAnalysis.getMin()
+			low = _minusInfinity;
+			high = IntervalAnalysis.getMin() - 1;
+		}
+	}
+	
+	public void setBoundaries(int low, int high) {
+		this.low = low;
+		this.high = high;
 	}
 
 	// ///////////////////////////////////
@@ -115,7 +131,7 @@ public class Interval {
 		return multiply(i1, oneDividebyX(i2));
 	}
 
-	public static Interval oneDividebyX(Interval i1)
+	private static Interval oneDividebyX(Interval i1)
 			throws DivideByZeroException {
 		// test whether the interval i2 contains 0
 		if (i1.getLowBoundary() <= 0 && i1.getHighBoundary() >= 0) {
@@ -132,11 +148,11 @@ public class Interval {
 	}
 
 	public String toString() {
-		String low = "" + this.lowBoundary;
-		if (this.lowBoundary == _minusInfinity)
+		String low = "" + this.low;
+		if (this.low == _minusInfinity)
 			low = "-INF";
-		String high = "" + this.highBoundary;
-		if (this.highBoundary == _plusInfinity)
+		String high = "" + this.high;
+		if (this.high == _plusInfinity)
 			high = "+INF";
 
 		return "[" + low + ", " + high + "]";

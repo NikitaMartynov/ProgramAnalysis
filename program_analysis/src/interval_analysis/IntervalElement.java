@@ -1,5 +1,11 @@
 package interval_analysis;
 
+/**
+ * Abandoned
+ * 
+ * @author zhenli
+ *
+ */
 public class IntervalElement {
 	private int label;
 	private String variableName;

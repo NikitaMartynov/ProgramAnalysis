@@ -32,6 +32,6 @@ public class IntervalAnalysis {
 		return _max;
 	}
 	
-	public static HashMap<String, IntervalElement> intervalElements;
+	//public static HashMap<String, IntervalElement> intervalElements;
 	
 }
