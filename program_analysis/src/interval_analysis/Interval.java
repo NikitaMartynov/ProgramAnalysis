@@ -1,5 +1,7 @@
 package interval_analysis;
 
+import java.util.Arrays;
+
 public class Interval {
 	public static int _minusInfinity = Integer.MIN_VALUE;
 	public static int _plusInfinity = Integer.MAX_VALUE;
@@ -29,85 +31,87 @@ public class Interval {
 		return low;
 	}
 
-	public void setLowBoundary(int lowBoundary) {
-		this.low = lowBoundary;
-	}
-
 	public int getHighBoundary() {
 		return high;
 	}
 
-	public void setHighBoundary(int highBoundary) {
-		this.high = highBoundary;
-	}
-	
+
 	public void setBoundaries(Interval i) {
-		low = i.getLowBoundary();
-		high = i.getHighBoundary();
+		setBoundaries(i.getLowBoundary(), i.getHighBoundary());
 	}
-	
+
 	public void setBoundaries(int num) {
-		if (num < IntervalAnalysis.getMin() && num >= IntervalAnalysis.getMax())
-			low = high = num;
-		else if (num > IntervalAnalysis.getMax()) {
-			low = IntervalAnalysis.getMax() + 1;
-			high = _plusInfinity;
-		} 
-		else {// num < IntervalAnalysis.getMin()
-			low = _minusInfinity;
-			high = IntervalAnalysis.getMin() - 1;
+		setBoundaries(num, num);
+	}
+
+	// num2Interval
+	public void setBoundaries(int low, int high) {
+		int lcomp = compareBoundaries(low);
+		int hcomp = compareBoundaries(high);
+		if (lcomp == 0 && hcomp == 0) {
+			this.low = low;
+			this.high = high;
+		}
+		else if (hcomp < 0) {// && lcomp < 0
+			this.low = _minusInfinity;
+			this.high = IntervalAnalysis.getMin() - 1;
+		}
+		else if (lcomp > 0) {// && hcomp > 0
+			this.low = IntervalAnalysis.getMax() + 1;
+			this.high = _plusInfinity;
+		}
+		else if (hcomp == 0) {// && lcomp < 0
+			this.low = _minusInfinity;
+			this.high  = high;
+		}
+		else if (lcomp == 0) {// && hcomp > 0
+			this.low = low;
+			this.high = _plusInfinity;
+		}
+		else {// hcomp > 0 && lcomp < 0
+			this.low = _minusInfinity;
+			this.high = _plusInfinity;
 		}
 	}
 	
-	public void setBoundaries(int low, int high) {
-		this.low = low;
-		this.high = high;
-	}
+	private static int compareBoundaries(int i) {
+		int min = IntervalAnalysis.getMin();
+		int max = IntervalAnalysis.getMax();
 
-	// ///////////////////////////////////
-	/**
-	 * Chop a integer number into a number within the range of interval
-	 * 
-	 * @param num
-	 * @return
-	 */
-	private int num2IntervalNum(int num) {
-		if (num < IntervalAnalysis.getMin() && num >= IntervalAnalysis.getMax())
-			return num;
-		else if (num > IntervalAnalysis.getMax())
-			return _plusInfinity;
+		if (i >= min && i <= max)
+			return 0;
+		else if (i < min)
+			return -1;
 		else
-			// num < IntervalAnalysis.getMin()
-			return _minusInfinity;
+			// i > max
+			return 1;
 	}
 
 	public static Interval plus(Interval i1, Interval i2) {
-		Interval ret = new Interval(
-				plus(i1.getLowBoundary(), i2.getLowBoundary(), 1),
-				plus(i2.getHighBoundary(), i2.getHighBoundary(), 2)
-				);
+		Interval ret = new Interval(plus(i1.getLowBoundary(),
+				i2.getLowBoundary(), 1), plus(i2.getHighBoundary(),
+				i2.getHighBoundary(), 2));
 
 		return ret;
 	}
-	
+
 	private static int plus(int a1, int a2, int pos) {
 		int result = 0;
-		if((a1 == _plusInfinity && a2 == _minusInfinity) || 
-				(a1 == _minusInfinity && a2 == _plusInfinity)) {
-			if(pos == 1)
+		if ((a1 == _plusInfinity && a2 == _minusInfinity)
+				|| (a1 == _minusInfinity && a2 == _plusInfinity)) {
+			if (pos == 1)
 				result = _minusInfinity;
-			else if (pos == 2)
+			else //if (pos == 2)
 				result = _plusInfinity;
-		}
-		else if(a1 == _plusInfinity || a2 == _plusInfinity || a1+a2 > IntervalAnalysis.getMax()) {
+		} else if (a1 == _plusInfinity || a2 == _plusInfinity
+				|| a1 + a2 > IntervalAnalysis.getMax()) {
 			result = _plusInfinity;
-		}
-		else if (a1 == _minusInfinity || a2 == _minusInfinity || a1+a2 < IntervalAnalysis.getMin()) {
+		} else if (a1 == _minusInfinity || a2 == _minusInfinity
+				|| a1 + a2 < IntervalAnalysis.getMin()) {
 			result = _minusInfinity;
-		}
-		else
-			result = a1+a2;
-		
+		} else
+			result = a1 + a2;
+
 		return result;
 	}
 
@@ -116,14 +120,48 @@ public class Interval {
 	}
 
 	public static Interval unaryMinus(Interval i1) {
-		return new Interval(-i1.getHighBoundary(), -i1.getLowBoundary());
+		int l = -i1.getHighBoundary();
+		int h = -i1.getLowBoundary();
+
+		return new Interval(l, h);
 	}
 
-	public static Interval multiply(Interval i1, Interval i2) {
-		Interval ret = new Interval(_minusInfinity, _plusInfinity);
 
-		// TODO
+
+	public static Interval multiply(Interval i1, Interval i2) {
+		int[] temp = new int[]{
+				multiply(i1.getLowBoundary(), i2.getLowBoundary()),
+				multiply(i1.getHighBoundary(), i2.getLowBoundary()),
+				multiply(i1.getLowBoundary(), i2.getHighBoundary()),
+				multiply(i1.getHighBoundary(), i2.getHighBoundary()),
+		};
+		Arrays.sort(temp);
+		
+		Interval ret = new Interval(temp[0], temp[3]);
+
 		return ret;
+	}
+	
+	public static int multiply(int a1, int a2) {
+		int result = 0;
+		
+		if(a1 == 0 || a2 == 0) {
+			result = 0;
+		}
+		else if(a1 == _plusInfinity && a2 < 0 || a1 == _minusInfinity && a2 > 0 
+				|| a2 == _plusInfinity && a1 < 0 || a2 == _minusInfinity && a1 > 0 
+				|| a1 * a2 < IntervalAnalysis.getMin()) {
+			result = _minusInfinity;
+		}
+		else if(a1 == _plusInfinity && a2 > 0 || a1 == _minusInfinity && a2 < 0 
+				|| a2 == _plusInfinity && a1 > 0 || a2 == _minusInfinity && a1 < 0 
+				|| a1 * a2 > IntervalAnalysis.getMax()) {
+			result = _plusInfinity;
+		}
+		else
+			result = a1 * a2;
+		
+		return result;
 	}
 
 	public static Interval divide(Interval i1, Interval i2)

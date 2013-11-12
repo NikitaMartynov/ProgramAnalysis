@@ -1,5 +1,6 @@
 
 
+import interval_analysis.IntervalAnalysis;
 import free_variables.FreeVariableGenerator;
 import graphs.fg.*;
 import graphs.pg.*;
@@ -54,5 +55,9 @@ public class Main {
         ds.initialize(fvg.getAllVariables());
         ds.detectSign(ProgramGraph.edges.get(1));;
         System.out.println(ds.signsToString());
+        
+        // interval_analysis
+        IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);
+        IntervalAnalysis.printSolutionTable();
 	}
 }

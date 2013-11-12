@@ -18,7 +18,7 @@ public class TransferFunctionFactory {
 
 	public static Vector<HashMap<String, Interval>> solutionTable;
 
-	public static void initSolutionTable() {
+	public static void initSolutionTable(Vector<String> freeVariables) {
 		if (solutionTable == null)
 			solutionTable = new Vector<HashMap<String, Interval>>(
 					ProgramGraph.GreatestNumUsed + 1);
@@ -32,6 +32,11 @@ public class TransferFunctionFactory {
 		// TODO:
 		// init the first line (index: 0, label: 1) in the solution table with
 		// the default values for all the variables
+		HashMap<String, Interval> defaultIntervals = new HashMap<String, Interval>();
+		for(String variableName: freeVariables) {
+			defaultIntervals.put(variableName, new Interval(0));
+		}
+		solutionTable.set(0, defaultIntervals);
 	}
 
 	/**

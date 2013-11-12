@@ -1,0 +1,14 @@
+program
+int a[5];
+int b[5];
+int n;
+n := -1;
+while (n<7) do
+	a[n] := 1;
+	if(n >= 0 & n < 5)
+	then b[n] := 1;
+	else skip;
+	fi
+	n := n + 1;
+od
+end
