@@ -41,4 +41,12 @@ public class NotEqualsExpr extends BoolExpr {
 	public String toString() {
 		return expression1 + "!=" + expression2;
 	}
+
+	public ArithExpr getExpression1() {
+		return expression1;
+	}
+
+	public ArithExpr getExpression2() {
+		return expression2;
+	}
 }

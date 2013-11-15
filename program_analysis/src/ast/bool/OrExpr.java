@@ -40,4 +40,14 @@ public class OrExpr extends BoolExpr {
 	public String toString() {
 		return expression1 + "|" + expression2;
 	}
+
+	public BoolExpr getExpression1() {
+		return expression1;
+	}
+
+	public BoolExpr getExpression2() {
+		return expression2;
+	}
+	
+	
 }

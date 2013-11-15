@@ -86,6 +86,7 @@ public class TransferFunctionFactory {
 			endIntervals.put(readSt.getName(), i);
 		} else if (b instanceof BoolExpr) {
 			// TODO
+			new BooExprHandler((BoolExpr)b, start, end).updateIntervals(endIntervals);
 		}
 
 		solutionTable.set(end, endIntervals);

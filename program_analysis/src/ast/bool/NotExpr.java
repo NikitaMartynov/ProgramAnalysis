@@ -31,4 +31,10 @@ public class NotExpr extends BoolExpr {
 	public String toString() {
 		return  "!" + expression;
 	}
+
+	public BoolExpr getExpression() {
+		return expression;
+	}
+	
+	
 }

@@ -47,4 +47,14 @@ public class AndExpr extends BoolExpr {
 		return expression1 + "&" + expression2;
 	}
 
+	public BoolExpr getExpression1() {
+		return expression1;
+	}
+
+	public BoolExpr getExpression2() {
+		return expression2;
+	}
+	
+	
+
 }

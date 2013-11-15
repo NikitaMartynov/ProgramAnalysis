@@ -29,4 +29,7 @@ public class BoolValueExpr extends BoolExpr {
 			return "false";
 	}
 
+	public boolean getBoolValue() {
+		return value;
+	}
 }
