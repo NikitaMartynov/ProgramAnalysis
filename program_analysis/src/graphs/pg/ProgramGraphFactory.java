@@ -1,5 +1,6 @@
 package graphs.pg;
 
+import ast.statement.ArrayAssignStatement;
 import ast.statement.AssignStatement;
 import ast.statement.IfStatement;
 import ast.statement.ReadArrayStatement;
@@ -22,6 +23,8 @@ public class ProgramGraphFactory {
 			new SeqProgramGraph((SeqStatement) st, initialNode, finalNode);
 		else if( st instanceof AssignStatement)
 			new AssignProgramGraph((AssignStatement) st, initialNode, finalNode);
+		else if( st instanceof ArrayAssignStatement)
+			new ArrayAssignProgramGraph((ArrayAssignStatement) st, initialNode, finalNode);
 		else if( st instanceof WriteStatement)
 			new WriteProgramGraph((WriteStatement) st, initialNode, finalNode);
 		else if( st instanceof ReadStatement)

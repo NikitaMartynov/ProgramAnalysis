@@ -4,11 +4,10 @@ low int b[10];
 high int x;
 int z;
 a:=10;
-x := (-8 - a+ b[a])* (-8);
+x := (-8 - a+ b[a])/ (8);
 while (a < 15) (* Comment here *) do
-x:=1;
 a := a+1;
-if (x = 1)
+if (x < 1 & x > 0)
 then x :=2*a;
 else x :=3*a;
 fi
