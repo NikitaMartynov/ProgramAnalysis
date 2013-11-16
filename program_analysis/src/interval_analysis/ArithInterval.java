@@ -51,7 +51,7 @@ public class ArithInterval extends Interval {
 			setBoundaries(Interval.divide(a1, a2));
 		} else {
 			throw new UnknownErrorException("Cannot handle class "
-					+ this.getClass());
+					+ exp.getClass());
 		}
 	}
 

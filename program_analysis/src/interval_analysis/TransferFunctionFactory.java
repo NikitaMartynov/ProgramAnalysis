@@ -46,8 +46,9 @@ public class TransferFunctionFactory {
 	 * @param e
 	 * @throws UnknownErrorException 
 	 * @throws DivideByZeroException 
+	 * @throws BoolNeverSatisfiedException 
 	 */
-	public static void create(Edge e) throws DivideByZeroException, UnknownErrorException {
+	public static void create(Edge e) throws DivideByZeroException, UnknownErrorException, BoolNeverSatisfiedException {
 
 		Block b = e.getBlock();
 		int start = e.getQs() - 1; // minus one because the index here starts
@@ -86,7 +87,12 @@ public class TransferFunctionFactory {
 			endIntervals.put(readSt.getName(), i);
 		} else if (b instanceof BoolExpr) {
 			// TODO
-			new BooExprHandler((BoolExpr)b, start, end).updateIntervals(endIntervals);
+			BoolIntervals boolIntervals = new BoolIntervals((BoolExpr) b, endIntervals);
+			endIntervals.putAll(boolIntervals.getIntervals());
+		}
+		else {
+			throw new UnknownErrorException("Cannot handle class "
+					+ b.getClass());
 		}
 
 		solutionTable.set(end, endIntervals);

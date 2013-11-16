@@ -54,7 +54,7 @@ public class IntervalAnalysis {
 	}
 
 	public static void analyze(int min, int max, Vector<String> freeVariables,
-			ArrayList<Edge> edges) throws DivideByZeroException, UnknownErrorException {
+			ArrayList<Edge> edges) throws DivideByZeroException, UnknownErrorException, BoolNeverSatisfiedException {
 		// TODO Auto-generated method stub
 		setMin(min);
 		setMax(max);

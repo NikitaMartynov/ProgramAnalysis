@@ -1,0 +1,7 @@
+program
+int n;
+if(n > -1 & n <= 4)
+then skip;
+else skip;
+fi
+end

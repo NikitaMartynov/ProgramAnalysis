@@ -181,6 +181,7 @@ public class Interval {
 	}
 
 	public static Interval union(Interval i1, Interval i2) {
+		// TODO need to be modified?
 		return new Interval(Math.min(i1.getLowBoundary(), i2.getLowBoundary()),
 				Math.max(i1.getHighBoundary(), i2.getHighBoundary()));
 	}
@@ -194,5 +195,20 @@ public class Interval {
 			high = "+INF";
 
 		return "[" + low + ", " + high + "]";
+	}
+
+	public static Interval intersection(Interval i1, Interval i2) {
+		// TODO Auto-generated method stub
+		int l = Math.max(i1.getLowBoundary(), i2.getLowBoundary());
+		int h = Math.min(i1.getHighBoundary(), i2.getHighBoundary());
+		
+		if(l > h)
+			return null;
+		else
+			return new Interval(l, h);
+	}
+
+	public boolean hasSingleValue() {
+		return this.low == this.high;
 	}
 }
