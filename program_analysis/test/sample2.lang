@@ -2,9 +2,9 @@ program
 int a[5];
 int b[5];
 int n;
-n := -1;
+read n;
 
-while (n<7) do
+while (n<0) do
 	a[n] := 1;		(* inadmissible array reference *)
 if(n >= 0 & n < 5)
 then	b[n] := 1;	(* admissible array reference *)

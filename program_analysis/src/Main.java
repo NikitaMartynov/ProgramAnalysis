@@ -1,5 +1,7 @@
 
 
+import java.util.HashMap;
+
 import interval_analysis.IntervalAnalysis;
 import free_variables.FreeVariableGenerator;
 import graphs.fg.*;
@@ -9,6 +11,7 @@ import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 
 import detectionOfSign_analysis.DetectionOfSign;
+import detectionOfSign_analysis.Signs;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
@@ -51,10 +54,19 @@ public class Main {
         System.out.println(fvg.toString());
         
         //Detect signs
-        DetectionOfSign ds = new DetectionOfSign();
-        ds.initialize(fvg.getAllVariables());
-        ds.detectSign(ProgramGraph.edges.get(1));;
+       // DetectionOfSign ds = new DetectionOfSign();
+       // ds.initialize(fvg.getAllVariables());
+       // ds.detectSign(ProgramGraph.edges.get(1));;
+        
+        HashMap<String, Signs> baseSigns = new HashMap<String, Signs>();
+		for( String var : fvg.getAllVariables()){
+			if(!baseSigns.containsKey(var)) baseSigns.put(var, new Signs());
+		}
+		DetectionOfSign ds = new DetectionOfSign(ProgramGraph.edges.get(0),baseSigns);
         System.out.println(ds.signsToString());
+        
+		DetectionOfSign ds2 = new DetectionOfSign(ProgramGraph.edges.get(1),ds.newAllVarSigns);
+		System.out.println(ds2.signsToString());
         
         // interval_analysis
         IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);

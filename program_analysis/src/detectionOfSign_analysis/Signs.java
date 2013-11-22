@@ -9,7 +9,7 @@ public class Signs {
 	boolean zero;
 	boolean plus;
 	
-	Signs(){
+	public Signs(){
 		this.zero = true;
 	}
 	
@@ -57,5 +57,12 @@ public class Signs {
 		if (this.zero) result.add(Sign.zero);
 		if (this.plus) result.add(Sign.plus);
 		return result;
+	}
+	
+	boolean isAny(){
+		if(this.minus || this.zero || this.plus)
+			return true;
+		else
+			return false;
 	}
 }
