@@ -1,6 +1,10 @@
 package detectionOfSign_analysis;
 
-import graphs.pg.Edge;
+import interval_analysis.BoolIntervals;
+import interval_analysis.BoolNeverSatisfiedException;
+import interval_analysis.DivideByZeroException;
+import interval_analysis.Interval;
+import interval_analysis.UnknownErrorException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +22,7 @@ import ast.bool.GreaterThanExpr;
 import ast.bool.LessThanEqualsExpr;
 import ast.bool.LessThanExpr;
 import ast.bool.NotEqualsExpr;
+import ast.bool.NotExpr;
 import ast.bool.OrExpr;
 
 public class BoolDetectionOfSign {
@@ -50,8 +55,10 @@ public class BoolDetectionOfSign {
 				if(((BoolValueExpr) boolExpr).getBoolValue() == false )
 					newAllVarSigns = null;
 			}
+		 else if (boolExpr instanceof NotExpr) 
+			 notExprSignsReduction((NotExpr)boolExpr);
 		else 
-			assert false : "Error in function reduceSignsForBoolExprHolds(), shouldn't reach it. Check did you forget to add smth?";
+			assert false : "Error in function BoolDetectionOfSign(), shouldn't reach it. Check did you forget to add smth?";
 		
 	}
 		
@@ -727,6 +734,60 @@ public class BoolDetectionOfSign {
 	
 	public HashMap<String, Signs> getNewAllVarSigns(){
 		return newAllVarSigns;
+	}
+
+	private void notExprSignsReduction(NotExpr exp) {
+
+		BoolExpr insideExpr = exp.getExpression();
+		BoolExpr newExpr = null;
+
+		if (insideExpr instanceof AndExpr) {
+			newExpr = new OrExpr(new NotExpr(
+					((AndExpr) insideExpr).getExpression1()), new NotExpr(
+					((AndExpr) insideExpr).getExpression2()));
+
+		} else if (insideExpr instanceof OrExpr) {
+			newExpr = new AndExpr(new NotExpr(
+					((OrExpr) insideExpr).getExpression1()), new NotExpr(
+					((OrExpr) insideExpr).getExpression2()));
+		} else if (insideExpr instanceof BoolValueExpr) {
+			if (((BoolValueExpr) insideExpr).getBoolValue() == true)
+				newExpr = new BoolValueExpr(false);
+			else
+				newExpr = new BoolValueExpr(true);
+		} else if (insideExpr instanceof EqualsExpr) {
+			newExpr = new NotEqualsExpr(
+					((EqualsExpr) insideExpr).getExpression1(),
+					((EqualsExpr) insideExpr).getExpression2());
+		} else if (insideExpr instanceof NotEqualsExpr) {
+			newExpr = new EqualsExpr(
+					((NotEqualsExpr) insideExpr).getExpression1(),
+					((NotEqualsExpr) insideExpr).getExpression2());
+		} else if (insideExpr instanceof GreaterThanEqualsExpr) {
+			newExpr = new LessThanExpr(
+					((GreaterThanEqualsExpr) insideExpr).getExpression1(),
+					((GreaterThanEqualsExpr) insideExpr).getExpression2());
+		} else if (insideExpr instanceof GreaterThanExpr) {
+			newExpr = new LessThanEqualsExpr(
+					((GreaterThanExpr) insideExpr).getExpression1(),
+					((GreaterThanExpr) insideExpr).getExpression2());
+		} else if (insideExpr instanceof LessThanEqualsExpr) {
+			newExpr = new GreaterThanExpr(
+					((LessThanEqualsExpr) insideExpr).getExpression1(),
+					((LessThanEqualsExpr) insideExpr).getExpression2());
+		} else if (insideExpr instanceof LessThanExpr) {
+			newExpr = new GreaterThanEqualsExpr(
+					((LessThanExpr) insideExpr).getExpression1(),
+					((LessThanExpr) insideExpr).getExpression2());
+		} else if (insideExpr instanceof NotExpr) {
+			newExpr = insideExpr;
+		}else {
+			assert false : "Error in function NotExpr(), shouldn't reach it. Check did you forget to add smth?";
+		}
+
+		this.newAllVarSigns = new BoolDetectionOfSign(newExpr, baseAllVarSigns)
+												.getNewAllVarSigns();
+
 	}
 	
 	//cmd={mergeOr,mergeAnd}

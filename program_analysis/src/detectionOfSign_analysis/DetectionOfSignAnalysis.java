@@ -4,7 +4,6 @@ import graphs.pg.Edge;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 import ast.bool.BoolExpr;
 import ast.statement.ArrayAssignStatement;
@@ -37,7 +36,7 @@ public class DetectionOfSignAnalysis {
 		else assert false : "Assert in function detectSign(), shouldn't reach it. Check, did you forget any class?";
 		
 		
-		//TODO boolean operations, !; check what if  ()?
+		//TODO  !; check what if  ()?
 	
 	}
 	

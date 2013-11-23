@@ -10,7 +10,6 @@ import graphs.pg.*;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 
-import detectionOfSign_analysis.ArithDetectionOfSign;
 import detectionOfSign_analysis.DetectionOfSignAnalysis;
 import detectionOfSign_analysis.Signs;
 import ast.Program;
