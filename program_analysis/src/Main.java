@@ -10,7 +10,8 @@ import graphs.pg.*;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 
-import detectionOfSign_analysis.DetectionOfSign;
+import detectionOfSign_analysis.ArithDetectionOfSign;
+import detectionOfSign_analysis.DetectionOfSignAnalysis;
 import detectionOfSign_analysis.Signs;
 import ast.Program;
 import parser.TheLangLexer;
@@ -62,11 +63,11 @@ public class Main {
 		for( String var : fvg.getAllVariables()){
 			if(!baseSigns.containsKey(var)) baseSigns.put(var, new Signs());
 		}
-		DetectionOfSign ds = new DetectionOfSign(ProgramGraph.edges.get(0),baseSigns);
-        System.out.println(ds.signsToString());
+		DetectionOfSignAnalysis dsa = new DetectionOfSignAnalysis(ProgramGraph.edges.get(0),baseSigns);
+        System.out.println(dsa.signsToString());
         
-		DetectionOfSign ds2 = new DetectionOfSign(ProgramGraph.edges.get(1),ds.newAllVarSigns);
-		System.out.println(ds2.signsToString());
+        DetectionOfSignAnalysis dsa2 = new DetectionOfSignAnalysis(ProgramGraph.edges.get(1),dsa.getNewAllVarSigns());
+		System.out.println(dsa2.signsToString());
         
         // interval_analysis
         IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);

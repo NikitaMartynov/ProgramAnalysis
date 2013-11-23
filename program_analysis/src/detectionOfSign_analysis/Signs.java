@@ -23,6 +23,24 @@ public class Signs {
 		else this.minus = true;
 	}
 	
+	public Signs(String cmd, Signs signs1, Signs signs2){
+		assert (cmd == "mergeOr") || (cmd == "mergeAnd")  : "Only mergeAnd and mergeOr commands can be passed to this constructor of Signs class as a string! ";
+		if (cmd == "mergeAnd"){
+			for (Sign sign : signs1.getSigns()){
+				switch (sign){
+					case minus: minus = signs2.isMinus(); break;
+					case zero: zero = signs2.isZero(); break;
+					case plus: plus = signs2.isPlus(); break;
+					default: assert false : "default in swith!"; 
+				}
+			}
+		}
+		if(cmd == "mergeOr"){
+			add(signs1);
+			add(signs2);
+		}
+	}
+	
 	void add(Sign sign){
 		switch(sign){
 			case minus: this.minus = true;break;
@@ -34,14 +52,21 @@ public class Signs {
 	
 	void add(Signs signs){
 		if (signs.minus) add(Sign.minus);
-		else if (signs.zero) add(Sign.zero);
-		else if (signs.plus) add(Sign.plus);
+		if (signs.zero) add(Sign.zero);
+		if (signs.plus) add(Sign.plus);
 	}
 	
 	void setAll(){
 		this.minus = true;
 		this.zero = true;
 		this.plus = true;
+	}
+	
+	Signs setNone(){
+		this.minus = false;
+		this.zero = false;
+		this.plus = false;
+		return this;
 	}
 	
 	boolean isAll(){
@@ -64,5 +89,19 @@ public class Signs {
 			return true;
 		else
 			return false;
+	}
+	
+	boolean isMinus(){
+		if (this.minus) return true;
+		else return false;
+	}
+	boolean isZero(){
+		if (this.zero) return true;
+		else return false;
+	}
+	
+	boolean isPlus(){
+		if (this.plus) return true;
+		else return false;
 	}
 }
