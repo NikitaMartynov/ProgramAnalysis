@@ -1,11 +1,5 @@
 package detectionOfSign_analysis;
 
-import interval_analysis.BoolIntervals;
-import interval_analysis.BoolNeverSatisfiedException;
-import interval_analysis.DivideByZeroException;
-import interval_analysis.Interval;
-import interval_analysis.UnknownErrorException;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -122,7 +116,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).toString();
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
 		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
@@ -136,7 +130,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).toString();
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
 		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
@@ -232,7 +226,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).toString();
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
 		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
@@ -246,7 +240,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).toString();
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
 		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
@@ -336,7 +330,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).toString();
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
 		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
@@ -350,7 +344,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).toString();
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
 		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
@@ -437,7 +431,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).toString();
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
 		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
@@ -450,7 +444,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).toString();
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
 		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
@@ -541,7 +535,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).toString();
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
 		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
@@ -554,7 +548,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).toString();
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
 		else signs2 =new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
@@ -639,7 +633,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).toString();
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
 		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
@@ -652,7 +646,7 @@ public class BoolDetectionOfSign {
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).toString();
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
 		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
@@ -742,14 +736,14 @@ public class BoolDetectionOfSign {
 		BoolExpr newExpr = null;
 
 		if (insideExpr instanceof AndExpr) {
-			newExpr = new OrExpr(new NotExpr(
-					((AndExpr) insideExpr).getExpression1()), new NotExpr(
-					((AndExpr) insideExpr).getExpression2()));
+			newExpr = new OrExpr(
+					((AndExpr) insideExpr).getExpression1(), 
+					((AndExpr) insideExpr).getExpression2());
 
 		} else if (insideExpr instanceof OrExpr) {
-			newExpr = new AndExpr(new NotExpr(
-					((OrExpr) insideExpr).getExpression1()), new NotExpr(
-					((OrExpr) insideExpr).getExpression2()));
+			newExpr = new AndExpr(
+					((OrExpr) insideExpr).getExpression1(),
+					((OrExpr) insideExpr).getExpression2());
 		} else if (insideExpr instanceof BoolValueExpr) {
 			if (((BoolValueExpr) insideExpr).getBoolValue() == true)
 				newExpr = new BoolValueExpr(false);

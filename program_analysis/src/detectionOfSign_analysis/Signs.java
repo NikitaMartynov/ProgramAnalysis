@@ -26,6 +26,11 @@ public class Signs {
 	public Signs(String cmd, Signs signs1, Signs signs2){
 		assert (cmd == "mergeOr") || (cmd == "mergeAnd")  : "Only mergeAnd and mergeOr commands can be passed to this constructor of Signs class as a string! ";
 		if (cmd == "mergeAnd"){
+			if((signs1 == null) || (signs2 == null)){
+				setNone();
+				return;
+			}
+			
 			for (Sign sign : signs1.getSigns()){
 				switch (sign){
 					case minus: minus = signs2.isMinus(); break;
@@ -36,8 +41,14 @@ public class Signs {
 			}
 		}
 		if(cmd == "mergeOr"){
-			add(signs1);
-			add(signs2);
+			if((signs1 == null) && (signs2 == null)){
+				setNone();
+				return;
+			}
+			if (signs1 == null)
+				add(signs2);
+			if (signs2 == null)
+				add(signs1);
 		}
 	}
 	

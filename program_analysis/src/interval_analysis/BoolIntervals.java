@@ -69,13 +69,13 @@ public class BoolIntervals {
 		BoolExpr newExpr = null;
 
 		if (insideExpr instanceof AndExpr) {
-			newExpr = new OrExpr(new NotExpr(
-					((AndExpr) insideExpr).getExpression1()), new NotExpr(
+			newExpr = new OrExpr(new NotExpr( //TODO error: should not inverse insideExpr
+					((AndExpr) insideExpr).getExpression1()), new NotExpr(//TODO error: should not inverse insideExpr
 					((AndExpr) insideExpr).getExpression2()));
 
 		} else if (insideExpr instanceof OrExpr) {
-			newExpr = new AndExpr(new NotExpr(
-					((OrExpr) insideExpr).getExpression1()), new NotExpr(
+			newExpr = new AndExpr(new NotExpr(//TODO error: should not inverse insideExpr
+					((OrExpr) insideExpr).getExpression1()), new NotExpr(//TODO error: should not inverse insideExpr
 					((OrExpr) insideExpr).getExpression2()));
 		} else if (insideExpr instanceof BoolValueExpr) {
 			if (((BoolValueExpr) insideExpr).getBoolValue() == true)
