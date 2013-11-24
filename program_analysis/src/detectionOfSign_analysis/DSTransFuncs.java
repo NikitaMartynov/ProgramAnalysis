@@ -13,11 +13,11 @@ import ast.statement.ReadStatement;
 import ast.statement.SkipStatement;
 import ast.statement.WriteStatement;
 
-public class DetectionOfSignAnalysis {
+public class DSTransFuncs {
 	private HashMap<String, Signs> newAllVarSigns;   // signs after transfer function
 	
-	public DetectionOfSignAnalysis(Edge edge,HashMap<String, Signs> baseElemSigns){
-		newAllVarSigns = new  HashMap<String, Signs>(baseElemSigns);
+	public DSTransFuncs(Edge edge,HashMap<String, Signs> baseElemSigns){
+		newAllVarSigns = Func.deepLineCopy(baseElemSigns);
 		
 		if(edge.getBlock() instanceof ReadStatement) //Read
 			readStatementSign((ReadStatement)edge.getBlock());
@@ -30,13 +30,13 @@ public class DetectionOfSignAnalysis {
 		else if (edge.getBlock() instanceof SkipStatement || //Skip
 				edge.getBlock() instanceof WriteStatement); //Write do nothing
 		else if  (edge.getBlock() instanceof BoolExpr)
-			newAllVarSigns = new BoolDetectionOfSign( (BoolExpr)edge.getBlock(), 
+			newAllVarSigns = new BoolDS( (BoolExpr)edge.getBlock(), 
 													baseElemSigns).getNewAllVarSigns();
 			
 		else assert false : "Assert in function detectSign(), shouldn't reach it. Check, did you forget any class?";
 		
 		
-		//TODO  !; check what if  ()?
+		//TODO  check what if  ()?
 	
 	}
 	
@@ -58,14 +58,14 @@ public class DetectionOfSignAnalysis {
 	
 	void assignStatementSign(AssignStatement assignSt){
 		String var = assignSt.getName();
-		Signs signs = new ArithDetectionOfSign( assignSt.getExpression(), newAllVarSigns).getSigns();
+		Signs signs = new ArithDS( assignSt.getExpression(), newAllVarSigns).getSigns();
 		newAllVarSigns.put( var, signs );
 	}
 	
 	void arrayAssignStatementSign(ArrayAssignStatement assignArraySt){
 		String var = assignArraySt.getName();
 		Signs  signs = newAllVarSigns.get(var);
-		Signs newSigns = new ArithDetectionOfSign( assignArraySt.getValueExpression(), newAllVarSigns).getSigns();
+		Signs newSigns = new ArithDS( assignArraySt.getValueExpression(), newAllVarSigns).getSigns();
 		signs.add(newSigns);
 		newAllVarSigns.put( var, signs );
 	}

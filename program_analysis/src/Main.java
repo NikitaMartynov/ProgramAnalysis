@@ -10,7 +10,8 @@ import graphs.pg.*;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 
-import detectionOfSign_analysis.DetectionOfSignAnalysis;
+import detectionOfSign_analysis.DSTransFuncs;
+import detectionOfSign_analysis.DSWorklist;
 import detectionOfSign_analysis.Signs;
 import ast.Program;
 import parser.TheLangLexer;
@@ -53,20 +54,9 @@ public class Main {
         FreeVariableGenerator fvg = new FreeVariableGenerator();
         System.out.println(fvg.toString());
         
-        //Detect signs
-       // DetectionOfSign ds = new DetectionOfSign();
-       // ds.initialize(fvg.getAllVariables());
-       // ds.detectSign(ProgramGraph.edges.get(1));;
-        
-        HashMap<String, Signs> baseSigns = new HashMap<String, Signs>();
-		for( String var : fvg.getAllVariables()){
-			if(!baseSigns.containsKey(var)) baseSigns.put(var, new Signs());
-		}
-		DetectionOfSignAnalysis dsa = new DetectionOfSignAnalysis(ProgramGraph.edges.get(0),baseSigns);
-        System.out.println(dsa.signsToString());
-        
-        DetectionOfSignAnalysis dsa2 = new DetectionOfSignAnalysis(ProgramGraph.edges.get(1),dsa.getNewAllVarSigns());
-		System.out.println(dsa2.signsToString());
+        //Detect of signs	
+		DSWorklist dsw = new DSWorklist(ProgramGraph.edges, fvg.getAllVariables());
+		dsw.printSolutionsTable();
         
         // interval_analysis
         IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);

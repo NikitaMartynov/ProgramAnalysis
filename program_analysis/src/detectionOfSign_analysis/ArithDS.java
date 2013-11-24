@@ -15,7 +15,7 @@ import ast.arith.ParenExpr;
 import ast.arith.PlusExpr;
 import ast.arith.UnMinExpr;
 
-public class ArithDetectionOfSign {
+public class ArithDS {
 	
 	private Signs arithExprSigns;
 	private HashMap<String, Signs> baseAllVarSigns;
@@ -30,9 +30,9 @@ public class ArithDetectionOfSign {
 		}	
 	}*/
 	
-	public ArithDetectionOfSign(ArithExpr arithExpr,HashMap<String, Signs> baseElemSigns){
+	public ArithDS(ArithExpr arithExpr,HashMap<String, Signs> baseElemSigns){
 		
-		baseAllVarSigns = baseElemSigns;
+		baseAllVarSigns = Func.deepLineCopy(baseElemSigns);
 
 		arithExprSigns  = arithExprSigns(arithExpr);
 

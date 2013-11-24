@@ -19,15 +19,15 @@ import ast.bool.NotEqualsExpr;
 import ast.bool.NotExpr;
 import ast.bool.OrExpr;
 
-public class BoolDetectionOfSign {
+public class BoolDS {
 	
 	private HashMap<String, Signs> baseAllVarSigns; //input signs
 	public HashMap<String, Signs> newAllVarSigns;   // signs after transfer function 
 	
-	public BoolDetectionOfSign(BoolExpr boolExpr,HashMap<String, Signs> baseElemSigns){
+	public BoolDS(BoolExpr boolExpr,HashMap<String, Signs> baseElemSigns){
 		
-		newAllVarSigns = new  HashMap<String, Signs>(baseElemSigns);
-		this.baseAllVarSigns = new  HashMap<String, Signs>(baseElemSigns);
+		newAllVarSigns = Func.deepLineCopy(baseElemSigns);
+		this.baseAllVarSigns = Func.deepLineCopy(baseElemSigns);
 		
 		if(boolExpr instanceof LessThanExpr)
 			lessThanExprSignsReduction((LessThanExpr)boolExpr);
@@ -41,13 +41,14 @@ public class BoolDetectionOfSign {
 			equalsExprSignsReduction((EqualsExpr)boolExpr);
 		else if(boolExpr instanceof NotEqualsExpr)
 			notEqualsExprSignsReduction((NotEqualsExpr)boolExpr);
-		if (boolExpr instanceof OrExpr)
+		else if (boolExpr instanceof OrExpr)
 			orExprHoldsSigns((OrExpr) boolExpr);
-		if (boolExpr instanceof AndExpr)
+		else if (boolExpr instanceof AndExpr)
 			andExprHoldsSigns((AndExpr) boolExpr);
 		else if(boolExpr instanceof BoolValueExpr){
-				if(((BoolValueExpr) boolExpr).getBoolValue() == false )
+				if(((BoolValueExpr) boolExpr).getBoolValue() == false ){
 					newAllVarSigns = null;
+				}
 			}
 		 else if (boolExpr instanceof NotExpr) 
 			 notExprSignsReduction((NotExpr)boolExpr);
@@ -62,14 +63,14 @@ public class BoolDetectionOfSign {
 		HashMap<String, Signs> signs1 =null, signs2 = null;
 		boolean value1, value2;
 		
-		signs1 = new BoolDetectionOfSign(boolExpr1, baseAllVarSigns).getNewAllVarSigns();
+		signs1 = new BoolDS(boolExpr1, baseAllVarSigns).getNewAllVarSigns();
 		value1 = signs1 == null ? false : true;
 		
-		signs2 = new BoolDetectionOfSign(boolExpr2, baseAllVarSigns).getNewAllVarSigns();
+		signs2 = new BoolDS(boolExpr2, baseAllVarSigns).getNewAllVarSigns();
 		value2 = signs2 == null ? false : true;
 		
 		if (value1 || value2 ){
-			newAllVarSigns =  mergeSigns("mergeOr",signs1,signs2);
+			newAllVarSigns =  mergeSigns("mergeUnion",signs1,signs2);
 			return true;
 		}
 		else {
@@ -84,14 +85,14 @@ public class BoolDetectionOfSign {
 		HashMap<String, Signs> signs1 =null, signs2 = null;
 		boolean value1, value2;
 		
-		signs1 = new BoolDetectionOfSign(boolExpr1, baseAllVarSigns).getNewAllVarSigns();
+		signs1 = new BoolDS(boolExpr1, baseAllVarSigns).getNewAllVarSigns();
 		value1 = signs1 == null ? false : true;
 		
-		signs2 = new BoolDetectionOfSign(boolExpr2, baseAllVarSigns).getNewAllVarSigns();
+		signs2 = new BoolDS(boolExpr2, baseAllVarSigns).getNewAllVarSigns();
 		value2 = signs2 == null ? false : true;
 		
 		if (value1 && value2 ){
-			newAllVarSigns =  mergeSigns("mergeAnd",signs1,signs2);
+			newAllVarSigns =  mergeSigns("mergeIntersection",signs1,signs2);
 			return true;
 		}
 		else {
@@ -119,7 +120,7 @@ public class BoolDetectionOfSign {
 			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
-		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
+		else signs1 = new ArithDS( arithExpr1, baseAllVarSigns).getSigns();
 		
 		
 		//Signs for expr2
@@ -133,7 +134,7 @@ public class BoolDetectionOfSign {
 			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
-		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
+		else signs2 = new ArithDS( arithExpr2, baseAllVarSigns).getSigns();
 		
 		//Summing signs (table 3.3 <)
 		trueSigns1 = new Signs("null");
@@ -229,7 +230,7 @@ public class BoolDetectionOfSign {
 			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
-		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
+		else signs1 = new ArithDS( arithExpr1, baseAllVarSigns).getSigns();
 		
 		
 		//Signs for expr2
@@ -243,7 +244,7 @@ public class BoolDetectionOfSign {
 			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
-		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
+		else signs2 = new ArithDS( arithExpr2, baseAllVarSigns).getSigns();
 		
 		//Summing signs (table 3.3 <=)
 		trueSigns1 = new Signs("null");
@@ -333,7 +334,7 @@ public class BoolDetectionOfSign {
 			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
-		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
+		else signs1 = new ArithDS( arithExpr1, baseAllVarSigns).getSigns();
 		
 		
 		//Signs for expr2
@@ -347,7 +348,7 @@ public class BoolDetectionOfSign {
 			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
-		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
+		else signs2 = new ArithDS( arithExpr2, baseAllVarSigns).getSigns();
 		
 		//Summing signs (table 3.3 >)
 		trueSigns1 = new Signs("null");
@@ -434,7 +435,7 @@ public class BoolDetectionOfSign {
 			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
-		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
+		else signs1 = new ArithDS( arithExpr1, baseAllVarSigns).getSigns();
 		
 		//Signs for expr2
 		if(arithExpr2 instanceof IdExpr){
@@ -447,7 +448,7 @@ public class BoolDetectionOfSign {
 			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
-		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
+		else signs2 = new ArithDS( arithExpr2, baseAllVarSigns).getSigns();
 		
 		//Summing signs (table 3.3 >=)
 		trueSigns1 = new Signs("null");
@@ -538,7 +539,7 @@ public class BoolDetectionOfSign {
 			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
-		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
+		else signs1 = new ArithDS( arithExpr1, baseAllVarSigns).getSigns();
 		
 		//Signs for expr2
 		if(arithExpr2 instanceof IdExpr){
@@ -551,7 +552,7 @@ public class BoolDetectionOfSign {
 			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
-		else signs2 =new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
+		else signs2 =new ArithDS( arithExpr2, baseAllVarSigns).getSigns();
 		
 		//Summing signs (table 3.3 =)
 		trueSigns1 = new Signs("null");
@@ -636,7 +637,7 @@ public class BoolDetectionOfSign {
 			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
-		else signs1 = new ArithDetectionOfSign( arithExpr1, baseAllVarSigns).getSigns();
+		else signs1 = new ArithDS( arithExpr1, baseAllVarSigns).getSigns();
 		
 		//Signs for expr2
 		if(arithExpr2 instanceof IdExpr){
@@ -649,7 +650,7 @@ public class BoolDetectionOfSign {
 			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
-		else signs2 = new ArithDetectionOfSign( arithExpr2, baseAllVarSigns).getSigns();
+		else signs2 = new ArithDS( arithExpr2, baseAllVarSigns).getSigns();
 		
 		//Summing signs (table 3.3 !=)
 		trueSigns1 = new Signs("null");
@@ -779,13 +780,14 @@ public class BoolDetectionOfSign {
 			assert false : "Error in function NotExpr(), shouldn't reach it. Check did you forget to add smth?";
 		}
 
-		this.newAllVarSigns = new BoolDetectionOfSign(newExpr, baseAllVarSigns)
+		this.newAllVarSigns = new BoolDS(newExpr, baseAllVarSigns)
 												.getNewAllVarSigns();
 
 	}
 	
-	//cmd={mergeOr,mergeAnd}
-	HashMap<String, Signs> mergeSigns(String cmd, HashMap<String, Signs> signs1, HashMap<String, Signs> signs2){
+	//cmd={mergeUnion,mergeIntersection}
+	 HashMap<String, Signs> mergeSigns(String cmd, 
+					HashMap<String, Signs> signs1, HashMap<String, Signs> signs2){
 		HashMap<String, Signs> signs = new HashMap<String, Signs>();
 		if ((signs1 == null) && (signs2 == null) )
 			return null;
@@ -801,4 +803,11 @@ public class BoolDetectionOfSign {
 		
 		return signs;
 	}
+	 
+	 HashMap<String, Signs> setOffAllSigns(HashMap<String, Signs> signs){
+		 HashMap<String, Signs> newSigns = new HashMap<String, Signs>();
+		 for (Map.Entry<String,Signs> entry : signs.entrySet())
+			 signs.put(entry.getKey(), new Signs("null")  );
+		 return newSigns;
+	 } 
 }

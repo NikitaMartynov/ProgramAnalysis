@@ -13,6 +13,12 @@ public class Signs {
 		this.zero = true;
 	}
 	
+	public Signs(Signs signs){
+		if (signs.minus) add(Sign.minus);
+		if (signs.zero) add(Sign.zero);
+		if (signs.plus) add(Sign.plus);
+	}
+	
 	Signs(String str){
 		assert str == "null" : "Only null can be passed to this constructor of Signs class as a string! ";	
 	}
@@ -24,8 +30,8 @@ public class Signs {
 	}
 	
 	public Signs(String cmd, Signs signs1, Signs signs2){
-		assert (cmd == "mergeOr") || (cmd == "mergeAnd")  : "Only mergeAnd and mergeOr commands can be passed to this constructor of Signs class as a string! ";
-		if (cmd == "mergeAnd"){
+		assert (cmd == "mergeUnion") || (cmd == "mergeIntersection")  : "Only mergeAnd and mergeOr commands can be passed to this constructor of Signs class as a string! ";
+		if (cmd == "mergeIntersection"){
 			if((signs1 == null) || (signs2 == null)){
 				setNone();
 				return;
@@ -40,15 +46,22 @@ public class Signs {
 				}
 			}
 		}
-		if(cmd == "mergeOr"){
+		if(cmd == "mergeUnion"){
 			if((signs1 == null) && (signs2 == null)){
 				setNone();
 				return;
 			}
-			if (signs1 == null)
+			if (signs1 == null){
 				add(signs2);
-			if (signs2 == null)
+				return;
+			}
+				
+			if (signs2 == null){
 				add(signs1);
+				return;
+			}
+			add(signs1);
+			add(signs2);
 		}
 	}
 	
@@ -114,5 +127,20 @@ public class Signs {
 	boolean isPlus(){
 		if (this.plus) return true;
 		else return false;
+	}
+	
+	boolean isSubsetOf(Signs signs){
+		if(this.minus)
+			if(!signs.minus)
+				return false;
+		if(this.zero)
+			if(!signs.zero)
+				return false;
+		if(this.plus)
+			if(!signs.plus)
+				return false;
+
+		
+		return true;
 	}
 }
