@@ -55,8 +55,8 @@ public class Main {
         System.out.println(fvg.toString());
         
         //Detect of signs	
-		DSWorklist dsw = new DSWorklist(ProgramGraph.edges, fvg.getAllVariables());
-		dsw.printSolutionsTable();
+		//DSWorklist dsw = new DSWorklist(ProgramGraph.edges, fvg.getAllVariables());
+		//dsw.printSolutionsTable();
         
         // interval_analysis
         IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);

@@ -59,7 +59,7 @@ public class DSWorklist {
 				solutionsTable.set(endNodeIndex, mergeSigns("mergeUnion", 
 						resAfterTrFunc, solutionsTable.get(endNodeIndex)) );
 				for (Edge edge : pgEdges){
-					if (currentEdge.getQs() == edge.getQs()){
+					if (currentEdge.getQs() == edge.getQs()){ // TODO should be currentEdge.getQt() == edge.getQs()???
 						workList.add(edge);
 					}
 				}

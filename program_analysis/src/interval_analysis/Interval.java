@@ -211,4 +211,10 @@ public class Interval {
 	public boolean hasSingleValue() {
 		return this.low == this.high;
 	}
+
+	public boolean isSubsetOf(Interval interval) {
+		if(this.low >= interval.low && this.high <= interval.high)
+			return true;
+		return false;
+	}
 }

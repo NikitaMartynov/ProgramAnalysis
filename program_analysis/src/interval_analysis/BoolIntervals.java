@@ -33,12 +33,12 @@ public class BoolIntervals {
 					ge.getExpression2(), baseIntervals);
 		} else if (exp instanceof LessThanExpr) {
 			LessThanExpr l = (LessThanExpr) exp;
-			initForGreaterThanExpr(l, l.getExpression2(), l.getExpression1(),
+			initForLessThanExpr(l, l.getExpression1(), l.getExpression2(),
 					baseIntervals);
 		} else if (exp instanceof LessThanEqualsExpr) {
 			LessThanEqualsExpr le = (LessThanEqualsExpr) exp;
-			initForGreaterThanEqualsExpr(le, le.getExpression2(),
-					le.getExpression1(), baseIntervals);
+			initForLessThanEqualsExpr(le, le.getExpression1(),
+					le.getExpression2(), baseIntervals);
 		} else if (exp instanceof BoolValueExpr) {
 			BoolValueExpr b = (BoolValueExpr) exp;
 			if (b.getBoolValue()) { // true
@@ -59,6 +59,8 @@ public class BoolIntervals {
 					+ exp.getClass());
 		}
 	}
+
+
 
 	private void initForNotExpr(NotExpr exp,
 			HashMap<String, Interval> baseIntervals)
@@ -161,6 +163,19 @@ public class BoolIntervals {
 			intervals.put(key, baseIntervals.get(key));
 	}
 
+	private void initForLessThanEqualsExpr(LessThanEqualsExpr le,
+			ArithExpr expression1, ArithExpr expression2,
+			HashMap<String, Interval> baseIntervals) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void initForLessThanExpr(LessThanExpr l, ArithExpr expression1,
+			ArithExpr expression2, HashMap<String, Interval> baseIntervals) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	private void initForGreaterThanExpr(BoolExpr exp, ArithExpr a1,
 			ArithExpr a2, HashMap<String, Interval> baseIntervals)
 			throws DivideByZeroException, UnknownErrorException,
@@ -316,6 +331,7 @@ public class BoolIntervals {
 		}
 
 		if (i1 == null && i2 == null) {
+			//intervals = null;
 			throw new BoolNeverSatisfiedException(boolExpr, baseIntervals);
 		} else if (i1 == null) {
 			intervals = i2;
