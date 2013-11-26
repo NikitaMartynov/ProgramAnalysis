@@ -15,11 +15,11 @@ public class IAWorklist {
 	private static void initSolutionTable(Vector<String> freeVariables) {
 		if (solutionTable == null)
 			solutionTable = new Vector<HashMap<String, Interval>>(
-					ProgramGraph.GreatestNumUsed + 1);
+					ProgramGraph.GreatestNumUsed );
 		else
 			solutionTable.clear();
 		
-		System.out.println(ProgramGraph.GreatestNumUsed);
+		//System.out.println(ProgramGraph.GreatestNumUsed);
 
 		// pre-reserve a room for each HashMap
 		for (int i = 0; i < solutionTable.capacity(); i++) {
