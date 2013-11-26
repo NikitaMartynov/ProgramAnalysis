@@ -1,7 +1,7 @@
 program
 int n;
 int a;
-if(n > -1 & n <= 4)
+if(n >= 0 & n <= 4)
 then a:=0;
 else skip;
 fi

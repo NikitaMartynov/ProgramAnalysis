@@ -89,7 +89,7 @@ public class Interval {
 
 	public static Interval plus(Interval i1, Interval i2) {
 		Interval ret = new Interval(plus(i1.getLowBoundary(),
-				i2.getLowBoundary(), 1), plus(i2.getHighBoundary(),
+				i2.getLowBoundary(), 1), plus(i1.getHighBoundary(),
 				i2.getHighBoundary(), 2));
 
 		return ret;

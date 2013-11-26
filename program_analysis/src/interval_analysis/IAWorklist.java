@@ -61,8 +61,8 @@ public class IAWorklist {
 					}
 				}
 			}
-			 System.out.println("The solution table in loop " + loopCounter);
-			 printSolutionTable();
+			 //System.out.println("The solution table in loop " + loopCounter);
+			 //printSolutionTable();
 		}
 	}
 

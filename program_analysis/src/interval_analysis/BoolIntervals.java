@@ -163,16 +163,99 @@ public class BoolIntervals {
 			intervals.put(key, baseIntervals.get(key));
 	}
 
-	private void initForLessThanEqualsExpr(LessThanEqualsExpr le,
-			ArithExpr expression1, ArithExpr expression2,
-			HashMap<String, Interval> baseIntervals) {
-		// TODO Auto-generated method stub
+	private void initForLessThanEqualsExpr(LessThanEqualsExpr exp,
+			ArithExpr a1, ArithExpr a2,
+			HashMap<String, Interval> baseIntervals) throws DivideByZeroException, UnknownErrorException, BoolNeverSatisfiedException {
+		Interval i1 = new ArithInterval(a1, baseIntervals);
+		Interval i2 = new ArithInterval(a2, baseIntervals);
+
+		intervals = new HashMap<String, Interval>();
+
+		// special case for variable <= num
+		if ((a1 instanceof IdExpr)
+				&& (a2 instanceof NumExpr /*|| a2 instanceof UnMinExpr*/)) {
+			Interval i = null;
+			int num = ((NumExpr)a2).getValue(); // positive number
+			if (i1.getLowBoundary() <= num)
+				i = new Interval(i1.getLowBoundary(), num);
+			else
+				throw new BoolNeverSatisfiedException(exp, baseIntervals);
+			intervals.put(a1.toString(), i);
+		}
+		// special case for num <= variable
+		else if ((a2 instanceof IdExpr /*|| a1 instanceof UnMinExpr*/)
+				&& (a1 instanceof NumExpr)) {
+			Interval i = null;
+			int num = ((NumExpr)a1).getValue(); // positive number
+			if (i2.getHighBoundary() >= num)
+				i = new Interval(num, i2.getHighBoundary());
+			else
+				throw new BoolNeverSatisfiedException(exp, baseIntervals);
+			intervals.put(a2.toString(), i);
+		}
+
+		// common cases
+		else if (i2.getHighBoundary() < i1.getLowBoundary()) {
+			throw new BoolNeverSatisfiedException(exp, baseIntervals);
+		} else {
+			// record the original values
+			for (String key : a1.getVariables()) {
+				intervals.put(key, baseIntervals.get(key));
+			}
+			for (String key : a2.getVariables()) {
+				intervals.put(key, baseIntervals.get(key));
+			}
+		}
 		
 	}
 
-	private void initForLessThanExpr(LessThanExpr l, ArithExpr expression1,
-			ArithExpr expression2, HashMap<String, Interval> baseIntervals) {
-		// TODO Auto-generated method stub
+	private void initForLessThanExpr(LessThanExpr exp, ArithExpr a1,
+			ArithExpr a2, HashMap<String, Interval> baseIntervals) throws DivideByZeroException, UnknownErrorException, BoolNeverSatisfiedException {
+		// for each possible values of variables in v1 and v2, compute the bool
+		// expr result
+		// record all the values that make the bool expr to be tt
+		//
+
+		Interval i1 = new ArithInterval(a1, baseIntervals);
+		Interval i2 = new ArithInterval(a2, baseIntervals);
+
+		intervals = new HashMap<String, Interval>();
+
+		// special case for variable < num
+		if ((a1 instanceof IdExpr)
+				&& (a2 instanceof NumExpr /*|| a2 instanceof UnMinExpr*/)) {
+			Interval i = null;
+			int num = ((NumExpr)a2).getValue(); // positive number
+			if (i1.getLowBoundary() < num)
+				i = new Interval(i1.getLowBoundary(), num - 1);
+			else
+				throw new BoolNeverSatisfiedException(exp, baseIntervals);
+			intervals.put(a1.toString(), i);
+		}
+		// special case for num < variable
+		else if ((a2 instanceof IdExpr /*|| a1 instanceof UnMinExpr*/)
+				&& (a1 instanceof NumExpr)) {
+			Interval i = null;
+			int num = ((NumExpr)a1).getValue(); // positive number
+			if (i2.getHighBoundary() > num)
+				i = new Interval(num + 1, i2.getHighBoundary());
+			else
+				throw new BoolNeverSatisfiedException(exp, baseIntervals);
+			intervals.put(a2.toString(), i);
+		}
+
+		// common cases
+		else if (i2.getHighBoundary() <= i1.getLowBoundary()) {
+			throw new BoolNeverSatisfiedException(exp, baseIntervals);
+		} else {
+			// record the original values
+			for (String key : a1.getVariables()) {
+				intervals.put(key, baseIntervals.get(key));
+			}
+			for (String key : a2.getVariables()) {
+				intervals.put(key, baseIntervals.get(key));
+			}
+		}
 		
 	}
 	
@@ -193,20 +276,22 @@ public class BoolIntervals {
 
 		// special case for variable > num
 		if ((a1 instanceof IdExpr)
-				&& (a2 instanceof NumExpr || a2 instanceof UnMinExpr)) {
+				&& (a2 instanceof NumExpr /*|| a2 instanceof UnMinExpr*/)) {
 			Interval i = null;
-			if (i1.getHighBoundary() > i2.getHighBoundary())
-				i = new Interval(i2.getHighBoundary() + 1, i1.getHighBoundary());
+			int num = ((NumExpr)a2).getValue(); // positive number
+			if (i1.getHighBoundary() > num)
+				i = new Interval(num + 1, i1.getHighBoundary());
 			else
 				throw new BoolNeverSatisfiedException(exp, baseIntervals);
 			intervals.put(a1.toString(), i);
 		}
 		// special case for num > variable
-		else if ((a2 instanceof IdExpr || a1 instanceof UnMinExpr)
+		else if ((a2 instanceof IdExpr /*|| a1 instanceof UnMinExpr*/)
 				&& (a1 instanceof NumExpr)) {
 			Interval i = null;
-			if (i2.getLowBoundary() < i1.getLowBoundary())
-				i = new Interval(i2.getLowBoundary(), i1.getLowBoundary() - 1);
+			int num = ((NumExpr)a1).getValue(); // positive number
+			if (i2.getLowBoundary() < num)
+				i = new Interval(i2.getLowBoundary(), num - 1);
 			else
 				throw new BoolNeverSatisfiedException(exp, baseIntervals);
 			intervals.put(a2.toString(), i);
@@ -243,20 +328,22 @@ public class BoolIntervals {
 
 		// special case for variable >= num
 		if ((a1 instanceof IdExpr)
-				&& (a2 instanceof NumExpr || a2 instanceof UnMinExpr)) {
+				&& (a2 instanceof NumExpr /*|| a2 instanceof UnMinExpr*/)) {
 			Interval i = null;
-			if (i1.getHighBoundary() >= i2.getHighBoundary())
-				i = new Interval(i2.getHighBoundary(), i1.getHighBoundary());
+			int num = ((NumExpr)a2).getValue(); // positive number
+			if (i1.getHighBoundary() >= num)
+				i = new Interval(num, i1.getHighBoundary());
 			else
 				throw new BoolNeverSatisfiedException(exp, baseIntervals);
 			intervals.put(a1.toString(), i);
 		}
 		// special case for num >= variable
-		else if ((a2 instanceof IdExpr || a1 instanceof UnMinExpr)
+		else if ((a2 instanceof IdExpr /*|| a1 instanceof UnMinExpr*/)
 				&& (a1 instanceof NumExpr)) {
 			Interval i = null;
-			if (i2.getLowBoundary() <= i1.getLowBoundary())
-				i = new Interval(i2.getLowBoundary(), i1.getLowBoundary());
+			int num = ((NumExpr)a1).getValue(); // positive number
+			if (i2.getLowBoundary() <= num)
+				i = new Interval(i2.getLowBoundary(), num);
 			else
 				throw new BoolNeverSatisfiedException(exp, baseIntervals);
 			intervals.put(a2.toString(), i);
