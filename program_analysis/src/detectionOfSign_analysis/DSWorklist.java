@@ -64,7 +64,7 @@ public class DSWorklist {
 					}
 				}
 			}
-			//printSolutionsTable();
+			printSolutionsTable();
 		}
 	}
 	
