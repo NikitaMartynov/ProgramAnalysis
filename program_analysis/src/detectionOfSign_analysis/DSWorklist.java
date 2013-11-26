@@ -22,7 +22,7 @@ public class DSWorklist {
 		
 		if (solutionsTable == null)
 			solutionsTable = new Vector<HashMap<String, Signs>>( 
-					ProgramGraph.GreatestNumUsed + 1);
+					ProgramGraph.GreatestNumUsed);
 		else solutionsTable.clear();
 
 
