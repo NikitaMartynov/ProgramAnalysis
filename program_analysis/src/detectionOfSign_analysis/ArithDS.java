@@ -1,10 +1,8 @@
 package detectionOfSign_analysis;
 
-import graphs.pg.Edge;
+
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
 
 import ast.arith.ArithExpr;
 import ast.arith.ArrayExpr;
@@ -16,16 +14,13 @@ import ast.arith.NumExpr;
 import ast.arith.ParenExpr;
 import ast.arith.PlusExpr;
 import ast.arith.UnMinExpr;
-import ast.statement.ArrayAssignStatement;
-import ast.statement.AssignStatement;
-import ast.statement.ReadArrayStatement;
-import ast.statement.ReadStatement;
 
-public class DetectionOfSign {
+public class ArithDS {
 	
-	public static HashMap<String, Signs> elemSigns;
+	private Signs arithExprSigns;
+	private HashMap<String, Signs> baseAllVarSigns;
 	
-	public void initialize (Vector<String> variables){
+/*	public void initialize (Vector<String> variables){
 		
 		elemSigns = new HashMap<String, Signs>();
 		//assert ProgramGraph.edges != null : "Program graph edges not buit at initialization of Detection Of Signs";
@@ -33,60 +28,26 @@ public class DetectionOfSign {
 		for( String var : variables){
 			if(!elemSigns.containsKey(var)) elemSigns.put(var, new Signs());
 		}	
-	}
+	}*/
 	
-	public void detectSign(Edge edge){
-		if(edge.getBlock() instanceof ReadStatement) //Read
-			readStatementSign((ReadStatement)edge.getBlock());
-		else if (edge.getBlock() instanceof ReadArrayStatement) //ReadArray
-			readArrayStatementSign((ReadArrayStatement)edge.getBlock());
-		else if (edge.getBlock() instanceof AssignStatement) //Assign
-			assignStatementSign((AssignStatement)edge.getBlock());
-		else if (edge.getBlock() instanceof ArrayAssignStatement) //Array
-			arrayAssignStatementSign((ArrayAssignStatement)edge.getBlock());
-			
-		//TODO
-		//Do we  need to do anything with skip and write?
-		//How deal with BoolExpr?
-	}
-	
-	void readStatementSign(ReadStatement readSt){
-		String var = readSt.getName();
-		Signs  signs = elemSigns.get(var);
-		signs.setAll();
-		elemSigns.put( var, signs );
+	public ArithDS(ArithExpr arithExpr,HashMap<String, Signs> baseElemSigns){
 		
+		baseAllVarSigns = Func.deepLineCopy(baseElemSigns);
+
+		arithExprSigns  = arithExprSigns(arithExpr);
+
 	}
 	
-	void readArrayStatementSign(ReadArrayStatement readArraySt){
-		String var = readArraySt.getName();
-		Signs  signs = elemSigns.get(var);
-		signs.setAll();
-		elemSigns.put( var, signs );
+	
+	
+	Signs arithExprSigns(ArithExpr arithExpr){
 		
-	}
-	
-	void assignStatementSign(AssignStatement assignSt){
-		String var = assignSt.getName();
-		Signs signs = exprSigns( assignSt.getExpression());
-		elemSigns.put( var, signs );
-	}
-	
-	void arrayAssignStatementSign(ArrayAssignStatement assignArraySt){
-		String var = assignArraySt.getName();
-		Signs  signs = elemSigns.get(var);
-		Signs newSigns = exprSigns( assignArraySt.getValueExpression());
-		signs.add(newSigns);
-		elemSigns.put( var, signs );
-	}
-	
-	Signs exprSigns(ArithExpr arithExpr){
 		if(arithExpr instanceof IdExpr) //Variable
-			return elemSigns.get( ( (IdExpr)arithExpr ).toString() );
+			return baseAllVarSigns.get( ( (IdExpr)arithExpr ).toString() );
 		else if (arithExpr instanceof NumExpr) //Number
 			return new Signs( ( (NumExpr)arithExpr ).getValue() );
 		else if (arithExpr instanceof ParenExpr) //ParenExpr
-			return exprSigns(arithExpr); 
+			return arithExprSigns(arithExpr); 
 		else if ( arithExpr instanceof PlusExpr) // PlusExpr
 			return plusSigns((PlusExpr) arithExpr);
 		else if ( arithExpr instanceof MinusExpr) // MinusExpr
@@ -109,22 +70,22 @@ public class DetectionOfSign {
 		
 		//Signs for expr1
 		if(arithExpr1 instanceof IdExpr)
-			signs1 =  elemSigns.get( ( (IdExpr)arithExpr1 ).toString() );
+			signs1 =  baseAllVarSigns.get( ( (IdExpr)arithExpr1 ).toString() );
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr)
-			signs1 =  elemSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		else signs1 = exprSigns(arithExpr1);
+			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
+		else signs1 = arithExprSigns(arithExpr1);
 		
 		
 		//Signs for expr2
 		if(arithExpr2 instanceof IdExpr)
-			signs2 =  elemSigns.get( ( (IdExpr)arithExpr2 ).toString() );
+			signs2 =  baseAllVarSigns.get( ( (IdExpr)arithExpr2 ).toString() );
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr)
-			signs2 =  elemSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		else signs2 = exprSigns(arithExpr2);
+			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
+		else signs2 = arithExprSigns(arithExpr2);
 		
 		//Summing signs (table 3.1 +)
 		resultSigns = new Signs("null");
@@ -175,21 +136,21 @@ public class DetectionOfSign {
 		
 		//Signs for expr1
 		if(arithExpr1 instanceof IdExpr)
-			signs1 =  elemSigns.get( ( (IdExpr)arithExpr1 ).toString() );
+			signs1 =  baseAllVarSigns.get( ( (IdExpr)arithExpr1 ).toString() );
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr)
-			signs1 =  elemSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		else signs1 = exprSigns(arithExpr1);
+			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
+		else signs1 = arithExprSigns(arithExpr1);
 		
 		//Signs for expr2
 		if(arithExpr2 instanceof IdExpr)
-			signs2 =  elemSigns.get( ( (IdExpr)arithExpr2 ).toString() );
+			signs2 =  baseAllVarSigns.get( ( (IdExpr)arithExpr2 ).toString() );
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr)
-			signs2 =  elemSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		else signs2 = exprSigns(arithExpr2);
+			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
+		else signs2 = arithExprSigns(arithExpr2);
 		
 		//Subtracting signs (table 3.1 -)
 		resultSigns = new Signs("null");
@@ -238,12 +199,12 @@ public class DetectionOfSign {
 		
 		//Signs for expr
 		if(arithExpr instanceof IdExpr)
-			signs =  elemSigns.get( ( (IdExpr)arithExpr ).toString() );
+			signs =  baseAllVarSigns.get( ( (IdExpr)arithExpr ).toString() );
 		else if (arithExpr instanceof NumExpr)
 			signs =  new Signs( ( (NumExpr)arithExpr ).getValue() );
 		else if (arithExpr instanceof ArrayExpr)
-			signs =  elemSigns.get( ( (ArrayExpr)arithExpr ).getName() );
-		else signs = exprSigns(arithExpr);
+			signs =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr ).getName() );
+		else signs = arithExprSigns(arithExpr);
 		
 		//Unmin signs (table 3.2)
 		resultSigns = new Signs("null");
@@ -266,21 +227,21 @@ public class DetectionOfSign {
 		
 		//Signs for expr1
 		if(arithExpr1 instanceof IdExpr)
-			signs1 =  elemSigns.get( ( (IdExpr)arithExpr1 ).toString() );
+			signs1 =  baseAllVarSigns.get( ( (IdExpr)arithExpr1 ).toString() );
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr)
-			signs1 =  elemSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		else signs1 = exprSigns(arithExpr1);
+			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
+		else signs1 = arithExprSigns(arithExpr1);
 		
 		//Signs for expr2
 		if(arithExpr2 instanceof IdExpr)
-			signs2 =  elemSigns.get( ( (IdExpr)arithExpr2 ).toString() );
+			signs2 =  baseAllVarSigns.get( ( (IdExpr)arithExpr2 ).toString() );
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr)
-			signs2 =  elemSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		else signs2 = exprSigns(arithExpr2);
+			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
+		else signs2 = arithExprSigns(arithExpr2);
 		
 		//Mult signs (table 3.1 +)
 		resultSigns = new Signs("null");
@@ -330,21 +291,21 @@ public class DetectionOfSign {
 		
 		//Signs for expr1
 		if(arithExpr1 instanceof IdExpr)
-			signs1 =  elemSigns.get( ( (IdExpr)arithExpr1 ).toString() );
+			signs1 =  baseAllVarSigns.get( ( (IdExpr)arithExpr1 ).toString() );
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
 		else if (arithExpr1 instanceof ArrayExpr)
-			signs1 =  elemSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		else signs1 = exprSigns(arithExpr1);
+			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
+		else signs1 = arithExprSigns(arithExpr1);
 		
 		//Signs for expr2
 		if(arithExpr2 instanceof IdExpr)
-			signs2 =  elemSigns.get( ( (IdExpr)arithExpr2 ).toString() );
+			signs2 =  baseAllVarSigns.get( ( (IdExpr)arithExpr2 ).toString() );
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
 		else if (arithExpr2 instanceof ArrayExpr)
-			signs2 =  elemSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		else signs2 = exprSigns(arithExpr2);
+			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
+		else signs2 = arithExprSigns(arithExpr2);
 		
 		//Divide signs (table 3.1 +)
 		resultSigns = new Signs("null");
@@ -393,22 +354,10 @@ public class DetectionOfSign {
 		return resultSigns;		
 	}
 
-	public String signsToString(){
-		String str = "";
-		for (Map.Entry<String,Signs> entry : elemSigns.entrySet()){
-			String strSigns="";
-			for( Sign sign:  entry.getValue().getSigns()){
-				switch(sign){
-					case minus: strSigns+="-,"; break;
-					case zero: strSigns+="0,"; break;
-					case plus: strSigns+="+,"; break;
-					default: assert false : "default in switch";
-				}
-			}
-			strSigns = strSigns.substring(0, strSigns.length() -1 );
-			str += entry.getKey() + "={" + strSigns + "};\n";
-		}
-		return str;
+	Signs getSigns(){
+		return arithExprSigns;
 	}
+
+
 }
 

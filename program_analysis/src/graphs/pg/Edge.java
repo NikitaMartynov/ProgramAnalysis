@@ -33,4 +33,8 @@ public class Edge {
 	public int getQt(){
 		return qt;
 	}
+	
+	public String toString() {
+		return block.toString();
+	}
 }

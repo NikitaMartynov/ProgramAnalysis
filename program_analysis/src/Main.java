@@ -1,5 +1,7 @@
 
 
+import java.util.HashMap;
+
 import interval_analysis.IntervalAnalysis;
 import free_variables.FreeVariableGenerator;
 import graphs.fg.*;
@@ -8,7 +10,9 @@ import graphs.pg.*;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 
-import detectionOfSign_analysis.DetectionOfSign;
+import detectionOfSign_analysis.DSTransFuncs;
+import detectionOfSign_analysis.DSWorklist;
+import detectionOfSign_analysis.Signs;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
@@ -41,6 +45,7 @@ public class Main {
         System.out.println("\nProgram graph: ");
         ProgramGraph pg = new ProgramGraph(program.getStatement());
         System.out.println(pg.toString());
+        System.out.println(ProgramGraph.GreatestNumUsed);
         
         // then take the program as the input for graph generation
         // such as 
@@ -55,11 +60,17 @@ public class Main {
         ProgramSlice.getProgramSlice(fg,4);
         ProgramSlice.printProgramSlice();
         
+<<<<<<< HEAD
         //Detect signs
         DetectionOfSign ds = new DetectionOfSign();
         ds.initialize(FreeVariableGenerator.getAllVariables());
         ds.detectSign(ProgramGraph.edges.get(1));;
         System.out.println(ds.signsToString());
+=======
+        //Detect of signs	
+		DSWorklist dsw = new DSWorklist(ProgramGraph.edges, fvg.getAllVariables());
+		dsw.printSolutionsTable();
+>>>>>>> d4720ed41bc995ad144199e8e28df455ce70db4a
         
         // interval_analysis
         IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(), ProgramGraph.edges);
