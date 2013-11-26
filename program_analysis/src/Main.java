@@ -12,6 +12,7 @@ import detectionOfSign_analysis.DetectionOfSign;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
+import program_slicing.ProgramSlice;
 
 /**
  * print the AST built
@@ -47,17 +48,21 @@ public class Main {
         FlowGraph fg = FlowGraphFactory.create(program.getStatement());
         System.out.println(fg.toString());
         // ...
-        FreeVariableGenerator fvg = new FreeVariableGenerator();
-        System.out.println(fvg.toString());
+        FreeVariableGenerator.extractVariables();
+        System.out.println(FreeVariableGenerator.printVariables());
+        
+        //Program slicing
+        ProgramSlice.getProgramSlice(fg,4);
+        ProgramSlice.printProgramSlice();
         
         //Detect signs
         DetectionOfSign ds = new DetectionOfSign();
-        ds.initialize(fvg.getAllVariables());
+        ds.initialize(FreeVariableGenerator.getAllVariables());
         ds.detectSign(ProgramGraph.edges.get(1));;
         System.out.println(ds.signsToString());
         
         // interval_analysis
-        IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);
+        IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(), ProgramGraph.edges);
         IntervalAnalysis.printSolutionTable();
 	}
 }

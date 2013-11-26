@@ -1,0 +1,18 @@
+program
+int n;
+int x;
+int f1;
+int f2;
+int ans;
+n := 20;
+f1 := 0;
+f2 := 1;
+x := 2;
+ans := 0;
+while x <= n do 
+	ans := f1 + f2;
+	f1 := f2;
+	f2 := ans;		(* The point of interest *)
+	x := x + 1;
+od
+end

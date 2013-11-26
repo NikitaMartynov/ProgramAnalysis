@@ -12,4 +12,11 @@ public class Flow {
      public String toString() {
     	 return "(" + pri + ", " + next + ")";
      }
+     
+     public int getPri(){
+    	 return pri;
+     }
+     public int getNext(){
+    	 return next;
+     }
 }
