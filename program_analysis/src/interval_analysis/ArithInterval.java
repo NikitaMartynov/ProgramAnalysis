@@ -11,7 +11,11 @@ public class ArithInterval extends Interval {
 		if (exp instanceof IdExpr) {// Variable
 			String name = ((IdExpr) exp).toString();
 			setBoundaries(baseIntervals.get(name));
-		} else if (exp instanceof NumExpr) {// Number
+		} else if(exp instanceof ArrayExpr) { // array variable
+			String name = ((ArrayExpr) exp).getName();
+			setBoundaries(baseIntervals.get(name));
+		}
+		else if (exp instanceof NumExpr) {// Number
 			setBoundaries(((NumExpr) exp).getValue());
 		} else if (exp instanceof ParenExpr) {// ParenExpr
 			setBoundaries(new ArithInterval(((ParenExpr) exp).getExpression(),

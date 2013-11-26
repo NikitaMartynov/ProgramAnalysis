@@ -3,6 +3,7 @@ package interval_analysis;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+
 import graphs.pg.Edge;
 
 public class IntervalAnalysis {
@@ -40,17 +41,8 @@ public class IntervalAnalysis {
 	// public static HashMap<String, IntervalElement> intervalElements;
 
 	public static void printSolutionTable() {
-		System.out.println("Interval analysis solution table:");
-		int i = 1;
-		for (HashMap<String, Interval> solu : TransferFunctionFactory.solutionTable) {
-			if (solu != null) {
-				System.out.print(i++ + ": ");
-				for (String key : solu.keySet()) {
-					System.out.print(key + solu.get(key) + " ");
-				}
-				System.out.println();
-			}
-		}
+		IAWorklist.printSolutionTable();
+	
 	}
 
 	public static void analyze(int min, int max, Vector<String> freeVariables,
@@ -58,8 +50,8 @@ public class IntervalAnalysis {
 		// TODO Auto-generated method stub
 		setMin(min);
 		setMax(max);
-		TransferFunctionFactory.initSolutionTable(freeVariables);
-		TransferFunctionFactory.create(edges.get(0));
+		IAWorklist.compute(edges, freeVariables);
+		//TransferFunctionFactory.create(edges.get(0));
 	}
 
 }
