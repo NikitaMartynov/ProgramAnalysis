@@ -27,12 +27,11 @@ public class KillandGenAnalysis {
 			++label;
 			if (b instanceof ReadStatement) {
 				killGenForReadStmt(label);
-			} else if (b instanceof ArrayAssignStatement){
+			} else if (b instanceof ArrayAssignStatement) {
 				killGenForAssignStmt(label);
 			} else if (b instanceof AssignStatement) {
 				killGenForAssignStmt(label);
-			} 
-			else{
+			} else {
 				ReachingDefinitionColln rdc = null;
 				killRD.add(rdc);
 				genRD.add(rdc);
@@ -44,10 +43,10 @@ public class KillandGenAnalysis {
 	private static void killGenForReadStmt(int label) {
 		Vector<FreeVariable> variablesInLine = FreeVariableGenerator
 				.getFreeVariablesinLine(label);
-		
+
 		for (FreeVariable fv : variablesInLine) {
-			createKillRD(fv.getVariableName(),label);
-			createGenRD(fv.getVariableName(),label);
+			createKillRD(fv.getVariableName(), label);
+			createGenRD(fv.getVariableName(), label);
 		}
 	}
 
@@ -56,64 +55,64 @@ public class KillandGenAnalysis {
 				.getFreeVariablesinLine(label);
 		for (FreeVariable fv : variablesInLine) {
 			if (fv.getVariablePosition() == VariablePosition.left) {
-				createKillRD(fv.getVariableName(),label);
-				createGenRD(fv.getVariableName(),label);						
+				createKillRD(fv.getVariableName(), label);
+				createGenRD(fv.getVariableName(), label);
 			}
 		}
 	}
-	
-	private static void createKillRD(String variableName,int label){
+
+	private static void createKillRD(String variableName, int label) {
 		ReachingDefinitionColln krdc = new ReachingDefinitionColln();
-		krdc.add(new ReachingDefinition(variableName, 0));				
-		Vector<Integer> lineNumbers = FreeVariableGenerator.getAssignmentLinesOfFreeVariables(variableName);
-		for(int i:lineNumbers){
-			krdc.add(new ReachingDefinition(variableName,i));
+		krdc.add(new ReachingDefinition(variableName, 0));
+		Vector<Integer> lineNumbers = FreeVariableGenerator
+				.getAssignmentLinesOfFreeVariables(variableName);
+		for (int i : lineNumbers) {
+			krdc.add(new ReachingDefinition(variableName, i));
 		}
-		if(killRD.size() > (label-1)){
-		killRD.get(label-1).union(krdc);
-		}
-		else{
+		if (killRD.size() > (label - 1)) {
+			killRD.get(label - 1).union(krdc);
+		} else {
 			killRD.add(krdc);
 		}
 	}
-	
-	private static void createGenRD(String variableName,int label){
+
+	private static void createGenRD(String variableName, int label) {
 		ReachingDefinitionColln grdc = new ReachingDefinitionColln();
-		grdc.add(new ReachingDefinition(variableName,label));
+		grdc.add(new ReachingDefinition(variableName, label));
 		genRD.add(grdc);
 	}
-	
 
-	
-	public static ReachingDefinitionColln getKillRD(int label){
-		return killRD.get(label-1);
+	public static ReachingDefinitionColln getKillRD(int label) {
+		return killRD.get(label - 1);
 	}
-	public static ReachingDefinitionColln getGenRD(int label){
-		return genRD.get(label-1);
+
+	public static ReachingDefinitionColln getGenRD(int label) {
+		return genRD.get(label - 1);
 	}
-	public static void printKillGenAnalysis(){
-		if(!killRD.isEmpty()){
+
+	public static void printKillGenAnalysis() {
+		if (!killRD.isEmpty()) {
 			System.out.println("killRD:");
 			int label = 0;
-			for(ReachingDefinitionColln rdc:killRD){
-				if(rdc == null){
-				System.out.println("killRD("+ ++label + ") = {}");	
-				}
-				else{
-				System.out.println("killRD("+ ++label + ") = {" + rdc.toString() + "}");
+			for (ReachingDefinitionColln rdc : killRD) {
+				if (rdc == null) {
+					System.out.println("killRD(" + ++label + ") = {}");
+				} else {
+					System.out.println("killRD(" + ++label + ") = {"
+							+ rdc.toString() + "}");
 				}
 			}
 		}
-		if(!genRD.isEmpty()){
+		if (!genRD.isEmpty()) {
 			System.out.println("genRD:");
 			int label = 0;
-			for(ReachingDefinitionColln rdc:genRD){
-				if(rdc == null){
-					System.out.println("genRD("+ ++label + ") = {}");	
-					}
-					else{
-				System.out.println("genRD("+ ++label + ") = {" + rdc.toString() + "}");
-					}
+			for (ReachingDefinitionColln rdc : genRD) {
+				if (rdc == null) {
+					System.out.println("genRD(" + ++label + ") = {}");
+				} else {
+					System.out.println("genRD(" + ++label + ") = {"
+							+ rdc.toString() + "}");
+				}
 			}
 		}
 	}

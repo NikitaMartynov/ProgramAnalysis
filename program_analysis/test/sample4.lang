@@ -10,6 +10,15 @@ f2 := 1;
 x := 2;
 ans := 0;
 while x <= n do 
+	f1:=1;
+	f2:=3;
+	if ans > -1 then
+		ans:=1;
+		f1:=2;
+	else
+		ans:=2;
+		f2:=2;
+	fi
 	ans := f1 + f2;
 	f1 := f2;
 	f2 := ans;		(* The point of interest *)

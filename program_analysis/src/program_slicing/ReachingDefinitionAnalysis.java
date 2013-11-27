@@ -16,7 +16,6 @@ public class ReachingDefinitionAnalysis {
 	private static FlowGraph fg;
 	private static Vector<Flow> workList;
 	private static final int FIRST_ELEM = 0;
-	
 
 	public static void initialize(FlowGraph _fg) {
 		fg = _fg;
@@ -38,20 +37,25 @@ public class ReachingDefinitionAnalysis {
 		for (int label : fg.getLabels()) {
 			rdEntry.add(new ReachingDefinitionColln());
 			rdExit.add(new ReachingDefinitionColln());
-			for (FreeVariable fv : FreeVariableGenerator.getFreeVariables()) {
-				rdEntry.get(label - 1).add(
-						new ReachingDefinition(fv.getVariableName(), 0));
+			if (label == fg.getInit()) {
+				for (FreeVariable fv : FreeVariableGenerator.getFreeVariables()) {
+					rdEntry.get(label - 1).add(
+							new ReachingDefinition(fv.getVariableName(), 0));
+				}
 			}
 		}
+
 	}
 
 	public static void analyze() {
 		while (!workList.isEmpty()) {
 			Flow flow = workList.firstElement();
-			ReachingDefinitionColln priRDExit = rdExit.get(flow.getPri()-1);
-			ReachingDefinitionColln nextRDEntry = rdEntry.get(flow.getNext()-1);
 			workList.remove(FIRST_ELEM);
+
 			computeRDExit(flow.getPri());
+			ReachingDefinitionColln priRDExit = rdExit.get(flow.getPri() - 1);
+			ReachingDefinitionColln nextRDEntry = rdEntry
+					.get(flow.getNext() - 1);
 			Boolean isSubSet = priRDExit.isSubsetOrEquals(nextRDEntry);
 			if (!isSubSet) {
 				nextRDEntry.union(priRDExit);
@@ -65,12 +69,16 @@ public class ReachingDefinitionAnalysis {
 	}
 
 	private static void computeRDExit(int label) {
-
-		if(KillandGenAnalysis.getKillRD(label) != null){
-	rdExit.get(label - 1).complement(KillandGenAnalysis.getKillRD(label));
+		ReachingDefinitionColln rdc = new ReachingDefinitionColln();
+		rdc.union(rdEntry.get(label - 1));
+		if (KillandGenAnalysis.getKillRD(label) != null) {
+			rdc.complement(KillandGenAnalysis.getKillRD(label));
 		}
-		if(KillandGenAnalysis.getGenRD(label) != null){
-	rdExit.get(label - 1).union(KillandGenAnalysis.getGenRD(label));
+		if (KillandGenAnalysis.getGenRD(label) != null) {
+			rdc.union(KillandGenAnalysis.getGenRD(label));
+		}
+		if (rdc != null) {
+			rdExit.get(label - 1).union(rdc);
 		}
 
 	}
@@ -82,20 +90,22 @@ public class ReachingDefinitionAnalysis {
 	public static ReachingDefinitionColln getRdEntry(int line) {
 		return rdExit.get(line - 1);
 	}
-	
-	public static void printAnalysis(){
-		if(!rdEntry.isEmpty()){
+
+	public static void printAnalysis() {
+		if (!rdEntry.isEmpty()) {
 			System.out.println("RDEntry:");
 			int label = 0;
-			for(ReachingDefinitionColln rdc:rdEntry){
-				System.out.println("RDEntry("+ ++label + ") = {" + rdc.toString() + "}");
+			for (ReachingDefinitionColln rdc : rdEntry) {
+				System.out.println("RDEntry(" + ++label + ") = {"
+						+ rdc.toString() + "}");
 			}
 		}
-		if(!rdExit.isEmpty()){
+		if (!rdExit.isEmpty()) {
 			System.out.println("RDExit:");
 			int label = 0;
-			for(ReachingDefinitionColln rdc:rdExit){
-				System.out.println("RDExit("+ ++label + ") = {" + rdc.toString() + "}");
+			for (ReachingDefinitionColln rdc : rdExit) {
+				System.out.println("RDExit(" + ++label + ") = {"
+						+ rdc.toString() + "}");
 			}
 		}
 	}

@@ -48,7 +48,7 @@ public class WhileStatement extends Statement {
 	}
 	@Override
 	public String toString() {
-		return "while " + condition + " do " + body + " od";
+		return "while " + condition + " do \n" + body + "\n od";
 	}
 
 	// getters and setters
