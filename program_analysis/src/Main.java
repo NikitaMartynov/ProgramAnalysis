@@ -11,7 +11,6 @@ import detectionOfSign_analysis.DSWorklist;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
-import program_slicing.ProgramSlice;
 
 /**
  * print the AST built
@@ -68,6 +67,6 @@ public class Main {
 		IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(),
 				ProgramGraph.edges);
 		IntervalAnalysis.printSolutionTable();
-
+		IntervalAnalysis.printViolatedEdges();
 	}
 }

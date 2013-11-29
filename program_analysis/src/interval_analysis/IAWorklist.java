@@ -13,11 +13,10 @@ public class IAWorklist {
 	protected static Vector<HashMap<String, Interval>> solutionTable;
 
 	private static void initSolutionTable(Vector<String> freeVariables) {
-		if (solutionTable == null)
-			solutionTable = new Vector<HashMap<String, Interval>>(
+		
+		solutionTable = new Vector<HashMap<String, Interval>>(
 					ProgramGraph.GreatestNumUsed );
-		else
-			solutionTable.clear();
+		
 		
 		//System.out.println(ProgramGraph.GreatestNumUsed);
 
