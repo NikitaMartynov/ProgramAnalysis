@@ -14,15 +14,19 @@ public class ProgramSlice {
 	private static int pointOfInterest;
 	private static List<Integer> slice;
 	private static List<Integer> workList;
+	private static final int FIRST_ELEM = 0;
 
 	private static void initialize(FlowGraph fg, int _pointOfInterest) {
 		workList = new LinkedList<Integer>();
 		slice = new LinkedList<Integer>();
 		pointOfInterest = _pointOfInterest;
+	}
+	private static void generateReachingDefinitions(FlowGraph fg){
 		ReachingDefinitionAnalysis.initialize(fg);
 		ReachingDefinitionAnalysis.analyze();
 		ReachingDefinitionAnalysis.printAnalysis();
-		FlowGraph.computeAncestorBool(fg.getFlow(), fg.getLabels());
+		BooleanAncestorFinder.computeAncestors(fg);
+		//BooleanAncestorFinder.computeAncestorBool(fg.getFlow(), fg.getLabels());
 	}
 
 	public static List<Integer> getudchain(FreeVariable fv, int pointOfInterest) {
@@ -39,17 +43,22 @@ public class ProgramSlice {
 
 	public static List<Integer> getProgramSlice(FlowGraph fg,
 			int pointOfInterest) {
-		initialize(fg, pointOfInterest);
+		
 		int currentLineOfInterest;
 		Vector<FreeVariable> variablesInLine = new Vector<>();
 		List<Integer> udChain = new LinkedList<>();
-		if (pointOfInterest <= 0) {
+		
+		initialize(fg, pointOfInterest);
+		if(pointOfInterest > FlowGraph.getBlocks().size() || pointOfInterest <= FIRST_ELEM ){
+			System.out.println("Point of interest outside the number of lines in the program.");
 			return null;
 		}
+		generateReachingDefinitions(fg);
+
 		workList.add(pointOfInterest);
 		while (!workList.isEmpty()) {
-			currentLineOfInterest = workList.get(0);
-			workList.remove(0);
+			currentLineOfInterest = workList.get(FIRST_ELEM);
+			workList.remove(FIRST_ELEM);
 			slice.add(currentLineOfInterest);
 			variablesInLine = FreeVariableGenerator
 					.getFreeVariablesinLine(currentLineOfInterest);
@@ -66,7 +75,7 @@ public class ProgramSlice {
 					}
 
 				}
-				int booleanAncestor = FlowGraph.getAncestors().get(
+				int booleanAncestor = BooleanAncestorFinder.getAncestors().get(
 						currentLineOfInterest - 1);
 				if (!workList.contains(booleanAncestor)
 						&& !slice.contains(booleanAncestor)
@@ -87,10 +96,13 @@ public class ProgramSlice {
 		Vector<Block> blocks = FlowGraph.getBlocks();
 		if (!slice.isEmpty()) {
 			System.out.println("Program Slice:");
-			for (int i = 0; i < slice.size(); i++) {
+			for (int i = FIRST_ELEM; i < slice.size(); i++) {
+				if(blocks.get(slice.get(i) - 1) !=null){
 				System.out.println(slice.get(i).toString() + " : "
 						+ blocks.get(slice.get(i) - 1).toString());
+				}
 			}
+			System.out.println();
 		}
 	}
 

@@ -25,7 +25,12 @@ public class Program {
 	}
 	
 	public String toString() {
+		if(declaration !=null){
 		return declaration.toString() + "\n" + statement.toString();
+		}
+		else{
+			return statement.toString();
+		}
 	}
 
 	// getters and setters

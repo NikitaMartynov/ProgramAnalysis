@@ -108,6 +108,7 @@ public class ReachingDefinitionAnalysis {
 						+ rdc.toString() + "}");
 			}
 		}
+		System.out.println();
 	}
 
 }

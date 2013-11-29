@@ -26,7 +26,7 @@ public class WhileFlowGraph extends FlowGraph {
 		FlowGraph s = FlowGraphFactory.create(st.getBody());
 		// set the ancestor labels in the blocks in the graph as l.
 		s.setAncestorBoolLabel(l);
-
+	
 		// follow the rules in the table 1.2 and 1.3
 		labels.addAll(s.getLabels());
 		setInit(l);

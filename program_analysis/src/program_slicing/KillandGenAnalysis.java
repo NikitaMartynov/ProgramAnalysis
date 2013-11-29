@@ -115,6 +115,7 @@ public class KillandGenAnalysis {
 				}
 			}
 		}
+		System.out.println();
 	}
 
 }
