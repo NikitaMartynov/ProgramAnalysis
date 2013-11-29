@@ -4,7 +4,7 @@ package free_variables;
  * Represents a variable , its position within a statement and a label in which it occurs
  * Possible variable positions:
  * 'left' - left side of assignment operator , 'right'- right side of assignment operator
- * 'none' - not an assignment statement
+ * 'read' - in a read statement, 'write' - in a write statement, 'none' - none of the above
  * @author anushasivakumar
  *
  */

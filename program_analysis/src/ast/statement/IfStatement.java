@@ -58,8 +58,8 @@ public class IfStatement extends Statement {
 	}
 	@Override
 	public String toString() {
-		return "if " + condition + " then " + ifBranch + " else " + elseBranch
-				+ " fi ";
+		return "if " + condition + " then \n" + ifBranch + " else \n" + elseBranch
+				+ "\n fi ";
 	}
 
 	// getters and setters
