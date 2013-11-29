@@ -1,7 +1,7 @@
 program
-int a[5];
-int b[5];
-int n;
+high int a[5];
+low int b[5];
+high int n;
 n := -1;
 while (n<7) do
 	a[n] := 1;

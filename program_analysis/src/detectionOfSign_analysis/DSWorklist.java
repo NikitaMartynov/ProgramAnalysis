@@ -13,7 +13,7 @@ import java.util.Vector;
 public class DSWorklist {
 	
 	private ArrayList<Edge> workList;
-	public static Vector<HashMap<String, Signs>> solutionsTable;
+	private Vector<HashMap<String, Signs>> solutionsTable;
 	
 	int loopCounter;
 	
@@ -64,8 +64,28 @@ public class DSWorklist {
 					}
 				}
 			}
-			printSolutionsTable();
+			//printSolutionsTable();
 		}
+	}
+	
+	public ArrayList<Edge> findLowBoundaryViolations(ArrayList<Edge> pgEdges){
+		ArrayList<Edge> violatedEdges = new ArrayList<Edge>();
+		for(Edge egde : pgEdges){
+			//If B^l is a statement that includes an array as one of the free variables 
+			//If DS(q’) for index of the array contains {-} 
+			//	then cons((B^l),VL)
+		}
+		return violatedEdges;
+	}
+	
+	public String toString (ArrayList<Edge> pgEdges){
+		String str="";
+		
+		for (Edge e : pgEdges){
+			str+= '('+ Integer.toString(e.getQs()) + ',' + e.getBlock() + ','+ Integer.toString(e.getQt()) + "), ";
+		}
+		str = str.substring(0, str.length() - 2);
+	return str;
 	}
 	
 	public void printSolutionsTable() {
@@ -76,7 +96,7 @@ public class DSWorklist {
 				System.out.print(i++ + ": ");
 				for (Map.Entry<String,Signs> entry : solutions.entrySet()){
 					String strSigns="";
-					int spaceCount = 8;
+					int spaceCount = 18;
 					for( Sign sign:  entry.getValue().getSigns()){
 						switch(sign){
 							case minus: strSigns+="-,"; break;
@@ -84,7 +104,7 @@ public class DSWorklist {
 							case plus: strSigns+="+,"; break;
 							default: assert false : "default in switch";
 						}
-						//spaceCount-=1;
+						spaceCount-=1;
 					}
 					if(strSigns.length()>0){
 						strSigns = strSigns.substring(0, strSigns.length() -1 );

@@ -44,7 +44,6 @@ public class Main {
         System.out.println("\nProgram graph: ");
         ProgramGraph pg = new ProgramGraph(program.getStatement());
         System.out.println(pg.toString());
-        System.out.println(ProgramGraph.GreatestNumUsed);
         
         // then take the program as the input for graph generation
         // such as 
@@ -58,6 +57,8 @@ public class Main {
         //Detect of signs	
 		DSWorklist dsw = new DSWorklist(ProgramGraph.edges, fvg.getAllVariables());
 		dsw.printSolutionsTable();
+		//System.out.println("\nLow boundary violations for array indexing:");
+		//System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
         
         // interval_analysis
         IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);
