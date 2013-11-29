@@ -11,6 +11,8 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ast.arith.NumExpr;
+
 public class DSWorklist {
 
 	private ArrayList<Edge> workList;
@@ -82,21 +84,42 @@ public class DSWorklist {
 		ArrayList<Edge> violatedEdges = new ArrayList<Edge>();
 		for (Edge edge : pgEdges) {
 			Vector<String> arrayVars = edge.getBlock().getArrays();
-			int start = edge.getQs();
+			int start = edge.getQs()-1;
 			for (String s : arrayVars) {
 				// match a[x]
-				Pattern pattern = Pattern.compile("(.*?)[(.*?)]");
+				Pattern pattern = Pattern.compile("(.*?)\\[(.*?)\\]");
 				Matcher matcher = pattern.matcher(s);
 				if (matcher.find()) {
 					String a = matcher.group(1);
 					String x = matcher.group(2);
+
+					// if x is a number
+					Signs signs = null;
+					try {
+						int i = Integer.parseInt(x);
+						signs = new Signs(
+								(new NumExpr(Integer.parseInt(x))).getValue());
+					} catch (Exception e) {
+						// if it is a variable
+						// if it is a array-array names has a start at end of
+						// the array name
+						if (x.endsWith("*"))
+							x = x.substring(0, x.length() - 1);
+						signs = solutionsTable.get(start).get(x);
+
+					}
+					if (signs.isMinus()) {
+						violatedEdges.add(edge);
+					}
+
 				}
 			}
+
 			// If B^l is a statement that includes an array as one of the free
 			// variables
 			// If DS(q’) for index of the array contains {-}
 			// then cons((B^l),VL)
-		}
+		} // for
 		return violatedEdges;
 	}
 
@@ -107,7 +130,7 @@ public class DSWorklist {
 			str += '(' + Integer.toString(e.getQs()) + ',' + e.getBlock() + ','
 					+ Integer.toString(e.getQt()) + "), ";
 		}
-		str = str.substring(0, str.length() - 2);
+		str = str.substring(0, str.length());
 		return str;
 	}
 

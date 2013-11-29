@@ -60,8 +60,8 @@ public class Main {
 				FreeVariableGenerator.getAllVariables());
 		dsw.printSolutionsTable();
 		
-		//System.out.println("\nLow boundary violations for array indexing:");
-		//System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
+		System.out.println("\nLow boundary violations for array indexing:");
+		System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
         
 
 		// interval_analysis

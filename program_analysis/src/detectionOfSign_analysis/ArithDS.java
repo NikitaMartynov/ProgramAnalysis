@@ -42,7 +42,7 @@ public class ArithDS {
 	
 	
 	
-	Signs arithExprSigns(ArithExpr arithExpr) throws DivideByZeroException{
+	public Signs arithExprSigns(ArithExpr arithExpr) throws DivideByZeroException{
 		
 		if(arithExpr instanceof IdExpr) //Variable
 			return baseAllVarSigns.get( ( (IdExpr)arithExpr ).toString() );
