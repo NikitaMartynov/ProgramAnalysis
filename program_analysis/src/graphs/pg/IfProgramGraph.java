@@ -11,11 +11,12 @@ public class IfProgramGraph extends ProgramGraph {
 	public IfProgramGraph (IfStatement st, int initialNode, int finalNode) {   
 		Block boolBlock = st.getCondition();
 		Block notBoolBlock = new NotExpr((BoolExpr)boolBlock);
-		Block endBoolBlock = new endBoolStatement("fi1");
+		Block endBoolBlock = new endBoolStatement("fi");
+		int boolBlockStarting = 1;
 		if (edges.isEmpty()== false){
 			edges.add(new Edge(initialNode, boolBlock, edges.get(edges.size()-1).qt +1)); 
 			edges.add(new Edge(edges.get(edges.size()-1).qs, notBoolBlock, edges.get(edges.size()-1).qt+1));
-			endBoolBlock = new endBoolStatement("fi"+initialNode);
+		 boolBlockStarting = initialNode;
 		}
 		else {
 			edges.add( new Edge(1, boolBlock,2)); 
@@ -30,6 +31,6 @@ public class IfProgramGraph extends ProgramGraph {
 		ProgramGraphFactory.create(st.getIfBranch (), edges.get(edges.size()-2).qt, finalNode);
 		finalNode = edges.get(edges.size()-1).qt; 
 		ProgramGraphFactory.create(st.getElseBranch(), qsElseBranch, finalNode);
-		boolEndingedges.add(new Edge(GreatestNumUsed+1,endBoolBlock,GreatestNumUsed +1));
+		boolEndingedges.add(new Edge(boolBlockStarting,endBoolBlock,GreatestNumUsed +1));
 	}
 }

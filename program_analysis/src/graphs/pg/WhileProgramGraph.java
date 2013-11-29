@@ -10,10 +10,11 @@ public class WhileProgramGraph extends ProgramGraph {
 	public WhileProgramGraph (WhileStatement st, int initialNode, int finalNode) {   //constructor 
 		Block boolBlock = st.getCondition();
 		Block notBoolBlock = new NotExpr((BoolExpr)boolBlock);
-		Block endBoolBlock = new endBoolStatement("od1");
+		Block endBoolBlock = new endBoolStatement("od");
+		int boolBlockStarting = 1;
 		if (edges.isEmpty()== false){
 			edges.add(new Edge(initialNode, boolBlock, edges.get(edges.size()-1).qt +1));
-			endBoolBlock = new endBoolStatement("od"+initialNode);
+			boolBlockStarting = initialNode;
 		}
 		else 
 			edges.add( new Edge(1, boolBlock, 2) ); 
@@ -24,7 +25,7 @@ public class WhileProgramGraph extends ProgramGraph {
 		ProgramGraphFactory.create(st.getBody (), edges.get(edges.size()-1).qt, initialNode);
 		edges.add(new Edge(initialNode, boolBlock = notBoolBlock, finalNode > 0 ? finalNode : GreatestNumUsed+1 ) );
 		GreatestNumUsed = GreatestNumUsed+1;
-		boolEndingedges.add(new Edge(GreatestNumUsed,endBoolBlock,GreatestNumUsed));
+		boolEndingedges.add(new Edge(boolBlockStarting,endBoolBlock,GreatestNumUsed));
 	}
 }
 
