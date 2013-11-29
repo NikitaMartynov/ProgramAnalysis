@@ -44,6 +44,14 @@ public class SeqStatement extends Statement {
 			else
 				return null;	
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(statement1.getArrays());
+		vars.addAll(statement2.getArrays());
+		return vars;	
+	}
 
 	@Override
 	public String toString() {

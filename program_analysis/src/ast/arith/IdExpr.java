@@ -30,6 +30,12 @@ public class IdExpr extends ArithExpr {
 		}
 		return null;
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		return vars;
+	}
 
 	@Override
 	public String toString() {

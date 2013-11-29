@@ -1,5 +1,6 @@
 package ast.arith;
 
+import java.util.Collection;
 import java.util.Vector;
 
 import dynamic_analysis.Environment;
@@ -9,5 +10,6 @@ public abstract class ArithExpr {
 
 	public abstract int evaluate(Environment env) throws VariableNotDefinedException;
 	public abstract Vector<String> getVariables();
+	public abstract Vector<String> getArrays();
 	
 }

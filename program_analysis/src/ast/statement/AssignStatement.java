@@ -67,5 +67,13 @@ public class AssignStatement extends Statement {
 		this.expression = expression;
 	}
 
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		
+		vars.addAll(expression.getArrays());
+		return vars;
+	}
+
 	
 }

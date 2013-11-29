@@ -46,6 +46,14 @@ public class WhileStatement extends Statement {
 			else
 				return null;
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(condition.getArrays());
+		vars.addAll(body.getArrays());
+		return vars;	
+	}
 	@Override
 	public String toString() {
 		return "while " + condition + " do \n" + body + "\n od";

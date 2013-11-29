@@ -22,22 +22,29 @@ public class DivExpr extends ArithExpr {
 		return expression1.evaluate(env) / expression2.evaluate(env);
 	}
 
-public Vector<String> getVariables(){
-		
+	public Vector<String> getVariables() {
+
 		Vector<String> vars = new Vector<String>();
 		try {
 			vars.addAll(expression1.getVariables());
 		} catch (Exception e) {
 		}
-		try{
+		try {
 			vars.addAll(expression2.getVariables());
+		} catch (Exception e) {
 		}
-		catch (Exception e) {
-		}
-			if (!vars.isEmpty())
-				return vars;
-			else
-				return null;
+		if (!vars.isEmpty())
+			return vars;
+		else
+			return null;
+	}
+
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(expression1.getArrays());
+		vars.addAll(expression2.getArrays());
+		return vars;
 	}
 
 	@Override
@@ -45,11 +52,11 @@ public Vector<String> getVariables(){
 		return expression1.toString() + "/" + expression2.toString();
 	}
 
-	public ArithExpr getExpression1(){
+	public ArithExpr getExpression1() {
 		return expression1;
 	}
-	
-	public ArithExpr getExpression2(){
+
+	public ArithExpr getExpression2() {
 		return expression2;
 	}
 }

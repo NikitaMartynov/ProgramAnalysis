@@ -23,22 +23,21 @@ public class ReadStatement extends Statement {
 		// TODO Auto-generated method stub
 
 	}
+
 	@Override
 	public Vector<String> getVariables() {
 		Vector<String> vars = new Vector<String>();
-		try {
-			if (name != null) {
-				vars.add(name);
-			}
-			return vars;
-		} catch (Exception e) {
-			return null;
-		}
+		return vars;
+	}
+
+	@Override
+	public Vector<String> getArrays() {
+		return null;
 	}
 
 	@Override
 	public String toString() {
-		return "read " + name+ ";";
+		return "read " + name + ";";
 	}
 
 	// getters and setters

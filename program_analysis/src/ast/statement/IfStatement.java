@@ -56,6 +56,15 @@ public class IfStatement extends Statement {
 			else
 				return null;
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(condition.getArrays());
+		vars.addAll(ifBranch.getArrays());
+		vars.addAll(elseBranch.getArrays());
+		return vars;
+		}
 	@Override
 	public String toString() {
 		return "if " + condition + " then \n" + ifBranch + " else \n" + elseBranch

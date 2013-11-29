@@ -28,6 +28,13 @@ public class ParenExpr extends ArithExpr {
 			return null;
 		}
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(expression.getArrays());
+		return vars;
+	}
 	@Override
 	public String toString() {
 		return "(" + expression.toString() + ")";

@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
-import ast.arith.ArithExpr;
+import ast.arith.*;
 
 /**
  * Unfinished evaluate method read A[a];
@@ -34,18 +34,37 @@ public class ReadArrayStatement extends Statement {
 			if (name != null) {
 				vars.add(name);
 			}
+		} catch (Exception e) {
 		}
-		catch(Exception e){
-		}
-		try{
+		try {
 			vars.addAll(arrayExpression.getVariables());
+		} catch (Exception e) {
 		}
-		catch(Exception e){
+		if (!vars.isEmpty())
+			return vars;
+		else
+			return null;
+	}
+
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		String element = "";
+
+		if (name != null) {
+			element += name; // TODO
+			if (arrayExpression instanceof IdExpr) {
+				element += "[" + ((IdExpr) arrayExpression).toString() + "]";
+			} else if (arrayExpression instanceof NumExpr) {
+				element += "[" + ((NumExpr) arrayExpression).toString() + "]";
+			} else if (arrayExpression instanceof ArrayExpr) {
+				element += "[" + ((ArrayExpr) arrayExpression).getName()
+						+ "*]";
+			}
+			vars.add(element);
 		}
-			if (!vars.isEmpty())
-				return vars;
-			else
-				return null;
+
+		return vars;
 	}
 
 	@Override

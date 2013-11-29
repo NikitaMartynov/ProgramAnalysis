@@ -18,6 +18,11 @@ public class SkipStatement extends Statement {
 				return null;
 	}
 	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		return vars;	
+	}
+	@Override
 	public String toString() {
 		return "skip;";
 	}

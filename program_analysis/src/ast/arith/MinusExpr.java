@@ -38,6 +38,15 @@ public class MinusExpr extends ArithExpr {
 			else
 				return null;
 		}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(expression1.getArrays());
+		vars.addAll(expression2.getArrays());
+		return vars;
+	}
+	
 	@Override
 	public String toString() {
 		return expression1.toString() + "-" + expression2.toString();

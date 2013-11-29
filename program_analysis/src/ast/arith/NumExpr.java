@@ -21,6 +21,12 @@ public class NumExpr extends ArithExpr {
 	public Vector<String> getVariables() {
 				return null;
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		return vars;
+	}
 
 	@Override
 	public String toString() {

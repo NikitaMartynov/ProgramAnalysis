@@ -27,6 +27,13 @@ public class NotExpr extends BoolExpr {
 			return null;
 		}
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(expression.getArrays());
+		return vars;	
+	}
 	@Override
 	public String toString() {
 		return  "!" + expression;

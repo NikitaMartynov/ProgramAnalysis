@@ -31,6 +31,13 @@ public class WriteStatement extends Statement{
 			else
 				return null;
 	}
+	
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		vars.addAll(expression.getArrays());
+		return vars;	
+	}
 	@Override
 	public void evaluate(Environment env) throws VariableNotDefinedException {
 		// TODO Auto-generated method stub

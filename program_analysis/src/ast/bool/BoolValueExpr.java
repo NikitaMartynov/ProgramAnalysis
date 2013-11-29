@@ -2,6 +2,7 @@ package ast.bool;
 
 import dynamic_analysis.Environment;
 import dynamic_analysis.VariableNotDefinedException;
+
 import java.lang.String;
 import java.util.Vector;
 
@@ -21,6 +22,7 @@ public class BoolValueExpr extends BoolExpr {
 	public Vector<String> getVariables(){
 		return null;
 	}
+	
 	@Override
 	public String toString() {
 		if (value)
@@ -31,5 +33,11 @@ public class BoolValueExpr extends BoolExpr {
 
 	public boolean getBoolValue() {
 		return value;
+	}
+
+	@Override
+	public Vector<String> getArrays() {
+		Vector<String> vars = new Vector<String>();
+		return vars;	
 	}
 }
