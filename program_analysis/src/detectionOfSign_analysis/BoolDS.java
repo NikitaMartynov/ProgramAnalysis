@@ -1,5 +1,7 @@
 package detectionOfSign_analysis;
 
+import interval_analysis.DivideByZeroException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ public class BoolDS {
 	private HashMap<String, Signs> baseAllVarSigns; //input signs
 	public HashMap<String, Signs> newAllVarSigns;   // signs after transfer function 
 	
-	public BoolDS(BoolExpr boolExpr,HashMap<String, Signs> baseElemSigns){
+	public BoolDS(BoolExpr boolExpr,HashMap<String, Signs> baseElemSigns) throws DivideByZeroException{
 		
 		newAllVarSigns = Func.deepLineCopy(baseElemSigns);
 		this.baseAllVarSigns = Func.deepLineCopy(baseElemSigns);
@@ -57,7 +59,7 @@ public class BoolDS {
 		
 	}
 		
-	boolean orExprHoldsSigns(OrExpr orExpr){
+	boolean orExprHoldsSigns(OrExpr orExpr) throws DivideByZeroException{
 		BoolExpr boolExpr1 = orExpr.getExpression1();
 		BoolExpr boolExpr2 = orExpr.getExpression2();
 		HashMap<String, Signs> signs1 =null, signs2 = null;
@@ -79,7 +81,7 @@ public class BoolDS {
 		}
 	}
 	
-	boolean andExprHoldsSigns(AndExpr andExpr){
+	boolean andExprHoldsSigns(AndExpr andExpr) throws DivideByZeroException{
 		BoolExpr boolExpr1 = andExpr.getExpression1();
 		BoolExpr boolExpr2 = andExpr.getExpression2();
 		HashMap<String, Signs> signs1 =null, signs2 = null;
@@ -102,7 +104,7 @@ public class BoolDS {
 	}
 	
 	//reduce signs only if variable at least on one side
-	boolean lessThanExprSignsReduction(LessThanExpr lessThanExpr){
+	boolean lessThanExprSignsReduction(LessThanExpr lessThanExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = lessThanExpr.getExpression1();
 		ArithExpr arithExpr2 = lessThanExpr.getExpression2();
 		Signs signs1, signs2;
@@ -212,7 +214,7 @@ public class BoolDS {
 	}
 	
 	//reduce signs only if variable at least on one side
-	boolean lessThanEqualsExprSignsReduction(LessThanEqualsExpr lessThanEqualsExpr){
+	boolean lessThanEqualsExprSignsReduction(LessThanEqualsExpr lessThanEqualsExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = lessThanEqualsExpr.getExpression1();
 		ArithExpr arithExpr2 = lessThanEqualsExpr.getExpression2();
 		Signs signs1, signs2;
@@ -316,7 +318,7 @@ public class BoolDS {
 	}
 	
 	//reduce signs only if variable at least on one side
-	boolean greaterThanExprSignsReduction(GreaterThanExpr greaterThanExpr){
+	boolean greaterThanExprSignsReduction(GreaterThanExpr greaterThanExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = greaterThanExpr.getExpression1();
 		ArithExpr arithExpr2 = greaterThanExpr.getExpression2();
 		Signs signs1, signs2;
@@ -417,7 +419,7 @@ public class BoolDS {
 	}
 	
 	//reduce signs only if variable at least on one side
-	boolean greaterThanEqualsExprSignsReduction(GreaterThanEqualsExpr greaterThanEqualsExpr){
+	boolean greaterThanEqualsExprSignsReduction(GreaterThanEqualsExpr greaterThanEqualsExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = greaterThanEqualsExpr.getExpression1();
 		ArithExpr arithExpr2 = greaterThanEqualsExpr.getExpression2();
 		Signs signs1, signs2;
@@ -521,7 +523,7 @@ public class BoolDS {
 	}
 	
 	//reduce signs only if variable at least on one side
-	boolean equalsExprSignsReduction(EqualsExpr equalsExpr){
+	boolean equalsExprSignsReduction(EqualsExpr equalsExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = equalsExpr.getExpression1();
 		ArithExpr arithExpr2 = equalsExpr.getExpression2();
 		Signs signs1, signs2;
@@ -619,7 +621,7 @@ public class BoolDS {
 	}
 	
 	//reduce signs only if variable at least on one side
-	boolean notEqualsExprSignsReduction(NotEqualsExpr notEqualsExpr){
+	boolean notEqualsExprSignsReduction(NotEqualsExpr notEqualsExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = notEqualsExpr.getExpression1();
 		ArithExpr arithExpr2 = notEqualsExpr.getExpression2();
 		Signs signs1, signs2;
@@ -731,7 +733,7 @@ public class BoolDS {
 		return newAllVarSigns;
 	}
 
-	private void notExprSignsReduction(NotExpr exp) {
+	private void notExprSignsReduction(NotExpr exp) throws DivideByZeroException {
 
 		BoolExpr insideExpr = exp.getExpression();
 		BoolExpr newExpr = null;

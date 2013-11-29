@@ -1,6 +1,7 @@
 package detectionOfSign_analysis;
 
 import graphs.pg.Edge;
+import interval_analysis.DivideByZeroException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ import ast.statement.WriteStatement;
 public class DSTransFuncs {
 	private HashMap<String, Signs> newAllVarSigns;   // signs after transfer function
 	
-	public DSTransFuncs(Edge edge,HashMap<String, Signs> baseElemSigns){
+	public DSTransFuncs(Edge edge,HashMap<String, Signs> baseElemSigns) throws DivideByZeroException{
 		newAllVarSigns = Func.deepLineCopy(baseElemSigns);
 		
 		if(edge.getBlock() instanceof ReadStatement) //Read
@@ -56,13 +57,13 @@ public class DSTransFuncs {
 		
 	}
 	
-	void assignStatementSign(AssignStatement assignSt){
+	void assignStatementSign(AssignStatement assignSt) throws DivideByZeroException{
 		String var = assignSt.getName();
 		Signs signs = new ArithDS( assignSt.getExpression(), newAllVarSigns).getSigns();
 		newAllVarSigns.put( var, signs );
 	}
 	
-	void arrayAssignStatementSign(ArrayAssignStatement assignArraySt){
+	void arrayAssignStatementSign(ArrayAssignStatement assignArraySt)throws DivideByZeroException{
 		String var = assignArraySt.getName();
 		Signs  signs = newAllVarSigns.get(var);
 		Signs newSigns = new ArithDS( assignArraySt.getValueExpression(), newAllVarSigns).getSigns();

@@ -2,6 +2,8 @@ package detectionOfSign_analysis;
 
 
 
+import interval_analysis.DivideByZeroException;
+
 import java.util.HashMap;
 
 import ast.arith.ArithExpr;
@@ -30,7 +32,7 @@ public class ArithDS {
 		}	
 	}*/
 	
-	public ArithDS(ArithExpr arithExpr,HashMap<String, Signs> baseElemSigns){
+	public ArithDS(ArithExpr arithExpr,HashMap<String, Signs> baseElemSigns) throws DivideByZeroException{
 		
 		baseAllVarSigns = Func.deepLineCopy(baseElemSigns);
 
@@ -40,7 +42,7 @@ public class ArithDS {
 	
 	
 	
-	Signs arithExprSigns(ArithExpr arithExpr){
+	Signs arithExprSigns(ArithExpr arithExpr) throws DivideByZeroException{
 		
 		if(arithExpr instanceof IdExpr) //Variable
 			return baseAllVarSigns.get( ( (IdExpr)arithExpr ).toString() );
@@ -63,7 +65,7 @@ public class ArithDS {
 		return null;	
 	}
 	
-	Signs plusSigns(PlusExpr plusExpr){
+	Signs plusSigns(PlusExpr plusExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = plusExpr.getExpression1();
 		ArithExpr arithExpr2 = plusExpr.getExpression2();
 		Signs signs1, signs2, resultSigns;
@@ -128,7 +130,7 @@ public class ArithDS {
 		return resultSigns;
 	}
 	
-	Signs minusExprSigns(MinusExpr minusExpr){
+	Signs minusExprSigns(MinusExpr minusExpr) throws DivideByZeroException{
 		
 		ArithExpr arithExpr1 = minusExpr.getExpression1();
 		ArithExpr arithExpr2 = minusExpr.getExpression2();
@@ -193,7 +195,7 @@ public class ArithDS {
 		return resultSigns;
 	}
 	
-	Signs unMinExprSigns(UnMinExpr unMinExpr){
+	Signs unMinExprSigns(UnMinExpr unMinExpr) throws DivideByZeroException{
 		ArithExpr arithExpr = unMinExpr.getExpression();
 		Signs signs, resultSigns;
 		
@@ -220,7 +222,7 @@ public class ArithDS {
 		return resultSigns;
 	}
 	
-	Signs multExprSigns(MultExpr multExpr){
+	Signs multExprSigns(MultExpr multExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = multExpr.getExpression1();
 		ArithExpr arithExpr2 = multExpr.getExpression2();
 		Signs signs1, signs2, resultSigns;
@@ -284,7 +286,7 @@ public class ArithDS {
 		return resultSigns;	
 	}
 	
-	Signs divExprSigns(DivExpr divExpr){
+	Signs divExprSigns(DivExpr divExpr) throws DivideByZeroException{
 		ArithExpr arithExpr1 = divExpr.getExpression1();
 		ArithExpr arithExpr2 = divExpr.getExpression2();
 		Signs signs1, signs2, resultSigns;
@@ -316,6 +318,7 @@ public class ArithDS {
 						switch(sign2){
 							case minus: resultSigns.add(Sign.plus); break;
 							case zero:
+								//throw new DivideByZeroException();
 								assert false : "Divide by zero, lets discuss what to do!";
 								break; //TODO exception?
 							case plus: resultSigns.add(Sign.minus); break;
@@ -327,8 +330,9 @@ public class ArithDS {
 						switch(sign2){
 							case minus: resultSigns.add(Sign.zero); break;
 							case zero: 
+								//throw new DivideByZeroException();
 								assert false : "Divide by zero, lets discuss what to do!";
-								break; //TODO exception?
+								break; 
 							case plus: resultSigns.add(Sign.zero); break;
 							default: assert false : "default in swith!"; 
 						}
@@ -338,8 +342,9 @@ public class ArithDS {
 						switch(sign2){
 							case minus: resultSigns.add(Sign.minus); break;
 							case zero: 
+								//throw new DivideByZeroException();
 								assert false : "Divide by zero, lets discuss what to do!";
-								break;//TODO exception?
+								break;
 							case plus: resultSigns.add(Sign.plus); break;
 							default: assert false : "default in swith!"; 
 						}

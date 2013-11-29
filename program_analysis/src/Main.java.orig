@@ -41,7 +41,38 @@ public class Main {
 		System.out.println("\nProgram graph: ");
 		ProgramGraph pg = new ProgramGraph(program.getStatement());
 		System.out.println(pg.toString());
+		System.out.println(ProgramGraph.GreatestNumUsed);
 
+<<<<<<< HEAD
+        // building ast
+        TheLangParser parser = new TheLangParser(tokens);
+        Program program = parser.program();
+        // print the ast
+        System.out.println(program.toString());
+        
+        System.out.println("\nProgram graph: ");
+        ProgramGraph pg = new ProgramGraph(program.getStatement());
+        System.out.println(pg.toString());
+        
+        // then take the program as the input for graph generation
+        // such as 
+        System.out.println("\nFlow graph:");
+        FlowGraph fg = FlowGraphFactory.create(program.getStatement());
+        System.out.println(fg.toString());
+        // ...
+        FreeVariableGenerator fvg = new FreeVariableGenerator();
+        System.out.println(fvg.toString());
+        
+        //Detect of signs	
+		DSWorklist dsw = new DSWorklist(ProgramGraph.edges, fvg.getAllVariables());
+		dsw.printSolutionsTable();
+		//System.out.println("\nLow boundary violations for array indexing:");
+		//System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
+        
+        // interval_analysis
+        IntervalAnalysis.analyze(0, 4, fvg.getAllVariables(), ProgramGraph.edges);
+        IntervalAnalysis.printSolutionTable();
+=======
 		// then take the program as the input for graph generation
 		// such as
 		System.out.println("\nFlow graph:");
@@ -52,22 +83,18 @@ public class Main {
 		System.out.println(FreeVariableGenerator.printVariables());
 
 		// Program slicing
-		//ProgramSlice.getProgramSlice(fg, 9);
-		//ProgramSlice.printProgramSlice();
+		ProgramSlice.getProgramSlice(fg, 9);
+		ProgramSlice.printProgramSlice();
 
 		// Detect of signs
 		DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
 				FreeVariableGenerator.getAllVariables());
 		dsw.printSolutionsTable();
-		
-		//System.out.println("\nLow boundary violations for array indexing:");
-		//System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
-        
 
 		// interval_analysis
 		IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(),
 				ProgramGraph.edges);
 		IntervalAnalysis.printSolutionTable();
-
+>>>>>>> 81c26597d9f68bffa9ea0e61da6567819a6da895
 	}
 }

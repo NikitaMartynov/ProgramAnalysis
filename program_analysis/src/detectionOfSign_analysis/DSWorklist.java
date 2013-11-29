@@ -4,6 +4,7 @@ import graphs.pg.Edge;
 
 
 import graphs.pg.ProgramGraph;
+import interval_analysis.DivideByZeroException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class DSWorklist {
 	
 	int loopCounter;
 	
-	public DSWorklist(ArrayList<Edge> pgEdges, Vector<String> freeVars){
+	public DSWorklist(ArrayList<Edge> pgEdges, Vector<String> freeVars) throws DivideByZeroException{
 		this.workList = new ArrayList<Edge>(pgEdges);
 		
 		if (solutionsTable == null)
@@ -64,7 +65,7 @@ public class DSWorklist {
 					}
 				}
 			}
-			//printSolutionsTable();
+			printSolutionsTable();
 		}
 	}
 	
