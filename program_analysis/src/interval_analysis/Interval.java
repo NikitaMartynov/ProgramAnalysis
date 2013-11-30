@@ -166,18 +166,44 @@ public class Interval {
 
 	public static Interval divide(Interval i1, Interval i2)
 			throws DivideByZeroException {
-		return multiply(i1, oneDividebyX(i2));
-	}
-
-	private static Interval oneDividebyX(Interval i1)
-			throws DivideByZeroException {
 		// test whether the interval i2 contains 0
-		if (i1.getLowBoundary() <= 0 && i1.getHighBoundary() >= 0) {
+		if (i2.getLowBoundary() <= 0 && i2.getHighBoundary() >= 0) {
 			throw new DivideByZeroException();
 		} else { // no zero is in the interval
-			return new Interval(1 / i1.getHighBoundary(),
-					1 / i1.getLowBoundary());
+			int[] temp = new int[]{
+					divide(i1.getLowBoundary(), i2.getLowBoundary()),
+					divide(i1.getHighBoundary(), i2.getLowBoundary()),
+					divide(i1.getLowBoundary(), i2.getHighBoundary()),
+					divide(i1.getHighBoundary(), i2.getHighBoundary()),
+			};
+			Arrays.sort(temp);
+			Interval ret = new Interval(temp[0], temp[3]);
+			return ret;
 		}
+	}
+
+	private static int divide(int a1, int a2){
+		int result = 0;
+		if((a1 == _minusInfinity && a2 == _minusInfinity)||
+				(a1 == _plusInfinity && a2 == _plusInfinity))
+			result = 1;
+		else if((a1 == _plusInfinity && a2 == _minusInfinity)||
+				(a1 == _minusInfinity && a2 == _plusInfinity))
+			result = -1;
+		else if(a1 == 0 || a2 == _minusInfinity || a2 == _plusInfinity) {
+			result = 0;
+		}
+		else if(a1 == _minusInfinity || a1 == _plusInfinity) {
+			result = a1;
+		}
+		else if(a1/a2 > IntervalAnalysis.getMax()) {
+			result = _plusInfinity;
+		}
+		else if(a1/a2 < IntervalAnalysis.getMin())
+			result = _minusInfinity;
+		else 
+			result = a1/a2;
+		return result;
 	}
 
 	public static Interval union(Interval i1, Interval i2) {

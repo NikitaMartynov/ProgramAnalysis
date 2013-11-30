@@ -14,6 +14,6 @@ public class DivideByZeroException extends Exception{
 	}
 	
 	public String toString() {
-		return "There is a possibility that the divisor " + variableName + " could be zero.";
+		return "There is a possibility that the divisor could be zero.";
 	}
 }

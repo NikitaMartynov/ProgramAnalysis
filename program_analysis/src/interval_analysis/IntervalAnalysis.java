@@ -60,6 +60,7 @@ public class IntervalAnalysis {
 	public static ArrayList<Edge> findBoundaryViolations(ArrayList<Edge> pgEdges) {
 		violatedEdges = new ArrayList<Edge>();
 		for (Edge edge : pgEdges) {
+			//System.out.println(edge);
 			Vector<String> arrayVars = edge.getBlock().getArrays();
 			int start = edge.getQs() - 1;
 			for (String s : arrayVars) {

@@ -32,7 +32,8 @@ public class ReadStatement extends Statement {
 
 	@Override
 	public Vector<String> getArrays() {
-		return null;
+		Vector<String> vars = new Vector<String>();
+		return vars;
 	}
 
 	@Override

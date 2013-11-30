@@ -55,13 +55,13 @@ public class Main {
 		//ProgramSlice.printProgramSlice();
 
 		// Detect of signs
-		DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
+		/*DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
 				FreeVariableGenerator.getAllVariables());
 		dsw.printSolutionsTable();
 		
 		System.out.println("\nLow boundary violations for array indexing:");
 		System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
-        
+        */
 
 		// interval_analysis
 		IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(),
