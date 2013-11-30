@@ -204,7 +204,7 @@ public class BoolDS {
 			if(varName1!=null)//update signs if we were dealing with var or Array
 				newAllVarSigns.put(varName1,trueSigns1);
 			if(varName2!=null)
-				newAllVarSigns.put(varName2,trueSigns1);
+				newAllVarSigns.put(varName2,trueSigns2);
 			return true;	
 		}
 		else {
@@ -308,7 +308,7 @@ public class BoolDS {
 			if(varName1!=null)//update signs if we were dealing with var or Array
 				newAllVarSigns.put(varName1,trueSigns1);
 			if(varName2!=null)
-				newAllVarSigns.put(varName2,trueSigns1);
+				newAllVarSigns.put(varName2,trueSigns2);
 			return true;	
 		}
 		else {
@@ -409,7 +409,7 @@ public class BoolDS {
 			if(varName1!=null)//update signs if we were dealing with var or Array
 				newAllVarSigns.put(varName1,trueSigns1);
 			if(varName2!=null)
-				newAllVarSigns.put(varName2,trueSigns1);
+				newAllVarSigns.put(varName2,trueSigns2);
 			return true;	
 		}
 		else {
@@ -513,7 +513,7 @@ public class BoolDS {
 			if(varName1!=null)//update signs if we were dealing with var or Array
 				newAllVarSigns.put(varName1,trueSigns1);
 			if(varName2!=null)
-				newAllVarSigns.put(varName2,trueSigns1);
+				newAllVarSigns.put(varName2,trueSigns2);
 			return true;	
 		}
 		else {
@@ -611,7 +611,7 @@ public class BoolDS {
 			if(varName1!=null)//update signs if we were dealing with var or Array
 				newAllVarSigns.put(varName1,trueSigns1);
 			if(varName2!=null)
-				newAllVarSigns.put(varName2,trueSigns1);
+				newAllVarSigns.put(varName2,trueSigns2);
 			return true;	
 		}
 		else {
@@ -720,7 +720,7 @@ public class BoolDS {
 			if(varName1!=null)//update signs if we were dealing with var or Array
 				newAllVarSigns.put(varName1,trueSigns1);
 			if(varName2!=null)
-				newAllVarSigns.put(varName2,trueSigns1);
+				newAllVarSigns.put(varName2,trueSigns2);
 			return true;	
 		}
 		else {
