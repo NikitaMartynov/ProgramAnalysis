@@ -739,14 +739,14 @@ public class BoolDS {
 		BoolExpr newExpr = null;
 
 		if (insideExpr instanceof AndExpr) {
-			newExpr = new OrExpr(
-					((AndExpr) insideExpr).getExpression1(), 
-					((AndExpr) insideExpr).getExpression2());
+			newExpr = new OrExpr(new NotExpr(
+					((AndExpr) insideExpr).getExpression1()), new NotExpr(
+					((AndExpr) insideExpr).getExpression2()));
 
 		} else if (insideExpr instanceof OrExpr) {
-			newExpr = new AndExpr(
-					((OrExpr) insideExpr).getExpression1(),
-					((OrExpr) insideExpr).getExpression2());
+			newExpr = new AndExpr(new NotExpr(
+					((OrExpr) insideExpr).getExpression1()),new NotExpr(
+					((OrExpr) insideExpr).getExpression2()));
 		} else if (insideExpr instanceof BoolValueExpr) {
 			if (((BoolValueExpr) insideExpr).getBoolValue() == true)
 				newExpr = new BoolValueExpr(false);

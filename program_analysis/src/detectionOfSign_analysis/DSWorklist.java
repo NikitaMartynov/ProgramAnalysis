@@ -50,6 +50,9 @@ public class DSWorklist {
 		loopCounter = 0;
 		while (!workList.isEmpty()) {
 			loopCounter++;
+			//if(loopCounter == 11){
+			System.out.println(toString(workList));
+		//}
 			Edge currentEdge = workList.get(0);
 			workList.remove(0);
 			int startNodeIndex = currentEdge.getQs() - 1;
@@ -68,15 +71,16 @@ public class DSWorklist {
 						mergeSigns("mergeUnion", resAfterTrFunc,
 								solutionsTable.get(endNodeIndex)));
 				for (Edge edge : pgEdges) {
-					if (currentEdge.getQs() == edge.getQs()) { // TODO should be
-																// currentEdge.getQt()
-																// ==
-																// edge.getQs()???
+					if (currentEdge.getQt() == edge.getQs()) { 
 						workList.add(edge);
 					}
 				}
 			}
-			// printSolutionsTable();
+			//if(loopCounter == 11){
+			System.out.println(toString(workList));
+		//}
+			 printSolutionsTable();
+
 		}
 	}
 

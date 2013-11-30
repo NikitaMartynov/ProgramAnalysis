@@ -226,23 +226,32 @@ public class ArithDS {
 		ArithExpr arithExpr1 = multExpr.getExpression1();
 		ArithExpr arithExpr2 = multExpr.getExpression2();
 		Signs signs1, signs2, resultSigns;
+		String varName1 = null, varName2 = null;
 		
 		//Signs for expr1
-		if(arithExpr1 instanceof IdExpr)
+		if(arithExpr1 instanceof IdExpr){
 			signs1 =  baseAllVarSigns.get( ( (IdExpr)arithExpr1 ).toString() );
+			varName1 = ( (IdExpr)arithExpr1 ).toString();
+		}
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
-		else if (arithExpr1 instanceof ArrayExpr)
+		else if (arithExpr1 instanceof ArrayExpr){
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
+		}
 		else signs1 = arithExprSigns(arithExpr1);
 		
 		//Signs for expr2
-		if(arithExpr2 instanceof IdExpr)
+		if(arithExpr2 instanceof IdExpr){
 			signs2 =  baseAllVarSigns.get( ( (IdExpr)arithExpr2 ).toString() );
+			varName2 = ( (IdExpr)arithExpr2 ).toString();
+		}
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
-		else if (arithExpr2 instanceof ArrayExpr)
+		else if (arithExpr2 instanceof ArrayExpr){
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
+		}
 		else signs2 = arithExprSigns(arithExpr2);
 		
 		//Mult signs (table 3.1 +)
@@ -253,8 +262,8 @@ public class ArithDS {
 					case minus: 
 						switch(sign2){
 							case minus: resultSigns.add(Sign.plus); break;
-							case zero: resultSigns.add(Sign.zero); break;
-							case plus: resultSigns.add(Sign.minus); break;
+							case zero: if(!varName1.equals(varName2)) resultSigns.add(Sign.zero); break;
+							case plus: if(!varName1.equals(varName2)) resultSigns.add(Sign.minus); break;
 							default: assert false : "default in swith!"; 
 						}
 					break;
@@ -270,8 +279,8 @@ public class ArithDS {
 					
 					case plus:
 						switch(sign2){
-							case minus: resultSigns.add(Sign.minus); break;
-							case zero: resultSigns.add(Sign.zero); break;
+							case minus: if(!varName1.equals(varName2)) resultSigns.add(Sign.minus); break;
+							case zero: if(!varName1.equals(varName2)) resultSigns.add(Sign.zero); break;
 							case plus: resultSigns.add(Sign.plus); break;
 							default: assert false : "default in swith!"; 
 						}
@@ -290,23 +299,32 @@ public class ArithDS {
 		ArithExpr arithExpr1 = divExpr.getExpression1();
 		ArithExpr arithExpr2 = divExpr.getExpression2();
 		Signs signs1, signs2, resultSigns;
+		String varName1 = null, varName2 = null;
 		
 		//Signs for expr1
-		if(arithExpr1 instanceof IdExpr)
+		if(arithExpr1 instanceof IdExpr){
 			signs1 =  baseAllVarSigns.get( ( (IdExpr)arithExpr1 ).toString() );
+			varName1 = ( (IdExpr)arithExpr1 ).toString();
+		}
 		else if (arithExpr1 instanceof NumExpr)
 			signs1 =  new Signs( ( (NumExpr)arithExpr1 ).getValue() );
-		else if (arithExpr1 instanceof ArrayExpr)
+		else if (arithExpr1 instanceof ArrayExpr){
 			signs1 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr1 ).getName() );
+			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
+		}
 		else signs1 = arithExprSigns(arithExpr1);
 		
 		//Signs for expr2
-		if(arithExpr2 instanceof IdExpr)
+		if(arithExpr2 instanceof IdExpr){
 			signs2 =  baseAllVarSigns.get( ( (IdExpr)arithExpr2 ).toString() );
+			varName2 = ( (IdExpr)arithExpr2 ).toString();
+		}
 		else if (arithExpr2 instanceof NumExpr)
 			signs2 =  new Signs( ( (NumExpr)arithExpr2 ).getValue() );
-		else if (arithExpr2 instanceof ArrayExpr)
+		else if (arithExpr2 instanceof ArrayExpr){
 			signs2 =  baseAllVarSigns.get( ( (ArrayExpr)arithExpr2 ).getName() );
+			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
+		}
 		else signs2 = arithExprSigns(arithExpr2);
 		
 		//Divide signs (table 3.1 +)
@@ -319,30 +337,32 @@ public class ArithDS {
 							case minus: resultSigns.add(Sign.plus); break;
 							case zero:
 								//throw new DivideByZeroException();
+								if(!varName1.equals(varName2))
 								assert false : "Divide by zero, lets discuss what to do!";
 								break; //TODO exception?
-							case plus: resultSigns.add(Sign.minus); break;
+							case plus: if(!varName1.equals(varName2)) resultSigns.add(Sign.minus); break;
 							default: assert false : "default in swith!"; 
 						}
 					break;
 					
 					case zero: 
 						switch(sign2){
-							case minus: resultSigns.add(Sign.zero); break;
+							case minus: if(!varName1.equals(varName2)) resultSigns.add(Sign.zero); break;
 							case zero: 
 								//throw new DivideByZeroException();
 								assert false : "Divide by zero, lets discuss what to do!";
 								break; 
-							case plus: resultSigns.add(Sign.zero); break;
+							case plus: if(!varName1.equals(varName2)) resultSigns.add(Sign.zero); break;
 							default: assert false : "default in swith!"; 
 						}
 					break;
 					
 					case plus:
 						switch(sign2){
-							case minus: resultSigns.add(Sign.minus); break;
+							case minus: if(!varName1.equals(varName2)) resultSigns.add(Sign.minus); break;
 							case zero: 
 								//throw new DivideByZeroException();
+								if(!varName1.equals(varName2))
 								assert false : "Divide by zero, lets discuss what to do!";
 								break;
 							case plus: resultSigns.add(Sign.plus); break;

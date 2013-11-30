@@ -1,0 +1,13 @@
+
+
+program
+	int array[10];(* Andrius Andrijauskas (s121060@student.dtu.dk), Lars Bonnicshen (lfbo@dtu.dk) *)
+	int a;
+	skip; (* label 0, a in {0}, array in {0} *)
+	a := -1; (* label 1, a in {-}, array in {0}*)
+	while (a <= 10) do (* label 2, a in {-,0,+}, array in {0, +} *)
+		array[a]:= a * a; (* label 3, a in {-,0,+}, array in {0, +} a can be -1 and 10 *)
+		a := a+1; (* label 4, a in {-,0,+}, array in {0, +}  *)
+	od
+	skip; (* label 5, a in {+}, array in {0, +}  *)
+end
