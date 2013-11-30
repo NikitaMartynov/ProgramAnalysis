@@ -16,7 +16,7 @@ public class ProgramSlice {
 	private static List<Integer> workList;
 	private static final int FIRST_ELEM = 0;
 
-	private static void initialize(FlowGraph fg, int _pointOfInterest) {
+	private static void initialize(int _pointOfInterest) {
 		workList = new LinkedList<Integer>();
 		slice = new LinkedList<Integer>();
 		pointOfInterest = _pointOfInterest;
@@ -25,8 +25,7 @@ public class ProgramSlice {
 		ReachingDefinitionAnalysis.initialize(fg);
 		ReachingDefinitionAnalysis.analyze();
 		ReachingDefinitionAnalysis.printAnalysis();
-		BooleanAncestorFinder.computeAncestors(fg);
-		//BooleanAncestorFinder.computeAncestorBool(fg.getFlow(), fg.getLabels());
+		BooleanAncestorFinder.computeBoolAncestor();
 	}
 
 	public static List<Integer> getudchain(FreeVariable fv, int pointOfInterest) {
@@ -48,7 +47,7 @@ public class ProgramSlice {
 		Vector<FreeVariable> variablesInLine = new Vector<>();
 		List<Integer> udChain = new LinkedList<>();
 		
-		initialize(fg, pointOfInterest);
+		initialize(pointOfInterest);
 		if(pointOfInterest > FlowGraph.getBlocks().size() || pointOfInterest <= FIRST_ELEM ){
 			System.out.println("Point of interest outside the number of lines in the program.");
 			return null;
@@ -64,11 +63,13 @@ public class ProgramSlice {
 					.getFreeVariablesinLine(currentLineOfInterest);
 			if (!variablesInLine.isEmpty()) {
 				for (FreeVariable fv : variablesInLine) {
-					if (fv.getVariablePosition() != VariablePosition.left) {
+					if (fv.getVariablePosition() != VariablePosition.left &&
+							fv.getVariablePosition()!=VariablePosition.write) {
 						udChain = getudchain(fv, currentLineOfInterest);
 						for (int label : udChain) {
 							if (!slice.contains(label)
-									&& !workList.contains(label)) {
+									&& !workList.contains(label)
+									&& label !=0) {
 								workList.add(label);
 							}
 						}
@@ -95,11 +96,12 @@ public class ProgramSlice {
 	public static void printProgramSlice() {
 		Vector<Block> blocks = FlowGraph.getBlocks();
 		if (!slice.isEmpty()) {
+			System.out.println(slice);
 			System.out.println("Program Slice:");
-			for (int i = FIRST_ELEM; i < slice.size(); i++) {
-				if(blocks.get(slice.get(i) - 1) !=null){
-				System.out.println(slice.get(i).toString() + " : "
-						+ blocks.get(slice.get(i) - 1).toString());
+			for (int i = 0; i < slice.size(); i++) {
+				if(blocks.get(slice.get(i)-1) !=null){
+				System.out.println((slice.get(i)) + " : "
+						+ blocks.get(slice.get(i)-1).toString());
 				}
 			}
 			System.out.println();
