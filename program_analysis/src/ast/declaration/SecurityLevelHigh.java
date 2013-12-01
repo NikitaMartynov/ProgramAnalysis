@@ -1,10 +1,12 @@
 package ast.declaration;
 
+import SecurityAnalysis.SecLevel;
+
 public class SecurityLevelHigh implements SecurityLevel{
 	
 	@Override
-	public String getSecurityLevel() {
-		return "high";
+	public SecLevel getSecurityLevel() {
+		return SecLevel.high;
 	}
 	@Override
 	public String toString() {

@@ -5,8 +5,12 @@ import java.util.Map;
 
 import ast.arith.ArithExpr;
 import ast.arith.ArrayExpr;
+import ast.arith.DivExpr;
 import ast.arith.IdExpr;
+import ast.arith.MinusExpr;
+import ast.arith.MultExpr;
 import ast.arith.NumExpr;
+import ast.arith.PlusExpr;
 import ast.bool.AndExpr;
 import ast.bool.BoolExpr;
 import ast.bool.BoolValueExpr;
@@ -29,26 +33,18 @@ public class BoolSecLevel {
 		newAllVarSecLevel = Func.deepLineCopy(baseElemSecLevel);
 		this.baseAllVarSecLevel = Func.deepLineCopy(baseElemSecLevel);
 		
-		if(boolExpr instanceof LessThanExpr)
-			lessThanExprSecLevel ((LessThanExpr)boolExpr);
-		else if(boolExpr instanceof LessThanEqualsExpr)
-			lessThanEqualsExprSecLevel ((LessThanEqualsExpr)boolExpr);
-		else if(boolExpr instanceof GreaterThanExpr)
-			greaterThanExprSecLevel ((GreaterThanExpr)boolExpr);
-		else if(boolExpr instanceof GreaterThanEqualsExpr)
-			greaterThanEqualsExprSecLevel ((GreaterThanEqualsExpr)boolExpr);
-		else if(boolExpr instanceof EqualsExpr)
-			equalsExprSecLevel ((EqualsExpr)boolExpr);
-		else if(boolExpr instanceof NotEqualsExpr)
-			notEqualsExprSecLevel ((NotEqualsExpr)boolExpr);
+		if((boolExpr instanceof LessThanExpr)||(boolExpr instanceof LessThanEqualsExpr)
+				||(boolExpr instanceof GreaterThanExpr)||(boolExpr instanceof GreaterThanEqualsExpr)
+				||(boolExpr instanceof EqualsExpr)||(boolExpr instanceof NotEqualsExpr))
+				relatOperSecLevel ((BoolExpr)boolExpr);
 		else if (boolExpr instanceof OrExpr)
 			orExprHoldsSecLevel((OrExpr) boolExpr);
 		else if (boolExpr instanceof AndExpr)
 			andExprHoldsSecLevel((AndExpr) boolExpr);
 		else if(boolExpr instanceof BoolValueExpr){
-				if(((BoolValueExpr) boolExpr).getBoolValue() == false ){
-					newAllVarSecLevel = null;
-				}
+				//if(((BoolValueExpr) boolExpr).getBoolValue() == false ){
+				//	newAllVarSecLevel = null;
+				//}
 			}
 		 else if (boolExpr instanceof NotExpr) 
 			 notExprSecLevel ((NotExpr)boolExpr);
@@ -102,22 +98,41 @@ public class BoolSecLevel {
 	}
 	
 	//reduce secLevel only if variable at least on one side
-	boolean lessThanExprSecLevel (LessThanExpr lessThanExpr){
-		ArithExpr arithExpr1 = lessThanExpr.getExpression1();
-		ArithExpr arithExpr2 = lessThanExpr.getExpression2();
-		SecLevel secLevel1, secLevel2;
-		String varName1 = null, varName2 = null;
-		SecLevel ctxSecLevel;
+	void relatOperSecLevel (BoolExpr boolExpr){
+				
+		ArithExpr arithExpr1 = null;
+		ArithExpr arithExpr2 = null;
+		if ( boolExpr instanceof LessThanExpr){	
+			arithExpr1 = ((LessThanExpr)boolExpr).getExpression1();
+			arithExpr2 = ((LessThanExpr)boolExpr).getExpression2();
+		} else if ( boolExpr instanceof LessThanEqualsExpr){	
+			arithExpr1 = ((LessThanEqualsExpr)boolExpr).getExpression1();
+			arithExpr2 = ((LessThanEqualsExpr)boolExpr).getExpression2();
+		} else if ( boolExpr instanceof GreaterThanExpr){	
+			arithExpr1 = ((GreaterThanExpr)boolExpr).getExpression1();
+			arithExpr2 = ((GreaterThanExpr)boolExpr).getExpression2();
+		} else if ( boolExpr instanceof GreaterThanEqualsExpr){	
+			arithExpr1 = ((GreaterThanEqualsExpr)boolExpr).getExpression1();
+			arithExpr2 = ((GreaterThanEqualsExpr)boolExpr).getExpression2();
+		} else if ( boolExpr instanceof EqualsExpr){	
+			arithExpr1 = ((EqualsExpr)boolExpr).getExpression1();
+			arithExpr2 = ((EqualsExpr)boolExpr).getExpression2();
+		} else if ( boolExpr instanceof NotEqualsExpr){	
+			arithExpr1 = ((NotEqualsExpr)boolExpr).getExpression1();
+			arithExpr2 = ((NotEqualsExpr)boolExpr).getExpression2();
+		}else assert false : "Error in function arithOperSecLevel(), shouldn't reach it.";
 		
+		SecLevel secLevel1, secLevel2;
+		SecLevel  resSecLevel;
+		
+		SecLevel ctxSecLevel = baseAllVarSecLevel.get(SecCtx.CTX.getSecCtx());
 		//SecLevel for expr1
 		if(arithExpr1 instanceof IdExpr){
-			varName1 = ( (IdExpr)arithExpr1 ).toString();
 			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
 		}
 		else if (arithExpr1 instanceof NumExpr)
 			secLevel1 =  SecLevel.low;
 		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
 			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
 		}
 		else secLevel1 = new ArithSec( arithExpr1, baseAllVarSecLevel).getSecLevel();
@@ -125,289 +140,24 @@ public class BoolSecLevel {
 		
 		//SecLevel for expr2
 		if(arithExpr2 instanceof IdExpr){
-			varName2 = ( (IdExpr)arithExpr2 ).toString();
 			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
 		}
 		else if (arithExpr2 instanceof NumExpr)
 			secLevel2 =  SecLevel.low;
 		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
 			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
 		}
 		else secLevel2 = new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
 		
-		ctxSecLevel = (secLevel2 == SecLevel.high)|| (secLevel2 == SecLevel.high) 
+		resSecLevel = (secLevel1 == SecLevel.high)|| (secLevel2 == SecLevel.high) || (ctxSecLevel == SecLevel.high)
 				? SecLevel.high : SecLevel.low;
 		//TODO check if it can be none and implement context
 
-		if(ctxSecLevel == SecLevel.high){
-/*			if(varName1!=null)//update secLevel if we were dealing with var or Array
-				newAllVarSecLevel.put(varName1,trueSecLevel1);
-			if(varName2!=null)
-				newAllVarSecLevel.put(varName2,trueSecLevel1);
-			*/return true;	
+		if(resSecLevel == SecLevel.high){
+			ctxSecLevel = SecLevel.high;
+			newAllVarSecLevel.put(SecCtx.CTX.getSecCtx(),ctxSecLevel);
 		}
-		else {
-			newAllVarSecLevel = null;	
-			return false;
-		}		
-	}
-	
-	//reduce secLevel only if variable at least on one side
-	boolean lessThanEqualsExprSecLevel (LessThanEqualsExpr lessThanEqualsExpr){
-		ArithExpr arithExpr1 = lessThanEqualsExpr.getExpression1();
-		ArithExpr arithExpr2 = lessThanEqualsExpr.getExpression2();
-		SecLevel secLevel1, secLevel2;
-		String varName1 = null, varName2 = null;
-		SecLevel ctxSecLevel;
 		
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr){
-			varName1 = ( (IdExpr)arithExpr1 ).toString();
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		}
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		}
-		else secLevel1 = new ArithSec( arithExpr1, baseAllVarSecLevel).getSecLevel();
-		
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr){
-			varName2 = ( (IdExpr)arithExpr2 ).toString();
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		}
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		}
-		else secLevel2 = new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
-		
-		ctxSecLevel = (secLevel2 == SecLevel.high)|| (secLevel2 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-
-		if(ctxSecLevel == SecLevel.high){
-/*			if(varName1!=null)//update secLevel if we were dealing with var or Array
-				newAllVarSecLevel.put(varName1,trueSecLevel1);
-			if(varName2!=null)
-				newAllVarSecLevel.put(varName2,trueSecLevel1);
-			*/return true;	
-		}
-		else {
-			newAllVarSecLevel = null;	
-			return false;
-		}
-	}
-	
-	//reduce secLevel only if variable at least on one side
-	boolean greaterThanExprSecLevel (GreaterThanExpr greaterThanExpr){
-		ArithExpr arithExpr1 = greaterThanExpr.getExpression1();
-		ArithExpr arithExpr2 = greaterThanExpr.getExpression2();
-		SecLevel secLevel1, secLevel2;
-		String varName1 = null, varName2 = null;
-		SecLevel ctxSecLevel;
-				
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr){
-			varName1 = ( (IdExpr)arithExpr1 ).toString();
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		}
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		}
-		else secLevel1 = new ArithSec( arithExpr1, baseAllVarSecLevel).getSecLevel();
-		
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr){
-			varName2 = ( (IdExpr)arithExpr2 ).toString();
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		}
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		}
-		else secLevel2 = new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
-		
-		ctxSecLevel = (secLevel2 == SecLevel.high)|| (secLevel2 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-
-		if(ctxSecLevel == SecLevel.high){
-/*			if(varName1!=null)//update secLevel if we were dealing with var or Array
-				newAllVarSecLevel.put(varName1,trueSecLevel1);
-			if(varName2!=null)
-				newAllVarSecLevel.put(varName2,trueSecLevel1);
-			*/return true;	
-		}
-		else {
-			newAllVarSecLevel = null;	
-			return false;
-		}
-	}
-	
-	//reduce secLevel only if variable at least on one side
-	boolean greaterThanEqualsExprSecLevel (GreaterThanEqualsExpr greaterThanEqualsExpr){
-		ArithExpr arithExpr1 = greaterThanEqualsExpr.getExpression1();
-		ArithExpr arithExpr2 = greaterThanEqualsExpr.getExpression2();
-		SecLevel secLevel1, secLevel2;
-		String varName1 = null, varName2 = null;
-		SecLevel ctxSecLevel;
-				
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr){
-			varName1 = ( (IdExpr)arithExpr1 ).toString();
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		}
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		}
-		else secLevel1 = new ArithSec( arithExpr1, baseAllVarSecLevel).getSecLevel();
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr){
-			varName2 = ( (IdExpr)arithExpr2 ).toString();
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		}
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		}
-		else secLevel2 = new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
-		
-		ctxSecLevel = (secLevel2 == SecLevel.high)|| (secLevel2 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-
-		if(ctxSecLevel == SecLevel.high){
-/*			if(varName1!=null)//update secLevel if we were dealing with var or Array
-				newAllVarSecLevel.put(varName1,trueSecLevel1);
-			if(varName2!=null)
-				newAllVarSecLevel.put(varName2,trueSecLevel1);
-			*/return true;
-		}
-		else {
-			newAllVarSecLevel = null;	
-			return false;
-		}
-	}
-	
-	//reduce secLevel only if variable at least on one side
-	boolean equalsExprSecLevel (EqualsExpr equalsExpr){
-		ArithExpr arithExpr1 = equalsExpr.getExpression1();
-		ArithExpr arithExpr2 = equalsExpr.getExpression2();
-		SecLevel secLevel1, secLevel2;
-		String varName1 = null, varName2 = null;
-		SecLevel ctxSecLevel;
-				
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr){
-			varName1 = ( (IdExpr)arithExpr1 ).toString();
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		}
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		}
-		else secLevel1 = new ArithSec( arithExpr1, baseAllVarSecLevel).getSecLevel();
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr){
-			varName2 = ( (IdExpr)arithExpr2 ).toString();
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		}
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		}
-		else secLevel2 =new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
-		
-		ctxSecLevel = (secLevel2 == SecLevel.high)|| (secLevel2 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-
-		if(ctxSecLevel == SecLevel.high){
-/*			if(varName1!=null)//update secLevel if we were dealing with var or Array
-				newAllVarSecLevel.put(varName1,trueSecLevel1);
-			if(varName2!=null)
-				newAllVarSecLevel.put(varName2,trueSecLevel1);
-			*/return true;	
-		}
-		else {
-			newAllVarSecLevel = null;	
-			return false;
-		}
-	}
-	
-	//reduce secLevel only if variable at least on one side
-	boolean notEqualsExprSecLevel (NotEqualsExpr notEqualsExpr){
-		ArithExpr arithExpr1 = notEqualsExpr.getExpression1();
-		ArithExpr arithExpr2 = notEqualsExpr.getExpression2();
-		SecLevel secLevel1, secLevel2;
-		String varName1 = null, varName2 = null;
-		SecLevel ctxSecLevel;
-				
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr){
-			varName1 = ( (IdExpr)arithExpr1 ).toString();
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		}
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr){
-			varName1 = ( (ArrayExpr)arithExpr1 ).getName();
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		}
-		else secLevel1 = new ArithSec( arithExpr1, baseAllVarSecLevel).getSecLevel();
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr){
-			varName2 = ( (IdExpr)arithExpr2 ).toString();
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		}
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr){
-			varName2 = ( (ArrayExpr)arithExpr2 ).getName();
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		}
-		else secLevel2 = new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
-		
-		ctxSecLevel = (secLevel2 == SecLevel.high)|| (secLevel2 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-
-		if(ctxSecLevel == SecLevel.high){
-/*			if(varName1!=null)//update secLevel if we were dealing with var or Array
-				newAllVarSecLevel.put(varName1,trueSecLevel1);
-			if(varName2!=null)
-				newAllVarSecLevel.put(varName2,trueSecLevel1);
-			*/return true;	
-		}
-		else {
-			newAllVarSecLevel = null;	
-			return false;
-		}
 	}
 	
 	public HashMap<String, SecLevel> getNewAllVarSecLevel(){

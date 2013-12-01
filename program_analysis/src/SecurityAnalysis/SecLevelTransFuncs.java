@@ -36,7 +36,6 @@ public class SecLevelTransFuncs {
 		else assert false : "Assert in function detectSign(), shouldn't reach it. Check, did you forget any class?";
 		
 		
-		//TODO  check what if  ()?
 	
 	}
 	
@@ -59,13 +58,17 @@ public class SecLevelTransFuncs {
 	void assignStatementSign(AssignStatement assignSt){
 		String var = assignSt.getName();
 		SecLevel secLevel = new ArithSec( assignSt.getExpression(), newAllVarSecLevel).getSecLevel();
-		newAllVarSecLevel.put( var, secLevel );
+		if (newAllVarSecLevel.get(SecCtx.CTX.getSecCtx()) == SecLevel.high)
+			newAllVarSecLevel.put( var, SecLevel.high );
+		else newAllVarSecLevel.put( var, secLevel );
 	}
 	
 	void arrayAssignStatementSign(ArrayAssignStatement assignArraySt){
 		String var = assignArraySt.getName();
 		SecLevel newSecLevel = new ArithSec( assignArraySt.getValueExpression(), newAllVarSecLevel).getSecLevel();
-		newAllVarSecLevel.put( var, newSecLevel );
+		if (newAllVarSecLevel.get(SecCtx.CTX.getSecCtx()) == SecLevel.high)
+			newAllVarSecLevel.put( var, SecLevel.high );
+		else newAllVarSecLevel.put( var, newSecLevel );
 	}
 	
 	public HashMap<String, SecLevel> getNewAllVarSecLevel(){

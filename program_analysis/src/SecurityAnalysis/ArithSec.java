@@ -29,8 +29,6 @@ public class ArithSec {
 
 	}
 	
-	
-	
 	SecLevel arithExprSecLevel(ArithExpr arithExpr){
 		
 		if(arithExpr instanceof IdExpr) //Variable
@@ -39,24 +37,34 @@ public class ArithSec {
 			return  SecLevel.low;
 		else if (arithExpr instanceof ParenExpr) //ParenExpr
 			return arithExprSecLevel(arithExpr); 
-		else if ( arithExpr instanceof PlusExpr) // PlusExpr
-			return plusSecLevel((PlusExpr) arithExpr);
-		else if ( arithExpr instanceof MinusExpr) // MinusExpr
-			return minusExprSecLevel((MinusExpr) arithExpr);
+		else if (( arithExpr instanceof PlusExpr) ||( arithExpr instanceof MinusExpr) // PlusExpr, MinusExpr, MultExpr,DivExpr
+				||( arithExpr instanceof MultExpr)||( arithExpr instanceof DivExpr))
+				return arithOperSecLevel((ArithExpr) arithExpr);
 		else if ( arithExpr instanceof UnMinExpr) // UnMinExpr
 			return unMinExprSecLevel((UnMinExpr) arithExpr);
-		else if ( arithExpr instanceof MultExpr) // MultExpr
-			return multExprSecLevel((MultExpr) arithExpr);
-		else if ( arithExpr instanceof DivExpr) // DivExpr
-			return divExprSecLevel((DivExpr) arithExpr);
 		
 		assert false : "Error in function exprSecLevel(), shouldn't reach it. Check did you forget to add smth?";
 		return null;	
 	}
 	
-	SecLevel plusSecLevel(PlusExpr plusExpr){
-		ArithExpr arithExpr1 = plusExpr.getExpression1();
-		ArithExpr arithExpr2 = plusExpr.getExpression2();
+	SecLevel arithOperSecLevel(ArithExpr arithExpr){
+		ArithExpr arithExpr1 = null;
+		ArithExpr arithExpr2 = null;
+		if ( arithExpr instanceof PlusExpr){	
+			arithExpr1 = ((PlusExpr)arithExpr).getExpression1();
+			arithExpr2 = ((PlusExpr)arithExpr).getExpression2();
+		} else if ( arithExpr instanceof MinusExpr){	
+			arithExpr1 = ((MinusExpr)arithExpr).getExpression1();
+			arithExpr2 = ((MinusExpr)arithExpr).getExpression2();
+		} else if ( arithExpr instanceof MultExpr){	
+			arithExpr1 = ((MultExpr)arithExpr).getExpression1();
+			arithExpr2 = ((MultExpr)arithExpr).getExpression2();
+		} else if ( arithExpr instanceof DivExpr){	
+			arithExpr1 = ((DivExpr)arithExpr).getExpression1();
+			arithExpr2 = ((DivExpr)arithExpr).getExpression2();
+		}else assert false : "Error in function arithOperSecLevel(), shouldn't reach it.";
+				
+			
 		SecLevel secLevel1, secLevel2, resultSecLevel;
 		
 		//SecLevel for expr1
@@ -85,36 +93,6 @@ public class ArithSec {
 		return resultSecLevel;
 	}
 	
-	SecLevel minusExprSecLevel(MinusExpr minusExpr){
-		
-		ArithExpr arithExpr1 = minusExpr.getExpression1();
-		ArithExpr arithExpr2 = minusExpr.getExpression2();
-		SecLevel secLevel1, secLevel2, resultSecLevel;
-		
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr)
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr)
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		else secLevel1 = arithExprSecLevel(arithExpr1);
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr)
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr)
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		else secLevel2 = arithExprSecLevel(arithExpr2);
-		
-		resultSecLevel = (secLevel2 == SecLevel.high)||(secLevel1 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-		return resultSecLevel;
-	}
-	
 	SecLevel unMinExprSecLevel(UnMinExpr unMinExpr){
 		ArithExpr arithExpr = unMinExpr.getExpression();
 		SecLevel secLevel, resultSecLevel;
@@ -128,68 +106,10 @@ public class ArithSec {
 			secLevel =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr ).getName() );
 		else secLevel = arithExprSecLevel(arithExpr);
 		
-		resultSecLevel = (secLevel == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;	
+		resultSecLevel = secLevel;
 		return resultSecLevel;
 	}
 	
-	SecLevel multExprSecLevel(MultExpr multExpr){
-		ArithExpr arithExpr1 = multExpr.getExpression1();
-		ArithExpr arithExpr2 = multExpr.getExpression2();
-		SecLevel secLevel1, secLevel2, resultSecLevel;
-		
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr)
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr)
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		else secLevel1 = arithExprSecLevel(arithExpr1);
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr)
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr)
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		else secLevel2 = arithExprSecLevel(arithExpr2);
-		
-		resultSecLevel = (secLevel2 == SecLevel.high)||(secLevel1 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-		return resultSecLevel;	
-	}
-	
-	SecLevel divExprSecLevel(DivExpr divExpr){
-		ArithExpr arithExpr1 = divExpr.getExpression1();
-		ArithExpr arithExpr2 = divExpr.getExpression2();
-		SecLevel secLevel1, secLevel2, resultSecLevel;
-		
-		//SecLevel for expr1
-		if(arithExpr1 instanceof IdExpr)
-			secLevel1 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr1 ).toString() );
-		else if (arithExpr1 instanceof NumExpr)
-			secLevel1 =  SecLevel.low;
-		else if (arithExpr1 instanceof ArrayExpr)
-			secLevel1 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr1 ).getName() );
-		else secLevel1 = arithExprSecLevel(arithExpr1);
-		
-		//SecLevel for expr2
-		if(arithExpr2 instanceof IdExpr)
-			secLevel2 =  baseAllVarSecLevel.get( ( (IdExpr)arithExpr2 ).toString() );
-		else if (arithExpr2 instanceof NumExpr)
-			secLevel2 =  SecLevel.low;
-		else if (arithExpr2 instanceof ArrayExpr)
-			secLevel2 =  baseAllVarSecLevel.get( ( (ArrayExpr)arithExpr2 ).getName() );
-		else secLevel2 = arithExprSecLevel(arithExpr2);
-		
-		resultSecLevel = (secLevel2 == SecLevel.high)||(secLevel1 == SecLevel.high) 
-				? SecLevel.high : SecLevel.low;
-		
-		return resultSecLevel;		
-	}
 
 	SecLevel getSecLevel(){
 		return arithExprSecLevel;
