@@ -1,0 +1,18 @@
+(*Tomasz Cezary Maciazek 					 s111954@student.dtu.dk*)
+(*Arthur Hugo Maxime Desjardins 				 s131187@student.dtu.dk*)
+
+program
+int x; 
+int y; 
+int A[5];
+x := 3;					(*label 1 x in [3,3], y in [0,0], A in [0,0]*)
+y := 2;					(*label 2 x in [3,3], y in [2,2], A in [0,0]*)
+while x > 0 do				(*label 3 x in [3,3], y in [2,2], A in {0,+}*)
+	y := y - 1;			(*label 4 x in [-inf,3], y in [-inf,2], A in [-inf,4]*)
+	x := x - 1;			(*label 5 x in [-inf,2], y in [-inf,1], A in [-inf,4]*)
+	A[y] := x;			(*label 6 x in [-inf,2], y in [-inf,1], A in [-inf,4]*)
+	A[x] := x + 2;			(*label 7 x in [-inf,2], y in [-inf,1], A in [-inf,4]*)
+	A[5-x] := 2;			(*label 8 x in [-inf,2], y in [-inf,1], A in [-inf,4]*)
+od
+skip;					(*label 9 x in [-inf,2], y in [-inf,1], A in [-inf,4]*)
+end

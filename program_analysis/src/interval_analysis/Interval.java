@@ -103,20 +103,30 @@ public class Interval {
 				result = _minusInfinity;
 			else //if (pos == 2)
 				result = _plusInfinity;
-		} else if (a1 == _plusInfinity || a2 == _plusInfinity
-				|| a1 + a2 > IntervalAnalysis.getMax()) {
+		} else if (a1 == _plusInfinity || a2 == _plusInfinity) {
 			result = _plusInfinity;
-		} else if (a1 == _minusInfinity || a2 == _minusInfinity
-				|| a1 + a2 < IntervalAnalysis.getMin()) {
+		} else if (a1 == _minusInfinity || a2 == _minusInfinity) {
 			result = _minusInfinity;
-		} else
+		} else if(a1 + a2 > IntervalAnalysis.getMax()) {
+			result = _plusInfinity;
+		}else if (a1 + a2 < IntervalAnalysis.getMin()) {
+			result = _minusInfinity;
+		}		
+		else
 			result = a1 + a2;
 
 		return result;
 	}
 
 	public static Interval minus(Interval i1, Interval i2) {
-		return plus(i1, unaryMinus(i2));
+		int l = -i2.getHighBoundary();
+		int h = -i2.getLowBoundary();
+		
+		Interval ret = new Interval(plus(i1.getLowBoundary(),
+				l, 1), plus(i1.getHighBoundary(),
+				h, 2));
+
+		return ret;
 	}
 
 	public static Interval unaryMinus(Interval i1) {
@@ -149,15 +159,17 @@ public class Interval {
 			result = 0;
 		}
 		else if(a1 == _plusInfinity && a2 < 0 || a1 == _minusInfinity && a2 > 0 
-				|| a2 == _plusInfinity && a1 < 0 || a2 == _minusInfinity && a1 > 0 
-				|| a1 * a2 < IntervalAnalysis.getMin()) {
+				|| a2 == _plusInfinity && a1 < 0 || a2 == _minusInfinity && a1 > 0 ) {
 			result = _minusInfinity;
 		}
 		else if(a1 == _plusInfinity && a2 > 0 || a1 == _minusInfinity && a2 < 0 
-				|| a2 == _plusInfinity && a1 > 0 || a2 == _minusInfinity && a1 < 0 
-				|| a1 * a2 > IntervalAnalysis.getMax()) {
+				|| a2 == _plusInfinity && a1 > 0 || a2 == _minusInfinity && a1 < 0 ) {
 			result = _plusInfinity;
 		}
+		else if(a1 * a2 < IntervalAnalysis.getMin())
+			result = _minusInfinity;
+		else if(a1 * a2 > IntervalAnalysis.getMax())
+			result = _plusInfinity;
 		else
 			result = a1 * a2;
 		
