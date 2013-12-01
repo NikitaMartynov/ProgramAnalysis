@@ -32,7 +32,13 @@ declaration returns [Declaration value]
     ;
     
 base_declaration returns[Declaration value]
-    : level? 
+    : (l = level
+      'int' IDENTIFIER (';'
+      { $value = new VariableDeclaration(l,$IDENTIFIER.getText()); }//default: set 0 for new variables
+      |'[' INTEGER ']' ';' 
+      { $value = new ArrayDeclaration(l,$IDENTIFIER.getText(), Integer.parseInt($INTEGER.getText()));}
+      ))
+      |
       'int' IDENTIFIER (';'
       { $value = new VariableDeclaration($IDENTIFIER.getText()); }//default: set 0 for new variables
       |'[' INTEGER ']' ';' 
@@ -40,7 +46,9 @@ base_declaration returns[Declaration value]
       )
     ;
 
-level : 'low' | 'high' ;
+level returns [SecurityLevel value]
+	: 'low' {$value = new SecurityLevelLow();}
+	| 'high' {$value = new SecurityLevelHigh();};
 
 statement returns [Statement value]
     : s=base_statement       { $value = s; }

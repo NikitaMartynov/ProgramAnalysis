@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g 2013-10-26 20:07:34
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g 2013-12-01 13:26:14
 
 package parser;
 
@@ -76,12 +76,12 @@ public class TheLangParser extends Parser {
         
 
     public String[] getTokenNames() { return TheLangParser.tokenNames; }
-    public String getGrammarFileName() { return "E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g"; }
+    public String getGrammarFileName() { return "E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g"; }
 
 
 
     // $ANTLR start "program"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:23:1: program returns [Program value] : 'program' (d= declaration s= statement 'end' EOF | s= statement 'end' EOF ) ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:23:1: program returns [Program value] : 'program' (d= declaration s= statement 'end' EOF | s= statement 'end' EOF ) ;
     public final Program program() throws RecognitionException {
         Program value = null;
 
@@ -91,11 +91,11 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:24:5: ( 'program' (d= declaration s= statement 'end' EOF | s= statement 'end' EOF ) )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:24:7: 'program' (d= declaration s= statement 'end' EOF | s= statement 'end' EOF )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:24:5: ( 'program' (d= declaration s= statement 'end' EOF | s= statement 'end' EOF ) )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:24:7: 'program' (d= declaration s= statement 'end' EOF | s= statement 'end' EOF )
             {
             match(input,9,FOLLOW_9_in_program54); if (state.failed) return value;
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:24:17: (d= declaration s= statement 'end' EOF | s= statement 'end' EOF )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:24:17: (d= declaration s= statement 'end' EOF | s= statement 'end' EOF )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -114,7 +114,7 @@ public class TheLangParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:24:19: d= declaration s= statement 'end' EOF
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:24:19: d= declaration s= statement 'end' EOF
                     {
                     pushFollow(FOLLOW_declaration_in_program60);
                     d=declaration();
@@ -135,7 +135,7 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:25:9: s= statement 'end' EOF
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:25:9: s= statement 'end' EOF
                     {
                     pushFollow(FOLLOW_statement_in_program82);
                     s=statement();
@@ -169,7 +169,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "declaration"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:29:1: declaration returns [Declaration value] : d= base_declaration (d= base_declaration )* ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:29:1: declaration returns [Declaration value] : d= base_declaration (d= base_declaration )* ;
     public final Declaration declaration() throws RecognitionException {
         Declaration value = null;
 
@@ -177,8 +177,8 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:30:5: (d= base_declaration (d= base_declaration )* )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:30:7: d= base_declaration (d= base_declaration )*
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:30:5: (d= base_declaration (d= base_declaration )* )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:30:7: d= base_declaration (d= base_declaration )*
             {
             pushFollow(FOLLOW_base_declaration_in_declaration118);
             d=base_declaration();
@@ -188,7 +188,7 @@ public class TheLangParser extends Parser {
             if ( state.backtracking==0 ) {
                value = d; 
             }
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:31:7: (d= base_declaration )*
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:31:7: (d= base_declaration )*
             loop2:
             do {
                 int alt2=2;
@@ -201,7 +201,7 @@ public class TheLangParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:31:9: d= base_declaration
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:31:9: d= base_declaration
             	    {
             	    pushFollow(FOLLOW_base_declaration_in_declaration135);
             	    d=base_declaration();
@@ -236,88 +236,153 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "base_declaration"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:34:1: base_declaration returns [Declaration value] : ( level )? 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:34:1: base_declaration returns [Declaration value] : ( (l= level 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) ) | 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) );
     public final Declaration base_declaration() throws RecognitionException {
         Declaration value = null;
 
         Token IDENTIFIER1=null;
         Token INTEGER2=null;
+        Token IDENTIFIER3=null;
+        Token INTEGER4=null;
+        SecurityLevel l = null;
+
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:35:5: ( ( level )? 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:35:7: ( level )? 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' )
-            {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:35:7: ( level )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:35:5: ( (l= level 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) ) | 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) )
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-            if ( ((LA3_0>=15 && LA3_0<=16)) ) {
-                alt3=1;
+            if ( ((LA5_0>=15 && LA5_0<=16)) ) {
+                alt5=1;
             }
-            switch (alt3) {
-                case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:0:0: level
-                    {
-                    pushFollow(FOLLOW_level_in_base_declaration164);
-                    level();
-
-                    state._fsp--;
-                    if (state.failed) return value;
-
-                    }
-                    break;
-
-            }
-
-            match(input,11,FOLLOW_11_in_base_declaration174); if (state.failed) return value;
-            IDENTIFIER1=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_base_declaration176); if (state.failed) return value;
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:36:24: ( ';' | '[' INTEGER ']' ';' )
-            int alt4=2;
-            int LA4_0 = input.LA(1);
-
-            if ( (LA4_0==12) ) {
-                alt4=1;
-            }
-            else if ( (LA4_0==13) ) {
-                alt4=2;
+            else if ( (LA5_0==11) ) {
+                alt5=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 4, 0, input);
+                    new NoViableAltException("", 5, 0, input);
 
                 throw nvae;
             }
-            switch (alt4) {
+            switch (alt5) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:36:25: ';'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:35:7: (l= level 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) )
                     {
-                    match(input,12,FOLLOW_12_in_base_declaration179); if (state.failed) return value;
-                    if ( state.backtracking==0 ) {
-                       value = new VariableDeclaration(IDENTIFIER1.getText()); 
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:35:7: (l= level 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' ) )
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:35:8: l= level 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' )
+                    {
+                    pushFollow(FOLLOW_level_in_base_declaration169);
+                    l=level();
+
+                    state._fsp--;
+                    if (state.failed) return value;
+                    match(input,11,FOLLOW_11_in_base_declaration177); if (state.failed) return value;
+                    IDENTIFIER1=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_base_declaration179); if (state.failed) return value;
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:36:24: ( ';' | '[' INTEGER ']' ';' )
+                    int alt3=2;
+                    int LA3_0 = input.LA(1);
+
+                    if ( (LA3_0==12) ) {
+                        alt3=1;
                     }
+                    else if ( (LA3_0==13) ) {
+                        alt3=2;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return value;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 3, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt3) {
+                        case 1 :
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:36:25: ';'
+                            {
+                            match(input,12,FOLLOW_12_in_base_declaration182); if (state.failed) return value;
+                            if ( state.backtracking==0 ) {
+                               value = new VariableDeclaration(l,IDENTIFIER1.getText()); 
+                            }
+
+                            }
+                            break;
+                        case 2 :
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:38:8: '[' INTEGER ']' ';'
+                            {
+                            match(input,13,FOLLOW_13_in_base_declaration199); if (state.failed) return value;
+                            INTEGER2=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_base_declaration201); if (state.failed) return value;
+                            match(input,14,FOLLOW_14_in_base_declaration203); if (state.failed) return value;
+                            match(input,12,FOLLOW_12_in_base_declaration205); if (state.failed) return value;
+                            if ( state.backtracking==0 ) {
+                               value = new ArrayDeclaration(l,IDENTIFIER1.getText(), Integer.parseInt(INTEGER2.getText()));
+                            }
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+
 
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:38:8: '[' INTEGER ']' ';'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:42:7: 'int' IDENTIFIER ( ';' | '[' INTEGER ']' ';' )
                     {
-                    match(input,13,FOLLOW_13_in_base_declaration196); if (state.failed) return value;
-                    INTEGER2=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_base_declaration198); if (state.failed) return value;
-                    match(input,14,FOLLOW_14_in_base_declaration200); if (state.failed) return value;
-                    match(input,12,FOLLOW_12_in_base_declaration202); if (state.failed) return value;
-                    if ( state.backtracking==0 ) {
-                       value = new ArrayDeclaration(IDENTIFIER1.getText(), Integer.parseInt(INTEGER2.getText()));
+                    match(input,11,FOLLOW_11_in_base_declaration239); if (state.failed) return value;
+                    IDENTIFIER3=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_base_declaration241); if (state.failed) return value;
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:42:24: ( ';' | '[' INTEGER ']' ';' )
+                    int alt4=2;
+                    int LA4_0 = input.LA(1);
+
+                    if ( (LA4_0==12) ) {
+                        alt4=1;
                     }
+                    else if ( (LA4_0==13) ) {
+                        alt4=2;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return value;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 4, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt4) {
+                        case 1 :
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:42:25: ';'
+                            {
+                            match(input,12,FOLLOW_12_in_base_declaration244); if (state.failed) return value;
+                            if ( state.backtracking==0 ) {
+                               value = new VariableDeclaration(IDENTIFIER3.getText()); 
+                            }
+
+                            }
+                            break;
+                        case 2 :
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:44:8: '[' INTEGER ']' ';'
+                            {
+                            match(input,13,FOLLOW_13_in_base_declaration261); if (state.failed) return value;
+                            INTEGER4=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_base_declaration263); if (state.failed) return value;
+                            match(input,14,FOLLOW_14_in_base_declaration265); if (state.failed) return value;
+                            match(input,12,FOLLOW_12_in_base_declaration267); if (state.failed) return value;
+                            if ( state.backtracking==0 ) {
+                               value = new ArrayDeclaration(IDENTIFIER3.getText(), Integer.parseInt(INTEGER4.getText()));
+                            }
+
+                            }
+                            break;
+
+                    }
+
 
                     }
                     break;
 
             }
-
-
-            }
-
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -331,25 +396,51 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "level"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:43:1: level : ( 'low' | 'high' );
-    public final void level() throws RecognitionException {
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:49:1: level returns [SecurityLevel value] : ( 'low' | 'high' );
+    public final SecurityLevel level() throws RecognitionException {
+        SecurityLevel value = null;
+
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:43:7: ( 'low' | 'high' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:
-            {
-            if ( (input.LA(1)>=15 && input.LA(1)<=16) ) {
-                input.consume();
-                state.errorRecovery=false;state.failed=false;
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:50:2: ( 'low' | 'high' )
+            int alt6=2;
+            int LA6_0 = input.LA(1);
+
+            if ( (LA6_0==15) ) {
+                alt6=1;
+            }
+            else if ( (LA6_0==16) ) {
+                alt6=2;
             }
             else {
-                if (state.backtracking>0) {state.failed=true; return ;}
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                throw mse;
+                if (state.backtracking>0) {state.failed=true; return value;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 6, 0, input);
+
+                throw nvae;
             }
+            switch (alt6) {
+                case 1 :
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:50:4: 'low'
+                    {
+                    match(input,15,FOLLOW_15_in_level302); if (state.failed) return value;
+                    if ( state.backtracking==0 ) {
+                      value = new SecurityLevelLow();
+                    }
 
+                    }
+                    break;
+                case 2 :
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:51:4: 'high'
+                    {
+                    match(input,16,FOLLOW_16_in_level309); if (state.failed) return value;
+                    if ( state.backtracking==0 ) {
+                      value = new SecurityLevelHigh();
+                    }
+
+                    }
+                    break;
 
             }
-
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -357,13 +448,13 @@ public class TheLangParser extends Parser {
         }
         finally {
         }
-        return ;
+        return value;
     }
     // $ANTLR end "level"
 
 
     // $ANTLR start "statement"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:45:1: statement returns [Statement value] : s= base_statement (s= base_statement )* ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:53:1: statement returns [Statement value] : s= base_statement (s= base_statement )* ;
     public final Statement statement() throws RecognitionException {
         Statement value = null;
 
@@ -371,10 +462,10 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:46:5: (s= base_statement (s= base_statement )* )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:46:7: s= base_statement (s= base_statement )*
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:54:5: (s= base_statement (s= base_statement )* )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:54:7: s= base_statement (s= base_statement )*
             {
-            pushFollow(FOLLOW_base_statement_in_statement255);
+            pushFollow(FOLLOW_base_statement_in_statement329);
             s=base_statement();
 
             state._fsp--;
@@ -382,22 +473,22 @@ public class TheLangParser extends Parser {
             if ( state.backtracking==0 ) {
                value = s; 
             }
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:47:7: (s= base_statement )*
-            loop5:
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:55:7: (s= base_statement )*
+            loop7:
             do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( (LA5_0==IDENTIFIER||(LA5_0>=18 && LA5_0<=21)||LA5_0==25) ) {
-                    alt5=1;
+                if ( (LA7_0==IDENTIFIER||(LA7_0>=18 && LA7_0<=21)||LA7_0==25) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt5) {
+                switch (alt7) {
             	case 1 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:47:9: s= base_statement
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:55:9: s= base_statement
             	    {
-            	    pushFollow(FOLLOW_base_statement_in_statement275);
+            	    pushFollow(FOLLOW_base_statement_in_statement349);
             	    s=base_statement();
 
             	    state._fsp--;
@@ -410,7 +501,7 @@ public class TheLangParser extends Parser {
             	    break;
 
             	default :
-            	    break loop5;
+            	    break loop7;
                 }
             } while (true);
 
@@ -430,7 +521,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "base_statement"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:50:1: base_statement returns [Statement value] : (s= assignStmt | s= skipStmt | s= readStmt | s= writeStmt | s= ifStmt | s= whileStmt );
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:58:1: base_statement returns [Statement value] : (s= assignStmt | s= skipStmt | s= readStmt | s= writeStmt | s= ifStmt | s= whileStmt );
     public final Statement base_statement() throws RecognitionException {
         Statement value = null;
 
@@ -438,52 +529,52 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:51:5: (s= assignStmt | s= skipStmt | s= readStmt | s= writeStmt | s= ifStmt | s= whileStmt )
-            int alt6=6;
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:59:5: (s= assignStmt | s= skipStmt | s= readStmt | s= writeStmt | s= ifStmt | s= whileStmt )
+            int alt8=6;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
                 {
-                alt6=1;
+                alt8=1;
                 }
                 break;
             case 18:
                 {
-                alt6=2;
+                alt8=2;
                 }
                 break;
             case 19:
                 {
-                alt6=3;
+                alt8=3;
                 }
                 break;
             case 20:
                 {
-                alt6=4;
+                alt8=4;
                 }
                 break;
             case 21:
                 {
-                alt6=5;
+                alt8=5;
                 }
                 break;
             case 25:
                 {
-                alt6=6;
+                alt8=6;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt6) {
+            switch (alt8) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:51:7: s= assignStmt
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:59:7: s= assignStmt
                     {
-                    pushFollow(FOLLOW_assignStmt_in_base_statement305);
+                    pushFollow(FOLLOW_assignStmt_in_base_statement379);
                     s=assignStmt();
 
                     state._fsp--;
@@ -495,9 +586,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:52:7: s= skipStmt
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:60:7: s= skipStmt
                     {
-                    pushFollow(FOLLOW_skipStmt_in_base_statement319);
+                    pushFollow(FOLLOW_skipStmt_in_base_statement393);
                     s=skipStmt();
 
                     state._fsp--;
@@ -509,9 +600,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:53:7: s= readStmt
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:61:7: s= readStmt
                     {
-                    pushFollow(FOLLOW_readStmt_in_base_statement333);
+                    pushFollow(FOLLOW_readStmt_in_base_statement407);
                     s=readStmt();
 
                     state._fsp--;
@@ -523,9 +614,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:54:7: s= writeStmt
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:62:7: s= writeStmt
                     {
-                    pushFollow(FOLLOW_writeStmt_in_base_statement347);
+                    pushFollow(FOLLOW_writeStmt_in_base_statement421);
                     s=writeStmt();
 
                     state._fsp--;
@@ -537,9 +628,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:55:7: s= ifStmt
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:63:7: s= ifStmt
                     {
-                    pushFollow(FOLLOW_ifStmt_in_base_statement361);
+                    pushFollow(FOLLOW_ifStmt_in_base_statement435);
                     s=ifStmt();
 
                     state._fsp--;
@@ -551,9 +642,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:56:7: s= whileStmt
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:64:7: s= whileStmt
                     {
-                    pushFollow(FOLLOW_whileStmt_in_base_statement375);
+                    pushFollow(FOLLOW_whileStmt_in_base_statement449);
                     s=whileStmt();
 
                     state._fsp--;
@@ -579,11 +670,11 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "assignStmt"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:59:1: assignStmt returns [Statement value] : IDENTIFIER ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' ) ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:67:1: assignStmt returns [Statement value] : IDENTIFIER ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' ) ;
     public final Statement assignStmt() throws RecognitionException {
         Statement value = null;
 
-        Token IDENTIFIER3=null;
+        Token IDENTIFIER5=null;
         ArithExpr e = null;
 
         ArithExpr e1 = null;
@@ -592,63 +683,63 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:60:2: ( IDENTIFIER ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' ) )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:60:4: IDENTIFIER ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:68:2: ( IDENTIFIER ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' ) )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:68:4: IDENTIFIER ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' )
             {
-            IDENTIFIER3=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_assignStmt399); if (state.failed) return value;
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:60:15: ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            IDENTIFIER5=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_assignStmt473); if (state.failed) return value;
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:68:15: ( ':=' e= arith_expr ';' | '[' e1= arith_expr ']' ':=' e2= arith_expr ';' )
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA7_0==17) ) {
-                alt7=1;
+            if ( (LA9_0==17) ) {
+                alt9=1;
             }
-            else if ( (LA7_0==13) ) {
-                alt7=2;
+            else if ( (LA9_0==13) ) {
+                alt9=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 9, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt9) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:60:16: ':=' e= arith_expr ';'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:68:16: ':=' e= arith_expr ';'
                     {
-                    match(input,17,FOLLOW_17_in_assignStmt402); if (state.failed) return value;
-                    pushFollow(FOLLOW_arith_expr_in_assignStmt406);
+                    match(input,17,FOLLOW_17_in_assignStmt476); if (state.failed) return value;
+                    pushFollow(FOLLOW_arith_expr_in_assignStmt480);
                     e=arith_expr();
 
                     state._fsp--;
                     if (state.failed) return value;
-                    match(input,12,FOLLOW_12_in_assignStmt408); if (state.failed) return value;
+                    match(input,12,FOLLOW_12_in_assignStmt482); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
-                       value = new AssignStatement(IDENTIFIER3.getText(), e); 
+                       value = new AssignStatement(IDENTIFIER5.getText(), e); 
                     }
 
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:62:4: '[' e1= arith_expr ']' ':=' e2= arith_expr ';'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:70:4: '[' e1= arith_expr ']' ':=' e2= arith_expr ';'
                     {
-                    match(input,13,FOLLOW_13_in_assignStmt416); if (state.failed) return value;
-                    pushFollow(FOLLOW_arith_expr_in_assignStmt422);
+                    match(input,13,FOLLOW_13_in_assignStmt490); if (state.failed) return value;
+                    pushFollow(FOLLOW_arith_expr_in_assignStmt496);
                     e1=arith_expr();
 
                     state._fsp--;
                     if (state.failed) return value;
-                    match(input,14,FOLLOW_14_in_assignStmt424); if (state.failed) return value;
-                    match(input,17,FOLLOW_17_in_assignStmt425); if (state.failed) return value;
-                    pushFollow(FOLLOW_arith_expr_in_assignStmt429);
+                    match(input,14,FOLLOW_14_in_assignStmt498); if (state.failed) return value;
+                    match(input,17,FOLLOW_17_in_assignStmt499); if (state.failed) return value;
+                    pushFollow(FOLLOW_arith_expr_in_assignStmt503);
                     e2=arith_expr();
 
                     state._fsp--;
                     if (state.failed) return value;
-                    match(input,12,FOLLOW_12_in_assignStmt431); if (state.failed) return value;
+                    match(input,12,FOLLOW_12_in_assignStmt505); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
-                       value = new ArrayAssignStatement(IDENTIFIER3.getText(), e1, e2); 
+                       value = new ArrayAssignStatement(IDENTIFIER5.getText(), e1, e2); 
                     }
 
                     }
@@ -672,16 +763,16 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "skipStmt"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:65:1: skipStmt returns [Statement value] : 'skip' ';' ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:73:1: skipStmt returns [Statement value] : 'skip' ';' ;
     public final Statement skipStmt() throws RecognitionException {
         Statement value = null;
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:66:2: ( 'skip' ';' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:66:4: 'skip' ';'
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:74:2: ( 'skip' ';' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:74:4: 'skip' ';'
             {
-            match(input,18,FOLLOW_18_in_skipStmt449); if (state.failed) return value;
-            match(input,12,FOLLOW_12_in_skipStmt451); if (state.failed) return value;
+            match(input,18,FOLLOW_18_in_skipStmt523); if (state.failed) return value;
+            match(input,12,FOLLOW_12_in_skipStmt525); if (state.failed) return value;
             if ( state.backtracking==0 ) {
                value = new SkipStatement(); 
             }
@@ -701,61 +792,61 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "readStmt"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:70:1: readStmt returns [Statement value] : 'read' IDENTIFIER ( ';' | '[' e= arith_expr ']' ';' ) ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:78:1: readStmt returns [Statement value] : 'read' IDENTIFIER ( ';' | '[' e= arith_expr ']' ';' ) ;
     public final Statement readStmt() throws RecognitionException {
         Statement value = null;
 
-        Token IDENTIFIER4=null;
+        Token IDENTIFIER6=null;
         ArithExpr e = null;
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:71:2: ( 'read' IDENTIFIER ( ';' | '[' e= arith_expr ']' ';' ) )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:71:4: 'read' IDENTIFIER ( ';' | '[' e= arith_expr ']' ';' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:79:2: ( 'read' IDENTIFIER ( ';' | '[' e= arith_expr ']' ';' ) )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:79:4: 'read' IDENTIFIER ( ';' | '[' e= arith_expr ']' ';' )
             {
-            match(input,19,FOLLOW_19_in_readStmt503); if (state.failed) return value;
-            IDENTIFIER4=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_readStmt505); if (state.failed) return value;
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:71:21: ( ';' | '[' e= arith_expr ']' ';' )
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            match(input,19,FOLLOW_19_in_readStmt577); if (state.failed) return value;
+            IDENTIFIER6=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_readStmt579); if (state.failed) return value;
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:79:21: ( ';' | '[' e= arith_expr ']' ';' )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA8_0==12) ) {
-                alt8=1;
+            if ( (LA10_0==12) ) {
+                alt10=1;
             }
-            else if ( (LA8_0==13) ) {
-                alt8=2;
+            else if ( (LA10_0==13) ) {
+                alt10=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt8) {
+            switch (alt10) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:71:23: ';'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:79:23: ';'
                     {
-                    match(input,12,FOLLOW_12_in_readStmt508); if (state.failed) return value;
+                    match(input,12,FOLLOW_12_in_readStmt582); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
-                       value = new ReadStatement(IDENTIFIER4.getText());
+                       value = new ReadStatement(IDENTIFIER6.getText());
                     }
 
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:73:4: '[' e= arith_expr ']' ';'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:81:4: '[' e= arith_expr ']' ';'
                     {
-                    match(input,13,FOLLOW_13_in_readStmt516); if (state.failed) return value;
-                    pushFollow(FOLLOW_arith_expr_in_readStmt522);
+                    match(input,13,FOLLOW_13_in_readStmt590); if (state.failed) return value;
+                    pushFollow(FOLLOW_arith_expr_in_readStmt596);
                     e=arith_expr();
 
                     state._fsp--;
                     if (state.failed) return value;
-                    match(input,14,FOLLOW_14_in_readStmt524); if (state.failed) return value;
-                    match(input,12,FOLLOW_12_in_readStmt526); if (state.failed) return value;
+                    match(input,14,FOLLOW_14_in_readStmt598); if (state.failed) return value;
+                    match(input,12,FOLLOW_12_in_readStmt600); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
-                       value = new ReadArrayStatement(IDENTIFIER4.getText(),e);
+                       value = new ReadArrayStatement(IDENTIFIER6.getText(),e);
                     }
 
                     }
@@ -779,7 +870,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "writeStmt"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:78:1: writeStmt returns [Statement value] : 'write' e= arith_expr ';' ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:86:1: writeStmt returns [Statement value] : 'write' e= arith_expr ';' ;
     public final Statement writeStmt() throws RecognitionException {
         Statement value = null;
 
@@ -787,16 +878,16 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:79:2: ( 'write' e= arith_expr ';' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:79:4: 'write' e= arith_expr ';'
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:87:2: ( 'write' e= arith_expr ';' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:87:4: 'write' e= arith_expr ';'
             {
-            match(input,20,FOLLOW_20_in_writeStmt548); if (state.failed) return value;
-            pushFollow(FOLLOW_arith_expr_in_writeStmt554);
+            match(input,20,FOLLOW_20_in_writeStmt622); if (state.failed) return value;
+            pushFollow(FOLLOW_arith_expr_in_writeStmt628);
             e=arith_expr();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,12,FOLLOW_12_in_writeStmt556); if (state.failed) return value;
+            match(input,12,FOLLOW_12_in_writeStmt630); if (state.failed) return value;
             if ( state.backtracking==0 ) {
                value = new WriteStatement(e);
             }
@@ -816,7 +907,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "ifStmt"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:82:1: ifStmt returns [Statement value] : 'if' c= bool_expr 'then' s1= statement 'else' s2= statement 'fi' ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:90:1: ifStmt returns [Statement value] : 'if' c= bool_expr 'then' s1= statement 'else' s2= statement 'fi' ;
     public final Statement ifStmt() throws RecognitionException {
         Statement value = null;
 
@@ -828,28 +919,28 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:83:2: ( 'if' c= bool_expr 'then' s1= statement 'else' s2= statement 'fi' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:83:4: 'if' c= bool_expr 'then' s1= statement 'else' s2= statement 'fi'
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:91:2: ( 'if' c= bool_expr 'then' s1= statement 'else' s2= statement 'fi' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:91:4: 'if' c= bool_expr 'then' s1= statement 'else' s2= statement 'fi'
             {
-            match(input,21,FOLLOW_21_in_ifStmt573); if (state.failed) return value;
-            pushFollow(FOLLOW_bool_expr_in_ifStmt577);
+            match(input,21,FOLLOW_21_in_ifStmt647); if (state.failed) return value;
+            pushFollow(FOLLOW_bool_expr_in_ifStmt651);
             c=bool_expr();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,22,FOLLOW_22_in_ifStmt579); if (state.failed) return value;
-            pushFollow(FOLLOW_statement_in_ifStmt583);
+            match(input,22,FOLLOW_22_in_ifStmt653); if (state.failed) return value;
+            pushFollow(FOLLOW_statement_in_ifStmt657);
             s1=statement();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,23,FOLLOW_23_in_ifStmt588); if (state.failed) return value;
-            pushFollow(FOLLOW_statement_in_ifStmt592);
+            match(input,23,FOLLOW_23_in_ifStmt662); if (state.failed) return value;
+            pushFollow(FOLLOW_statement_in_ifStmt666);
             s2=statement();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,24,FOLLOW_24_in_ifStmt594); if (state.failed) return value;
+            match(input,24,FOLLOW_24_in_ifStmt668); if (state.failed) return value;
             if ( state.backtracking==0 ) {
                value = new IfStatement(c,s1,s2); 
             }
@@ -869,7 +960,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "whileStmt"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:87:1: whileStmt returns [Statement value] : 'while' c= bool_expr 'do' s= statement 'od' ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:95:1: whileStmt returns [Statement value] : 'while' c= bool_expr 'do' s= statement 'od' ;
     public final Statement whileStmt() throws RecognitionException {
         Statement value = null;
 
@@ -879,22 +970,22 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:88:2: ( 'while' c= bool_expr 'do' s= statement 'od' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:88:4: 'while' c= bool_expr 'do' s= statement 'od'
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:96:2: ( 'while' c= bool_expr 'do' s= statement 'od' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:96:4: 'while' c= bool_expr 'do' s= statement 'od'
             {
-            match(input,25,FOLLOW_25_in_whileStmt628); if (state.failed) return value;
-            pushFollow(FOLLOW_bool_expr_in_whileStmt632);
+            match(input,25,FOLLOW_25_in_whileStmt702); if (state.failed) return value;
+            pushFollow(FOLLOW_bool_expr_in_whileStmt706);
             c=bool_expr();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,26,FOLLOW_26_in_whileStmt634); if (state.failed) return value;
-            pushFollow(FOLLOW_statement_in_whileStmt638);
+            match(input,26,FOLLOW_26_in_whileStmt708); if (state.failed) return value;
+            pushFollow(FOLLOW_statement_in_whileStmt712);
             s=statement();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,27,FOLLOW_27_in_whileStmt640); if (state.failed) return value;
+            match(input,27,FOLLOW_27_in_whileStmt714); if (state.failed) return value;
             if ( state.backtracking==0 ) {
                value = new WhileStatement(c,s); 
             }
@@ -914,7 +1005,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "bool_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:93:1: bool_expr returns [BoolExpr value] : e= mid_bool_expr ( '|' e= mid_bool_expr )* ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:101:1: bool_expr returns [BoolExpr value] : e= mid_bool_expr ( '|' e= mid_bool_expr )* ;
     public final BoolExpr bool_expr() throws RecognitionException {
         BoolExpr value = null;
 
@@ -922,10 +1013,10 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:94:2: (e= mid_bool_expr ( '|' e= mid_bool_expr )* )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:94:4: e= mid_bool_expr ( '|' e= mid_bool_expr )*
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:102:2: (e= mid_bool_expr ( '|' e= mid_bool_expr )* )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:102:4: e= mid_bool_expr ( '|' e= mid_bool_expr )*
             {
-            pushFollow(FOLLOW_mid_bool_expr_in_bool_expr662);
+            pushFollow(FOLLOW_mid_bool_expr_in_bool_expr736);
             e=mid_bool_expr();
 
             state._fsp--;
@@ -933,29 +1024,29 @@ public class TheLangParser extends Parser {
             if ( state.backtracking==0 ) {
                value = e; 
             }
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:95:2: ( '|' e= mid_bool_expr )*
-            loop9:
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:103:2: ( '|' e= mid_bool_expr )*
+            loop11:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA9_0==28) ) {
-                    int LA9_2 = input.LA(2);
+                if ( (LA11_0==28) ) {
+                    int LA11_2 = input.LA(2);
 
-                    if ( (synpred14_TheLang()) ) {
-                        alt9=1;
+                    if ( (synpred15_TheLang()) ) {
+                        alt11=1;
                     }
 
 
                 }
 
 
-                switch (alt9) {
+                switch (alt11) {
             	case 1 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:95:4: '|' e= mid_bool_expr
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:103:4: '|' e= mid_bool_expr
             	    {
-            	    match(input,28,FOLLOW_28_in_bool_expr669); if (state.failed) return value;
-            	    pushFollow(FOLLOW_mid_bool_expr_in_bool_expr673);
+            	    match(input,28,FOLLOW_28_in_bool_expr743); if (state.failed) return value;
+            	    pushFollow(FOLLOW_mid_bool_expr_in_bool_expr747);
             	    e=mid_bool_expr();
 
             	    state._fsp--;
@@ -968,7 +1059,7 @@ public class TheLangParser extends Parser {
             	    break;
 
             	default :
-            	    break loop9;
+            	    break loop11;
                 }
             } while (true);
 
@@ -988,7 +1079,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "mid_bool_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:99:1: mid_bool_expr returns [BoolExpr value] : e= base_bool_expr ( '&' e= base_bool_expr )* ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:107:1: mid_bool_expr returns [BoolExpr value] : e= base_bool_expr ( '&' e= base_bool_expr )* ;
     public final BoolExpr mid_bool_expr() throws RecognitionException {
         BoolExpr value = null;
 
@@ -996,10 +1087,10 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:100:2: (e= base_bool_expr ( '&' e= base_bool_expr )* )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:100:4: e= base_bool_expr ( '&' e= base_bool_expr )*
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:108:2: (e= base_bool_expr ( '&' e= base_bool_expr )* )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:108:4: e= base_bool_expr ( '&' e= base_bool_expr )*
             {
-            pushFollow(FOLLOW_base_bool_expr_in_mid_bool_expr699);
+            pushFollow(FOLLOW_base_bool_expr_in_mid_bool_expr773);
             e=base_bool_expr();
 
             state._fsp--;
@@ -1007,29 +1098,29 @@ public class TheLangParser extends Parser {
             if ( state.backtracking==0 ) {
                value = e; 
             }
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:101:2: ( '&' e= base_bool_expr )*
-            loop10:
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:109:2: ( '&' e= base_bool_expr )*
+            loop12:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( (LA10_0==29) ) {
-                    int LA10_2 = input.LA(2);
+                if ( (LA12_0==29) ) {
+                    int LA12_2 = input.LA(2);
 
-                    if ( (synpred15_TheLang()) ) {
-                        alt10=1;
+                    if ( (synpred16_TheLang()) ) {
+                        alt12=1;
                     }
 
 
                 }
 
 
-                switch (alt10) {
+                switch (alt12) {
             	case 1 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:101:3: '&' e= base_bool_expr
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:109:3: '&' e= base_bool_expr
             	    {
-            	    match(input,29,FOLLOW_29_in_mid_bool_expr705); if (state.failed) return value;
-            	    pushFollow(FOLLOW_base_bool_expr_in_mid_bool_expr711);
+            	    match(input,29,FOLLOW_29_in_mid_bool_expr779); if (state.failed) return value;
+            	    pushFollow(FOLLOW_base_bool_expr_in_mid_bool_expr785);
             	    e=base_bool_expr();
 
             	    state._fsp--;
@@ -1042,7 +1133,7 @@ public class TheLangParser extends Parser {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop12;
                 }
             } while (true);
 
@@ -1062,7 +1153,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "base_bool_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:105:1: base_bool_expr returns [BoolExpr value] : (b= not_bool_expr | b= paren_bool_expr | 'true' | 'false' | e1= arith_expr ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr ) );
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:113:1: base_bool_expr returns [BoolExpr value] : (b= not_bool_expr | b= paren_bool_expr | 'true' | 'false' | e1= arith_expr ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr ) );
     public final BoolExpr base_bool_expr() throws RecognitionException {
         BoolExpr value = null;
 
@@ -1074,28 +1165,28 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:106:5: (b= not_bool_expr | b= paren_bool_expr | 'true' | 'false' | e1= arith_expr ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr ) )
-            int alt12=5;
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:114:5: (b= not_bool_expr | b= paren_bool_expr | 'true' | 'false' | e1= arith_expr ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr ) )
+            int alt14=5;
             switch ( input.LA(1) ) {
             case 38:
                 {
-                alt12=1;
+                alt14=1;
                 }
                 break;
             case 39:
                 {
-                int LA12_2 = input.LA(2);
+                int LA14_2 = input.LA(2);
 
-                if ( (synpred17_TheLang()) ) {
-                    alt12=2;
+                if ( (synpred18_TheLang()) ) {
+                    alt14=2;
                 }
                 else if ( (true) ) {
-                    alt12=5;
+                    alt14=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 12, 2, input);
+                        new NoViableAltException("", 14, 2, input);
 
                     throw nvae;
                 }
@@ -1103,34 +1194,34 @@ public class TheLangParser extends Parser {
                 break;
             case 30:
                 {
-                alt12=3;
+                alt14=3;
                 }
                 break;
             case 31:
                 {
-                alt12=4;
+                alt14=4;
                 }
                 break;
             case IDENTIFIER:
             case INTEGER:
             case 42:
                 {
-                alt12=5;
+                alt14=5;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt12) {
+            switch (alt14) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:106:7: b= not_bool_expr
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:114:7: b= not_bool_expr
                     {
-                    pushFollow(FOLLOW_not_bool_expr_in_base_bool_expr739);
+                    pushFollow(FOLLOW_not_bool_expr_in_base_bool_expr813);
                     b=not_bool_expr();
 
                     state._fsp--;
@@ -1142,9 +1233,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:107:7: b= paren_bool_expr
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:115:7: b= paren_bool_expr
                     {
-                    pushFollow(FOLLOW_paren_bool_expr_in_base_bool_expr754);
+                    pushFollow(FOLLOW_paren_bool_expr_in_base_bool_expr828);
                     b=paren_bool_expr();
 
                     state._fsp--;
@@ -1156,9 +1247,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:108:7: 'true'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:116:7: 'true'
                     {
-                    match(input,30,FOLLOW_30_in_base_bool_expr765); if (state.failed) return value;
+                    match(input,30,FOLLOW_30_in_base_bool_expr839); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
                        value = new BoolValueExpr(true); 
                     }
@@ -1166,9 +1257,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:109:7: 'false'
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:117:7: 'false'
                     {
-                    match(input,31,FOLLOW_31_in_base_bool_expr794); if (state.failed) return value;
+                    match(input,31,FOLLOW_31_in_base_bool_expr868); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
                        value = new BoolValueExpr(false); 
                     }
@@ -1176,60 +1267,60 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:110:7: e1= arith_expr ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr )
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:118:7: e1= arith_expr ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr )
                     {
-                    pushFollow(FOLLOW_arith_expr_in_base_bool_expr824);
+                    pushFollow(FOLLOW_arith_expr_in_base_bool_expr898);
                     e1=arith_expr();
 
                     state._fsp--;
                     if (state.failed) return value;
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:110:21: ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr )
-                    int alt11=6;
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:118:21: ( '=' e2= arith_expr | '<=' e2= arith_expr | '<' e2= arith_expr | '>=' e2= arith_expr | '>' e2= arith_expr | '!=' e2= arith_expr )
+                    int alt13=6;
                     switch ( input.LA(1) ) {
                     case 32:
                         {
-                        alt11=1;
+                        alt13=1;
                         }
                         break;
                     case 33:
                         {
-                        alt11=2;
+                        alt13=2;
                         }
                         break;
                     case 34:
                         {
-                        alt11=3;
+                        alt13=3;
                         }
                         break;
                     case 35:
                         {
-                        alt11=4;
+                        alt13=4;
                         }
                         break;
                     case 36:
                         {
-                        alt11=5;
+                        alt13=5;
                         }
                         break;
                     case 37:
                         {
-                        alt11=6;
+                        alt13=6;
                         }
                         break;
                     default:
                         if (state.backtracking>0) {state.failed=true; return value;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 11, 0, input);
+                            new NoViableAltException("", 13, 0, input);
 
                         throw nvae;
                     }
 
-                    switch (alt11) {
+                    switch (alt13) {
                         case 1 :
-                            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:110:23: '=' e2= arith_expr
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:118:23: '=' e2= arith_expr
                             {
-                            match(input,32,FOLLOW_32_in_base_bool_expr828); if (state.failed) return value;
-                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr832);
+                            match(input,32,FOLLOW_32_in_base_bool_expr902); if (state.failed) return value;
+                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr906);
                             e2=arith_expr();
 
                             state._fsp--;
@@ -1241,10 +1332,10 @@ public class TheLangParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:111:23: '<=' e2= arith_expr
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:119:23: '<=' e2= arith_expr
                             {
-                            match(input,33,FOLLOW_33_in_base_bool_expr859); if (state.failed) return value;
-                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr863);
+                            match(input,33,FOLLOW_33_in_base_bool_expr933); if (state.failed) return value;
+                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr937);
                             e2=arith_expr();
 
                             state._fsp--;
@@ -1256,10 +1347,10 @@ public class TheLangParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:112:23: '<' e2= arith_expr
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:120:23: '<' e2= arith_expr
                             {
-                            match(input,34,FOLLOW_34_in_base_bool_expr890); if (state.failed) return value;
-                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr894);
+                            match(input,34,FOLLOW_34_in_base_bool_expr964); if (state.failed) return value;
+                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr968);
                             e2=arith_expr();
 
                             state._fsp--;
@@ -1271,10 +1362,10 @@ public class TheLangParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:113:23: '>=' e2= arith_expr
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:121:23: '>=' e2= arith_expr
                             {
-                            match(input,35,FOLLOW_35_in_base_bool_expr922); if (state.failed) return value;
-                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr926);
+                            match(input,35,FOLLOW_35_in_base_bool_expr996); if (state.failed) return value;
+                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr1000);
                             e2=arith_expr();
 
                             state._fsp--;
@@ -1286,10 +1377,10 @@ public class TheLangParser extends Parser {
                             }
                             break;
                         case 5 :
-                            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:114:23: '>' e2= arith_expr
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:122:23: '>' e2= arith_expr
                             {
-                            match(input,36,FOLLOW_36_in_base_bool_expr953); if (state.failed) return value;
-                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr957);
+                            match(input,36,FOLLOW_36_in_base_bool_expr1027); if (state.failed) return value;
+                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr1031);
                             e2=arith_expr();
 
                             state._fsp--;
@@ -1301,10 +1392,10 @@ public class TheLangParser extends Parser {
                             }
                             break;
                         case 6 :
-                            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:115:23: '!=' e2= arith_expr
+                            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:123:23: '!=' e2= arith_expr
                             {
-                            match(input,37,FOLLOW_37_in_base_bool_expr985); if (state.failed) return value;
-                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr989);
+                            match(input,37,FOLLOW_37_in_base_bool_expr1059); if (state.failed) return value;
+                            pushFollow(FOLLOW_arith_expr_in_base_bool_expr1063);
                             e2=arith_expr();
 
                             state._fsp--;
@@ -1336,7 +1427,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "not_bool_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:118:1: not_bool_expr returns [BoolExpr value] : '!' e= bool_expr ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:126:1: not_bool_expr returns [BoolExpr value] : '!' e= bool_expr ;
     public final BoolExpr not_bool_expr() throws RecognitionException {
         BoolExpr value = null;
 
@@ -1344,11 +1435,11 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:119:2: ( '!' e= bool_expr )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:119:4: '!' e= bool_expr
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:127:2: ( '!' e= bool_expr )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:127:4: '!' e= bool_expr
             {
-            match(input,38,FOLLOW_38_in_not_bool_expr1017); if (state.failed) return value;
-            pushFollow(FOLLOW_bool_expr_in_not_bool_expr1023);
+            match(input,38,FOLLOW_38_in_not_bool_expr1091); if (state.failed) return value;
+            pushFollow(FOLLOW_bool_expr_in_not_bool_expr1097);
             e=bool_expr();
 
             state._fsp--;
@@ -1372,7 +1463,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "paren_bool_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:123:1: paren_bool_expr returns [BoolExpr value] : '(' e= bool_expr ')' ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:131:1: paren_bool_expr returns [BoolExpr value] : '(' e= bool_expr ')' ;
     public final BoolExpr paren_bool_expr() throws RecognitionException {
         BoolExpr value = null;
 
@@ -1380,16 +1471,16 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:124:5: ( '(' e= bool_expr ')' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:124:7: '(' e= bool_expr ')'
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:132:5: ( '(' e= bool_expr ')' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:132:7: '(' e= bool_expr ')'
             {
-            match(input,39,FOLLOW_39_in_paren_bool_expr1046); if (state.failed) return value;
-            pushFollow(FOLLOW_bool_expr_in_paren_bool_expr1050);
+            match(input,39,FOLLOW_39_in_paren_bool_expr1120); if (state.failed) return value;
+            pushFollow(FOLLOW_bool_expr_in_paren_bool_expr1124);
             e=bool_expr();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,40,FOLLOW_40_in_paren_bool_expr1052); if (state.failed) return value;
+            match(input,40,FOLLOW_40_in_paren_bool_expr1126); if (state.failed) return value;
             if ( state.backtracking==0 ) {
               value = e;
             }
@@ -1409,7 +1500,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "arith_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:128:1: arith_expr returns [ArithExpr value] : e= mult_div_arith_expr ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )* ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:136:1: arith_expr returns [ArithExpr value] : e= mult_div_arith_expr ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )* ;
     public final ArithExpr arith_expr() throws RecognitionException {
         ArithExpr value = null;
 
@@ -1417,10 +1508,10 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:129:5: (e= mult_div_arith_expr ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )* )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:129:7: e= mult_div_arith_expr ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )*
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:137:5: (e= mult_div_arith_expr ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )* )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:137:7: e= mult_div_arith_expr ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )*
             {
-            pushFollow(FOLLOW_mult_div_arith_expr_in_arith_expr1078);
+            pushFollow(FOLLOW_mult_div_arith_expr_in_arith_expr1152);
             e=mult_div_arith_expr();
 
             state._fsp--;
@@ -1428,26 +1519,26 @@ public class TheLangParser extends Parser {
             if ( state.backtracking==0 ) {
                value = e; 
             }
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:130:7: ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )*
-            loop13:
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:138:7: ( '+' e= mult_div_arith_expr | '-' e= mult_div_arith_expr )*
+            loop15:
             do {
-                int alt13=3;
-                int LA13_0 = input.LA(1);
+                int alt15=3;
+                int LA15_0 = input.LA(1);
 
-                if ( (LA13_0==41) ) {
-                    alt13=1;
+                if ( (LA15_0==41) ) {
+                    alt15=1;
                 }
-                else if ( (LA13_0==42) ) {
-                    alt13=2;
+                else if ( (LA15_0==42) ) {
+                    alt15=2;
                 }
 
 
-                switch (alt13) {
+                switch (alt15) {
             	case 1 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:130:9: '+' e= mult_div_arith_expr
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:138:9: '+' e= mult_div_arith_expr
             	    {
-            	    match(input,41,FOLLOW_41_in_arith_expr1096); if (state.failed) return value;
-            	    pushFollow(FOLLOW_mult_div_arith_expr_in_arith_expr1100);
+            	    match(input,41,FOLLOW_41_in_arith_expr1170); if (state.failed) return value;
+            	    pushFollow(FOLLOW_mult_div_arith_expr_in_arith_expr1174);
             	    e=mult_div_arith_expr();
 
             	    state._fsp--;
@@ -1459,10 +1550,10 @@ public class TheLangParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:131:9: '-' e= mult_div_arith_expr
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:139:9: '-' e= mult_div_arith_expr
             	    {
-            	    match(input,42,FOLLOW_42_in_arith_expr1113); if (state.failed) return value;
-            	    pushFollow(FOLLOW_mult_div_arith_expr_in_arith_expr1117);
+            	    match(input,42,FOLLOW_42_in_arith_expr1187); if (state.failed) return value;
+            	    pushFollow(FOLLOW_mult_div_arith_expr_in_arith_expr1191);
             	    e=mult_div_arith_expr();
 
             	    state._fsp--;
@@ -1475,7 +1566,7 @@ public class TheLangParser extends Parser {
             	    break;
 
             	default :
-            	    break loop13;
+            	    break loop15;
                 }
             } while (true);
 
@@ -1495,7 +1586,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "mult_div_arith_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:134:1: mult_div_arith_expr returns [ArithExpr value] : e= un_min_arith_expr ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )* ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:142:1: mult_div_arith_expr returns [ArithExpr value] : e= un_min_arith_expr ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )* ;
     public final ArithExpr mult_div_arith_expr() throws RecognitionException {
         ArithExpr value = null;
 
@@ -1503,10 +1594,10 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:135:5: (e= un_min_arith_expr ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )* )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:135:7: e= un_min_arith_expr ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )*
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:143:5: (e= un_min_arith_expr ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )* )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:143:7: e= un_min_arith_expr ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )*
             {
-            pushFollow(FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1145);
+            pushFollow(FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1219);
             e=un_min_arith_expr();
 
             state._fsp--;
@@ -1514,26 +1605,26 @@ public class TheLangParser extends Parser {
             if ( state.backtracking==0 ) {
                value = e; 
             }
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:136:7: ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )*
-            loop14:
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:144:7: ( '*' e= un_min_arith_expr | '/' e= un_min_arith_expr )*
+            loop16:
             do {
-                int alt14=3;
-                int LA14_0 = input.LA(1);
+                int alt16=3;
+                int LA16_0 = input.LA(1);
 
-                if ( (LA14_0==43) ) {
-                    alt14=1;
+                if ( (LA16_0==43) ) {
+                    alt16=1;
                 }
-                else if ( (LA14_0==44) ) {
-                    alt14=2;
+                else if ( (LA16_0==44) ) {
+                    alt16=2;
                 }
 
 
-                switch (alt14) {
+                switch (alt16) {
             	case 1 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:136:9: '*' e= un_min_arith_expr
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:144:9: '*' e= un_min_arith_expr
             	    {
-            	    match(input,43,FOLLOW_43_in_mult_div_arith_expr1163); if (state.failed) return value;
-            	    pushFollow(FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1167);
+            	    match(input,43,FOLLOW_43_in_mult_div_arith_expr1237); if (state.failed) return value;
+            	    pushFollow(FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1241);
             	    e=un_min_arith_expr();
 
             	    state._fsp--;
@@ -1545,10 +1636,10 @@ public class TheLangParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:137:9: '/' e= un_min_arith_expr
+            	    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:145:9: '/' e= un_min_arith_expr
             	    {
-            	    match(input,44,FOLLOW_44_in_mult_div_arith_expr1180); if (state.failed) return value;
-            	    pushFollow(FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1184);
+            	    match(input,44,FOLLOW_44_in_mult_div_arith_expr1254); if (state.failed) return value;
+            	    pushFollow(FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1258);
             	    e=un_min_arith_expr();
 
             	    state._fsp--;
@@ -1561,7 +1652,7 @@ public class TheLangParser extends Parser {
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop16;
                 }
             } while (true);
 
@@ -1581,7 +1672,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "un_min_arith_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:140:1: un_min_arith_expr returns [ ArithExpr value] : (e= base_arith_expr | '-' e= base_arith_expr );
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:148:1: un_min_arith_expr returns [ ArithExpr value] : (e= base_arith_expr | '-' e= base_arith_expr );
     public final ArithExpr un_min_arith_expr() throws RecognitionException {
         ArithExpr value = null;
 
@@ -1589,28 +1680,28 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:141:5: (e= base_arith_expr | '-' e= base_arith_expr )
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:149:5: (e= base_arith_expr | '-' e= base_arith_expr )
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( ((LA15_0>=IDENTIFIER && LA15_0<=INTEGER)||LA15_0==39) ) {
-                alt15=1;
+            if ( ((LA17_0>=IDENTIFIER && LA17_0<=INTEGER)||LA17_0==39) ) {
+                alt17=1;
             }
-            else if ( (LA15_0==42) ) {
-                alt15=2;
+            else if ( (LA17_0==42) ) {
+                alt17=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 15, 0, input);
+                    new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
             }
-            switch (alt15) {
+            switch (alt17) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:141:7: e= base_arith_expr
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:149:7: e= base_arith_expr
                     {
-                    pushFollow(FOLLOW_base_arith_expr_in_un_min_arith_expr1216);
+                    pushFollow(FOLLOW_base_arith_expr_in_un_min_arith_expr1290);
                     e=base_arith_expr();
 
                     state._fsp--;
@@ -1622,10 +1713,10 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:142:6: '-' e= base_arith_expr
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:150:6: '-' e= base_arith_expr
                     {
-                    match(input,42,FOLLOW_42_in_un_min_arith_expr1228); if (state.failed) return value;
-                    pushFollow(FOLLOW_base_arith_expr_in_un_min_arith_expr1232);
+                    match(input,42,FOLLOW_42_in_un_min_arith_expr1302); if (state.failed) return value;
+                    pushFollow(FOLLOW_base_arith_expr_in_un_min_arith_expr1306);
                     e=base_arith_expr();
 
                     state._fsp--;
@@ -1651,38 +1742,38 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "base_arith_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:145:1: base_arith_expr returns [ArithExpr value] : ( INTEGER | IDENTIFIER | e= array_arith_expr | e= paren_arith_expr );
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:153:1: base_arith_expr returns [ArithExpr value] : ( INTEGER | IDENTIFIER | e= array_arith_expr | e= paren_arith_expr );
     public final ArithExpr base_arith_expr() throws RecognitionException {
         ArithExpr value = null;
 
-        Token INTEGER5=null;
-        Token IDENTIFIER6=null;
+        Token INTEGER7=null;
+        Token IDENTIFIER8=null;
         ArithExpr e = null;
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:146:5: ( INTEGER | IDENTIFIER | e= array_arith_expr | e= paren_arith_expr )
-            int alt16=4;
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:154:5: ( INTEGER | IDENTIFIER | e= array_arith_expr | e= paren_arith_expr )
+            int alt18=4;
             switch ( input.LA(1) ) {
             case INTEGER:
                 {
-                alt16=1;
+                alt18=1;
                 }
                 break;
             case IDENTIFIER:
                 {
-                int LA16_2 = input.LA(2);
+                int LA18_2 = input.LA(2);
 
-                if ( (LA16_2==13) ) {
-                    alt16=3;
+                if ( (LA18_2==13) ) {
+                    alt18=3;
                 }
-                else if ( (LA16_2==EOF||LA16_2==12||LA16_2==14||LA16_2==22||LA16_2==26||(LA16_2>=28 && LA16_2<=29)||(LA16_2>=32 && LA16_2<=37)||(LA16_2>=40 && LA16_2<=44)) ) {
-                    alt16=2;
+                else if ( (LA18_2==EOF||LA18_2==12||LA18_2==14||LA18_2==22||LA18_2==26||(LA18_2>=28 && LA18_2<=29)||(LA18_2>=32 && LA18_2<=37)||(LA18_2>=40 && LA18_2<=44)) ) {
+                    alt18=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 16, 2, input);
+                        new NoViableAltException("", 18, 2, input);
 
                     throw nvae;
                 }
@@ -1690,42 +1781,42 @@ public class TheLangParser extends Parser {
                 break;
             case 39:
                 {
-                alt16=4;
+                alt18=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 16, 0, input);
+                    new NoViableAltException("", 18, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt16) {
+            switch (alt18) {
                 case 1 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:146:7: INTEGER
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:154:7: INTEGER
                     {
-                    INTEGER5=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_base_arith_expr1256); if (state.failed) return value;
+                    INTEGER7=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_base_arith_expr1330); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
-                       value = new NumExpr(Integer.parseInt(INTEGER5.getText())); 
+                       value = new NumExpr(Integer.parseInt(INTEGER7.getText())); 
                     }
 
                     }
                     break;
                 case 2 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:147:7: IDENTIFIER
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:155:7: IDENTIFIER
                     {
-                    IDENTIFIER6=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_base_arith_expr1268); if (state.failed) return value;
+                    IDENTIFIER8=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_base_arith_expr1342); if (state.failed) return value;
                     if ( state.backtracking==0 ) {
-                       value = new IdExpr(IDENTIFIER6.getText()); 
+                       value = new IdExpr(IDENTIFIER8.getText()); 
                     }
 
                     }
                     break;
                 case 3 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:148:7: e= array_arith_expr
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:156:7: e= array_arith_expr
                     {
-                    pushFollow(FOLLOW_array_arith_expr_in_base_arith_expr1282);
+                    pushFollow(FOLLOW_array_arith_expr_in_base_arith_expr1356);
                     e=array_arith_expr();
 
                     state._fsp--;
@@ -1737,9 +1828,9 @@ public class TheLangParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:149:7: e= paren_arith_expr
+                    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:157:7: e= paren_arith_expr
                     {
-                    pushFollow(FOLLOW_paren_arith_expr_in_base_arith_expr1294);
+                    pushFollow(FOLLOW_paren_arith_expr_in_base_arith_expr1368);
                     e=paren_arith_expr();
 
                     state._fsp--;
@@ -1765,28 +1856,28 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "array_arith_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:152:1: array_arith_expr returns [ArithExpr value] : IDENTIFIER '[' e= arith_expr ']' ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:160:1: array_arith_expr returns [ArithExpr value] : IDENTIFIER '[' e= arith_expr ']' ;
     public final ArithExpr array_arith_expr() throws RecognitionException {
         ArithExpr value = null;
 
-        Token IDENTIFIER7=null;
+        Token IDENTIFIER9=null;
         ArithExpr e = null;
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:153:5: ( IDENTIFIER '[' e= arith_expr ']' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:153:7: IDENTIFIER '[' e= arith_expr ']'
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:161:5: ( IDENTIFIER '[' e= arith_expr ']' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:161:7: IDENTIFIER '[' e= arith_expr ']'
             {
-            IDENTIFIER7=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_array_arith_expr1321); if (state.failed) return value;
-            match(input,13,FOLLOW_13_in_array_arith_expr1323); if (state.failed) return value;
-            pushFollow(FOLLOW_arith_expr_in_array_arith_expr1327);
+            IDENTIFIER9=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_array_arith_expr1395); if (state.failed) return value;
+            match(input,13,FOLLOW_13_in_array_arith_expr1397); if (state.failed) return value;
+            pushFollow(FOLLOW_arith_expr_in_array_arith_expr1401);
             e=arith_expr();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,14,FOLLOW_14_in_array_arith_expr1329); if (state.failed) return value;
+            match(input,14,FOLLOW_14_in_array_arith_expr1403); if (state.failed) return value;
             if ( state.backtracking==0 ) {
-              value = new ArrayExpr(IDENTIFIER7.getText(), e);
+              value = new ArrayExpr(IDENTIFIER9.getText(), e);
             }
 
             }
@@ -1804,7 +1895,7 @@ public class TheLangParser extends Parser {
 
 
     // $ANTLR start "paren_arith_expr"
-    // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:156:1: paren_arith_expr returns [ArithExpr value] : '(' e= arith_expr ')' ;
+    // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:164:1: paren_arith_expr returns [ArithExpr value] : '(' e= arith_expr ')' ;
     public final ArithExpr paren_arith_expr() throws RecognitionException {
         ArithExpr value = null;
 
@@ -1812,16 +1903,16 @@ public class TheLangParser extends Parser {
 
 
         try {
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:157:5: ( '(' e= arith_expr ')' )
-            // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:157:7: '(' e= arith_expr ')'
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:165:5: ( '(' e= arith_expr ')' )
+            // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:165:7: '(' e= arith_expr ')'
             {
-            match(input,39,FOLLOW_39_in_paren_arith_expr1357); if (state.failed) return value;
-            pushFollow(FOLLOW_arith_expr_in_paren_arith_expr1361);
+            match(input,39,FOLLOW_39_in_paren_arith_expr1431); if (state.failed) return value;
+            pushFollow(FOLLOW_arith_expr_in_paren_arith_expr1435);
             e=arith_expr();
 
             state._fsp--;
             if (state.failed) return value;
-            match(input,40,FOLLOW_40_in_paren_arith_expr1363); if (state.failed) return value;
+            match(input,40,FOLLOW_40_in_paren_arith_expr1437); if (state.failed) return value;
             if ( state.backtracking==0 ) {
               value = e;
             }
@@ -1839,36 +1930,17 @@ public class TheLangParser extends Parser {
     }
     // $ANTLR end "paren_arith_expr"
 
-    // $ANTLR start synpred14_TheLang
-    public final void synpred14_TheLang_fragment() throws RecognitionException {   
-        BoolExpr e = null;
-
-
-        // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:95:4: ( '|' e= mid_bool_expr )
-        // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:95:4: '|' e= mid_bool_expr
-        {
-        match(input,28,FOLLOW_28_in_synpred14_TheLang669); if (state.failed) return ;
-        pushFollow(FOLLOW_mid_bool_expr_in_synpred14_TheLang673);
-        e=mid_bool_expr();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred14_TheLang
-
     // $ANTLR start synpred15_TheLang
     public final void synpred15_TheLang_fragment() throws RecognitionException {   
         BoolExpr e = null;
 
 
-        // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:101:3: ( '&' e= base_bool_expr )
-        // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:101:3: '&' e= base_bool_expr
+        // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:103:4: ( '|' e= mid_bool_expr )
+        // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:103:4: '|' e= mid_bool_expr
         {
-        match(input,29,FOLLOW_29_in_synpred15_TheLang705); if (state.failed) return ;
-        pushFollow(FOLLOW_base_bool_expr_in_synpred15_TheLang711);
-        e=base_bool_expr();
+        match(input,28,FOLLOW_28_in_synpred15_TheLang743); if (state.failed) return ;
+        pushFollow(FOLLOW_mid_bool_expr_in_synpred15_TheLang747);
+        e=mid_bool_expr();
 
         state._fsp--;
         if (state.failed) return ;
@@ -1877,15 +1949,34 @@ public class TheLangParser extends Parser {
     }
     // $ANTLR end synpred15_TheLang
 
-    // $ANTLR start synpred17_TheLang
-    public final void synpred17_TheLang_fragment() throws RecognitionException {   
+    // $ANTLR start synpred16_TheLang
+    public final void synpred16_TheLang_fragment() throws RecognitionException {   
+        BoolExpr e = null;
+
+
+        // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:109:3: ( '&' e= base_bool_expr )
+        // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:109:3: '&' e= base_bool_expr
+        {
+        match(input,29,FOLLOW_29_in_synpred16_TheLang779); if (state.failed) return ;
+        pushFollow(FOLLOW_base_bool_expr_in_synpred16_TheLang785);
+        e=base_bool_expr();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred16_TheLang
+
+    // $ANTLR start synpred18_TheLang
+    public final void synpred18_TheLang_fragment() throws RecognitionException {   
         BoolExpr b = null;
 
 
-        // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:107:7: (b= paren_bool_expr )
-        // E:\\Dropbox\\Courses\\program analysis\\code\\program_analysis\\src\\parser\\TheLang.g:107:7: b= paren_bool_expr
+        // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:115:7: (b= paren_bool_expr )
+        // E:\\codes\\github\\ProgramAnalysis\\program_analysis\\src\\parser\\TheLang.g:115:7: b= paren_bool_expr
         {
-        pushFollow(FOLLOW_paren_bool_expr_in_synpred17_TheLang754);
+        pushFollow(FOLLOW_paren_bool_expr_in_synpred18_TheLang828);
         b=paren_bool_expr();
 
         state._fsp--;
@@ -1893,15 +1984,15 @@ public class TheLangParser extends Parser {
 
         }
     }
-    // $ANTLR end synpred17_TheLang
+    // $ANTLR end synpred18_TheLang
 
     // Delegated rules
 
-    public final boolean synpred14_TheLang() {
+    public final boolean synpred18_TheLang() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred14_TheLang_fragment(); // can never throw exception
+            synpred18_TheLang_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -1911,11 +2002,11 @@ public class TheLangParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred17_TheLang() {
+    public final boolean synpred16_TheLang() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred17_TheLang_fragment(); // can never throw exception
+            synpred16_TheLang_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -1953,113 +2044,121 @@ public class TheLangParser extends Parser {
     public static final BitSet FOLLOW_EOF_in_program86 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_base_declaration_in_declaration118 = new BitSet(new long[]{0x0000000000018802L});
     public static final BitSet FOLLOW_base_declaration_in_declaration135 = new BitSet(new long[]{0x0000000000018802L});
-    public static final BitSet FOLLOW_level_in_base_declaration164 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_base_declaration174 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_base_declaration176 = new BitSet(new long[]{0x0000000000003000L});
-    public static final BitSet FOLLOW_12_in_base_declaration179 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_base_declaration196 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_INTEGER_in_base_declaration198 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_base_declaration200 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_base_declaration202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_level0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_base_statement_in_statement255 = new BitSet(new long[]{0x00000000023D8812L});
-    public static final BitSet FOLLOW_base_statement_in_statement275 = new BitSet(new long[]{0x00000000023D8812L});
-    public static final BitSet FOLLOW_assignStmt_in_base_statement305 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_skipStmt_in_base_statement319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_readStmt_in_base_statement333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_writeStmt_in_base_statement347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ifStmt_in_base_statement361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_whileStmt_in_base_statement375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_assignStmt399 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_17_in_assignStmt402 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_assignStmt406 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_assignStmt408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_assignStmt416 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_assignStmt422 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_assignStmt424 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_assignStmt425 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_assignStmt429 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_assignStmt431 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_skipStmt449 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_skipStmt451 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_readStmt503 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_readStmt505 = new BitSet(new long[]{0x0000000000003000L});
-    public static final BitSet FOLLOW_12_in_readStmt508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_readStmt516 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_readStmt522 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_readStmt524 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_readStmt526 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_writeStmt548 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_writeStmt554 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_writeStmt556 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ifStmt573 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_bool_expr_in_ifStmt577 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_ifStmt579 = new BitSet(new long[]{0x00000000023D8810L});
-    public static final BitSet FOLLOW_statement_in_ifStmt583 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ifStmt588 = new BitSet(new long[]{0x00000000023D8810L});
-    public static final BitSet FOLLOW_statement_in_ifStmt592 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ifStmt594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_whileStmt628 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_bool_expr_in_whileStmt632 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_whileStmt634 = new BitSet(new long[]{0x00000000023D8810L});
-    public static final BitSet FOLLOW_statement_in_whileStmt638 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_whileStmt640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_mid_bool_expr_in_bool_expr662 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_28_in_bool_expr669 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_mid_bool_expr_in_bool_expr673 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_base_bool_expr_in_mid_bool_expr699 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_mid_bool_expr705 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_base_bool_expr_in_mid_bool_expr711 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_not_bool_expr_in_base_bool_expr739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_paren_bool_expr_in_base_bool_expr754 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_base_bool_expr765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_base_bool_expr794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr824 = new BitSet(new long[]{0x0000003F00000000L});
-    public static final BitSet FOLLOW_32_in_base_bool_expr828 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_base_bool_expr859 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_base_bool_expr890 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_base_bool_expr922 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_base_bool_expr953 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_base_bool_expr985 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_not_bool_expr1017 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_bool_expr_in_not_bool_expr1023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_paren_bool_expr1046 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_bool_expr_in_paren_bool_expr1050 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_paren_bool_expr1052 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_mult_div_arith_expr_in_arith_expr1078 = new BitSet(new long[]{0x0000060000000002L});
-    public static final BitSet FOLLOW_41_in_arith_expr1096 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_mult_div_arith_expr_in_arith_expr1100 = new BitSet(new long[]{0x0000060000000002L});
-    public static final BitSet FOLLOW_42_in_arith_expr1113 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_mult_div_arith_expr_in_arith_expr1117 = new BitSet(new long[]{0x0000060000000002L});
-    public static final BitSet FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1145 = new BitSet(new long[]{0x0000180000000002L});
-    public static final BitSet FOLLOW_43_in_mult_div_arith_expr1163 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1167 = new BitSet(new long[]{0x0000180000000002L});
-    public static final BitSet FOLLOW_44_in_mult_div_arith_expr1180 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1184 = new BitSet(new long[]{0x0000180000000002L});
-    public static final BitSet FOLLOW_base_arith_expr_in_un_min_arith_expr1216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_un_min_arith_expr1228 = new BitSet(new long[]{0x0000008000000030L});
-    public static final BitSet FOLLOW_base_arith_expr_in_un_min_arith_expr1232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTEGER_in_base_arith_expr1256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_base_arith_expr1268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_arith_expr_in_base_arith_expr1282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_paren_arith_expr_in_base_arith_expr1294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_array_arith_expr1321 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_array_arith_expr1323 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_array_arith_expr1327 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_array_arith_expr1329 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_paren_arith_expr1357 = new BitSet(new long[]{0x0000048000000030L});
-    public static final BitSet FOLLOW_arith_expr_in_paren_arith_expr1361 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_paren_arith_expr1363 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_synpred14_TheLang669 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_mid_bool_expr_in_synpred14_TheLang673 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_synpred15_TheLang705 = new BitSet(new long[]{0x000004C0C0000030L});
-    public static final BitSet FOLLOW_base_bool_expr_in_synpred15_TheLang711 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_paren_bool_expr_in_synpred17_TheLang754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_level_in_base_declaration169 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_base_declaration177 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_base_declaration179 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_12_in_base_declaration182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_base_declaration199 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_INTEGER_in_base_declaration201 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_base_declaration203 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_base_declaration205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_base_declaration239 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_base_declaration241 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_12_in_base_declaration244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_base_declaration261 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_INTEGER_in_base_declaration263 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_base_declaration265 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_base_declaration267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_level302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_level309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_base_statement_in_statement329 = new BitSet(new long[]{0x00000000023D8812L});
+    public static final BitSet FOLLOW_base_statement_in_statement349 = new BitSet(new long[]{0x00000000023D8812L});
+    public static final BitSet FOLLOW_assignStmt_in_base_statement379 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_skipStmt_in_base_statement393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_readStmt_in_base_statement407 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_writeStmt_in_base_statement421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ifStmt_in_base_statement435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_whileStmt_in_base_statement449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_assignStmt473 = new BitSet(new long[]{0x0000000000022000L});
+    public static final BitSet FOLLOW_17_in_assignStmt476 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_assignStmt480 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_assignStmt482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_assignStmt490 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_assignStmt496 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_assignStmt498 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_assignStmt499 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_assignStmt503 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_assignStmt505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_skipStmt523 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_skipStmt525 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_readStmt577 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_readStmt579 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_12_in_readStmt582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_readStmt590 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_readStmt596 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_readStmt598 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_readStmt600 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_writeStmt622 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_writeStmt628 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_writeStmt630 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ifStmt647 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_bool_expr_in_ifStmt651 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ifStmt653 = new BitSet(new long[]{0x00000000023D8810L});
+    public static final BitSet FOLLOW_statement_in_ifStmt657 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ifStmt662 = new BitSet(new long[]{0x00000000023D8810L});
+    public static final BitSet FOLLOW_statement_in_ifStmt666 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_ifStmt668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_whileStmt702 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_bool_expr_in_whileStmt706 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_whileStmt708 = new BitSet(new long[]{0x00000000023D8810L});
+    public static final BitSet FOLLOW_statement_in_whileStmt712 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_whileStmt714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_mid_bool_expr_in_bool_expr736 = new BitSet(new long[]{0x0000000010000002L});
+    public static final BitSet FOLLOW_28_in_bool_expr743 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_mid_bool_expr_in_bool_expr747 = new BitSet(new long[]{0x0000000010000002L});
+    public static final BitSet FOLLOW_base_bool_expr_in_mid_bool_expr773 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_mid_bool_expr779 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_base_bool_expr_in_mid_bool_expr785 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_not_bool_expr_in_base_bool_expr813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_paren_bool_expr_in_base_bool_expr828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_base_bool_expr839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_base_bool_expr868 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr898 = new BitSet(new long[]{0x0000003F00000000L});
+    public static final BitSet FOLLOW_32_in_base_bool_expr902 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_base_bool_expr933 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_base_bool_expr964 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_base_bool_expr996 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr1000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_base_bool_expr1027 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr1031 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_base_bool_expr1059 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_base_bool_expr1063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_not_bool_expr1091 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_bool_expr_in_not_bool_expr1097 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_paren_bool_expr1120 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_bool_expr_in_paren_bool_expr1124 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_paren_bool_expr1126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_mult_div_arith_expr_in_arith_expr1152 = new BitSet(new long[]{0x0000060000000002L});
+    public static final BitSet FOLLOW_41_in_arith_expr1170 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_mult_div_arith_expr_in_arith_expr1174 = new BitSet(new long[]{0x0000060000000002L});
+    public static final BitSet FOLLOW_42_in_arith_expr1187 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_mult_div_arith_expr_in_arith_expr1191 = new BitSet(new long[]{0x0000060000000002L});
+    public static final BitSet FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1219 = new BitSet(new long[]{0x0000180000000002L});
+    public static final BitSet FOLLOW_43_in_mult_div_arith_expr1237 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1241 = new BitSet(new long[]{0x0000180000000002L});
+    public static final BitSet FOLLOW_44_in_mult_div_arith_expr1254 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_un_min_arith_expr_in_mult_div_arith_expr1258 = new BitSet(new long[]{0x0000180000000002L});
+    public static final BitSet FOLLOW_base_arith_expr_in_un_min_arith_expr1290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_un_min_arith_expr1302 = new BitSet(new long[]{0x0000008000000030L});
+    public static final BitSet FOLLOW_base_arith_expr_in_un_min_arith_expr1306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTEGER_in_base_arith_expr1330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_base_arith_expr1342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_arith_expr_in_base_arith_expr1356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_paren_arith_expr_in_base_arith_expr1368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_array_arith_expr1395 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_array_arith_expr1397 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_array_arith_expr1401 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_array_arith_expr1403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_paren_arith_expr1431 = new BitSet(new long[]{0x0000048000000030L});
+    public static final BitSet FOLLOW_arith_expr_in_paren_arith_expr1435 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_paren_arith_expr1437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_synpred15_TheLang743 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_mid_bool_expr_in_synpred15_TheLang747 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_synpred16_TheLang779 = new BitSet(new long[]{0x000004C0C0000030L});
+    public static final BitSet FOLLOW_base_bool_expr_in_synpred16_TheLang785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_paren_bool_expr_in_synpred18_TheLang828 = new BitSet(new long[]{0x0000000000000002L});
 
 }
