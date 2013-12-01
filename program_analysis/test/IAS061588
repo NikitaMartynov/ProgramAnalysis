@@ -1,0 +1,21 @@
+(* Author: Jens Schønberg, s061588 *)
+(* Summary: File made as test file for course 02242 Progra Analysis. *)
+(* Test file is for Buffer Overflow : Interval analysis *)
+
+program
+int a;
+int i;
+int j;
+int B[8];
+read a;
+i:=0;
+j:=2;
+while(i <= 8) do
+	j:=j*2;
+	B[i]:=a/j;
+	i:=i+1;
+od
+write(B);
+end
+
+(* Code goes out-of-bounds at the 8th iteration of the while-loop *)
