@@ -62,7 +62,7 @@ public class ProgramSlice {
 			if (!variablesInLine.isEmpty()) {
 				for (FreeVariable fv : variablesInLine) {
 					if (fv.getVariablePosition() != VariablePosition.left &&
-							fv.getVariablePosition()!=VariablePosition.write) {
+							!( fv.getVariablePosition()==VariablePosition.write && slice.size() >1)) {
 						udChain = getudchain(fv, currentLineOfInterest);
 						for (int label : udChain) {
 							if (!slice.contains(label)

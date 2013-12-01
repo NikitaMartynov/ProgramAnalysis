@@ -66,6 +66,7 @@ public class ReachingDefinitionAnalysis {
 				}
 			}
 		}
+		computeRDExit(rdExit.size());
 	}
 
 	private static void computeRDExit(int label) {
