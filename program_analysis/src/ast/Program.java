@@ -34,7 +34,7 @@ public class Program {
 	}
 	
 	public void printWithLabels(){
-		System.out.println("Input Program with labels added:")
+		System.out.println("Input Program with labels added:");
 		if(declaration !=null){
 			System.out.println(declaration.toString()); 
 			}
