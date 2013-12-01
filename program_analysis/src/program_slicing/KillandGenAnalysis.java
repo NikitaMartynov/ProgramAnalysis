@@ -43,8 +43,7 @@ public class KillandGenAnalysis {
 	private static void killGenForReadStmt(int label) {
 		Vector<FreeVariable> variablesInLine = FreeVariableGenerator
 				.getFreeVariablesinLine(label);
-
-		for (FreeVariable fv : variablesInLine) {
+	for (FreeVariable fv : variablesInLine) {
 			createKillRD(fv.getVariableName(), label);
 			createGenRD(fv.getVariableName(), label);
 		}

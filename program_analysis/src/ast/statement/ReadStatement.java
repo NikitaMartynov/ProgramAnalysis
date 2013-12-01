@@ -27,13 +27,14 @@ public class ReadStatement extends Statement {
 	@Override
 	public Vector<String> getVariables() {
 		Vector<String> vars = new Vector<String>();
+		vars.add(name);	
 		return vars;
 	}
 
 	@Override
 	public Vector<String> getArrays() {
 		Vector<String> vars = new Vector<String>();
-		return vars;
+	return vars;
 	}
 
 	@Override

@@ -67,7 +67,7 @@ public class IfStatement extends Statement {
 		}
 	@Override
 	public String toString() {
-		return "if " + condition + " then \n" + ifBranch + " else \n" + elseBranch
+		return "if " + condition + " then \n" + ifBranch + "\nelse \n" + elseBranch
 				+ "\n fi ";
 	}
 

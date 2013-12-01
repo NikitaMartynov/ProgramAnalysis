@@ -11,6 +11,7 @@ import detectionOfSign_analysis.DSWorklist;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
+import program_slicing.ProgramSlice;
 
 /**
  * print the AST built
@@ -51,17 +52,17 @@ public class Main {
 		System.out.println(FreeVariableGenerator.printVariables());
 
 		// Program slicing
-		//ProgramSlice.getProgramSlice(fg, 9);
-		//ProgramSlice.printProgramSlice();
+		ProgramSlice.getProgramSlice(fg, 9);
+		ProgramSlice.printProgramSlice();
 
 		// Detect of signs
-		/*DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
+		DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
 				FreeVariableGenerator.getAllVariables());
 		dsw.printSolutionsTable();
 		
 		System.out.println("\nLow boundary violations for array indexing:");
 		System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
-        */
+        
 
 		// interval_analysis
 		IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(),
