@@ -92,7 +92,7 @@ public class ProgramSlice {
 	}
 
 	public static void printProgramSlice() {
-		System.out.print("The program slice w.r.t point of interest "+ pointOfInterest+" is: ");
+		System.out.print("The program slice when point of interest "+ pointOfInterest+" is: ");
 		String str="";
 		for(int i=0;i<slice.size();i++){
 			str+=slice.get(i)+",";			
