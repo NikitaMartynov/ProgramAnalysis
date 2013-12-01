@@ -31,6 +31,6 @@ public class IfProgramGraph extends ProgramGraph {
 		ProgramGraphFactory.create(st.getIfBranch (), edges.get(edges.size()-2).qt, finalNode);
 		finalNode = edges.get(edges.size()-1).qt; 
 		ProgramGraphFactory.create(st.getElseBranch(), qsElseBranch, finalNode);
-		boolEndingedges.add(new Edge(boolBlockStarting,endBoolBlock,GreatestNumUsed +1));
+		boolEndingedges.add(new Edge(boolBlockStarting,endBoolBlock,GreatestNumUsed));
 	}
 }

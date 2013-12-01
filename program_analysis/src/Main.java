@@ -41,6 +41,7 @@ public class Main {
 		System.out.println("\nProgram graph: ");
 		ProgramGraph pg = new ProgramGraph(program.getStatement());
 		System.out.println(pg.toString());
+		pg.printBoolEnding();
 
 		// then take the program as the input for graph generation
 		// such as
