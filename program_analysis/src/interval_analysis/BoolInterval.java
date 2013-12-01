@@ -12,10 +12,10 @@ import ast.bool.*;
  * @author zhenli
  * 
  */
-public class BoolIntervals {
+public class BoolInterval {
 	private HashMap<String, Interval> intervals;
 
-	public BoolIntervals(BoolExpr exp, HashMap<String, Interval> baseIntervals)
+	public BoolInterval(BoolExpr exp, HashMap<String, Interval> baseIntervals)
 			throws DivideByZeroException, UnknownErrorException,
 			BoolNeverSatisfiedException {
 
@@ -71,23 +71,15 @@ public class BoolIntervals {
 		if (insideExpr instanceof AndExpr) {
 			newExpr = new OrExpr(new NotExpr( // TODO error: should not inverse
 												// insideExpr
-					((AndExpr) insideExpr).getExpression1()), new NotExpr(// TODO
-																			// error:
-																			// should
-																			// not
-																			// inverse
-																			// insideExpr
+					((AndExpr) insideExpr).getExpression1()), new NotExpr(
+			// TODO error: should not inverse insideExpr
 					((AndExpr) insideExpr).getExpression2()));
 
 		} else if (insideExpr instanceof OrExpr) {
 			newExpr = new AndExpr(new NotExpr(// TODO error: should not inverse
 												// insideExpr
-					((OrExpr) insideExpr).getExpression1()), new NotExpr(// TODO
-																			// error:
-																			// should
-																			// not
-																			// inverse
-																			// insideExpr
+					((OrExpr) insideExpr).getExpression1()), new NotExpr(
+			// TODO error: should not inverse insideExpr
 					((OrExpr) insideExpr).getExpression2()));
 		} else if (insideExpr instanceof BoolValueExpr) {
 			if (((BoolValueExpr) insideExpr).getBoolValue() == true)
@@ -126,7 +118,7 @@ public class BoolIntervals {
 					+ insideExpr.getClass());
 		}
 
-		this.intervals = new BoolIntervals(newExpr, baseIntervals)
+		this.intervals = new BoolInterval(newExpr, baseIntervals)
 				.getIntervals();
 
 	}
@@ -397,9 +389,9 @@ public class BoolIntervals {
 			HashMap<String, Interval> baseIntervals)
 			throws DivideByZeroException, UnknownErrorException,
 			BoolNeverSatisfiedException {
-		BoolIntervals boolInterval1 = new BoolIntervals(
+		BoolInterval boolInterval1 = new BoolInterval(
 				boolExpr.getExpression1(), baseIntervals);
-		BoolIntervals boolInterval2 = new BoolIntervals(
+		BoolInterval boolInterval2 = new BoolInterval(
 				boolExpr.getExpression2(), baseIntervals);
 
 		// get the intervals that make either i1 or i2 to be tt
@@ -427,19 +419,19 @@ public class BoolIntervals {
 			throws DivideByZeroException, UnknownErrorException,
 			BoolNeverSatisfiedException {
 
-		BoolIntervals boolInterval1 = null, boolInterval2 = null;
+		BoolInterval boolInterval1 = null, boolInterval2 = null;
 		HashMap<String, Interval> i1 = null, i2 = null;
 		// the intervals that make either i1 or i2 to be tt
 
 		try {
-			boolInterval1 = new BoolIntervals(boolExpr.getExpression1(),
+			boolInterval1 = new BoolInterval(boolExpr.getExpression1(),
 					baseIntervals);
 			i1 = boolInterval1.getIntervals();
 		} catch (BoolNeverSatisfiedException e) {
 			i1 = null;
 		}
 		try {
-			boolInterval2 = new BoolIntervals(boolExpr.getExpression2(),
+			boolInterval2 = new BoolInterval(boolExpr.getExpression2(),
 					baseIntervals);
 			i2 = boolInterval2.getIntervals();
 		} catch (BoolNeverSatisfiedException e) {

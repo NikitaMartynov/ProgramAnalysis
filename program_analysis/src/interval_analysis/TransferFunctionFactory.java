@@ -72,9 +72,9 @@ public class TransferFunctionFactory {
 			endIntervals.put(readSt.getName(), i);
 		} else if (b instanceof BoolExpr) {
 			// TODO
-			BoolIntervals boolIntervals;
+			BoolInterval boolIntervals;
 			try {
-				boolIntervals = new BoolIntervals((BoolExpr) b,
+				boolIntervals = new BoolInterval((BoolExpr) b,
 						endIntervals);
 				endIntervals.putAll(boolIntervals.getIntervals());
 			} catch (BoolNeverSatisfiedException e1) {

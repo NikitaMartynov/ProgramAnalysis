@@ -51,6 +51,7 @@ public class IntervalAnalysis {
 	}
 
 	public static void printViolatedEdges() {
+		System.out.println("Violation found:");
 		for (Edge e : violatedEdges) {
 			System.out.println("(" + e.getQs() + ", " + e.toString() + ", "
 					+ e.getQt() + ")");
