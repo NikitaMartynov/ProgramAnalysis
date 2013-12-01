@@ -57,6 +57,12 @@ public class WriteStatement extends Statement{
 	public void setExpression(ArithExpr expression) {
 		this.expression = expression;
 	}
+
+	@Override
+	public int printWithLabels(int i) {
+		System.out.println("[write "+expression +"]^"+i+";");
+		return ++i;
+	}
 	
 	
 

@@ -67,8 +67,17 @@ public class IfStatement extends Statement {
 		}
 	@Override
 	public String toString() {
-		return "if " + condition + " then \n" + ifBranch + " else \n" + elseBranch
+		return "if " + condition + " then \n" + ifBranch + "\nelse \n" + elseBranch
 				+ "\n fi ";
+	}
+	public int printWithLabels(int _i) {
+		int i=_i;
+		System.out.println( "if [" + condition + "]^"+ i +" then");
+		i=ifBranch.printWithLabels(++i) ;
+		System.out.println("else");
+		i=elseBranch.printWithLabels(i) ;
+		System.out.println("fi");
+		return i;
 	}
 
 	// getters and setters

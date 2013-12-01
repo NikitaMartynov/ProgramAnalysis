@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-
-import graphs.Block;
 import graphs.fg.FlowGraph;
 
 public class ProgramSlice {
@@ -64,7 +62,7 @@ public class ProgramSlice {
 			if (!variablesInLine.isEmpty()) {
 				for (FreeVariable fv : variablesInLine) {
 					if (fv.getVariablePosition() != VariablePosition.left &&
-							fv.getVariablePosition()!=VariablePosition.write) {
+							!( fv.getVariablePosition()==VariablePosition.write && slice.size() >1)) {
 						udChain = getudchain(fv, currentLineOfInterest);
 						for (int label : udChain) {
 							if (!slice.contains(label)
@@ -94,18 +92,16 @@ public class ProgramSlice {
 	}
 
 	public static void printProgramSlice() {
-		Vector<Block> blocks = FlowGraph.getBlocks();
-		if (!slice.isEmpty()) {
-			System.out.println(slice);
-			System.out.println("Program Slice:");
-			for (int i = 0; i < slice.size(); i++) {
-				if(blocks.get(slice.get(i)-1) !=null){
-				System.out.println((slice.get(i)) + " : "
-						+ blocks.get(slice.get(i)-1).toString());
-				}
-			}
-			System.out.println();
+		System.out.print("The program slice w.r.t point of interest "+ pointOfInterest+" is: ");
+		String str="";
+		for(int i=0;i<slice.size();i++){
+			str+=slice.get(i)+",";			
 		}
+		if(!str.isEmpty()){
+			str=str.substring(0, str.length()-1);
+		System.out.println(str);
+		}
+		System.out.println();
 	}
 
 }

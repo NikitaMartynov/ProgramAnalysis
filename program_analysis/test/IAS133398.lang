@@ -1,0 +1,11 @@
+program 
+  int x;
+  int A[3];
+  x := 2; 
+  while (x >= 0) do
+   A[x] := x; 
+    x := x+1;
+  od
+  write A[2] ; (* A[2] = [1,2] *)
+  write A[0] ; (* A[0] = [0] *)
+end

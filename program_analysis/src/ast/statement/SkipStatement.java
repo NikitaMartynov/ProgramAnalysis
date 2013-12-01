@@ -26,4 +26,10 @@ public class SkipStatement extends Statement {
 	public String toString() {
 		return "skip;";
 	}
+
+	@Override
+	public int printWithLabels(int i) {
+		System.out.println("[skip]^"+i+";");
+		return ++i;
+	}
 }

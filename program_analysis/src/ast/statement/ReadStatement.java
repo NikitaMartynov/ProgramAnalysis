@@ -27,17 +27,23 @@ public class ReadStatement extends Statement {
 	@Override
 	public Vector<String> getVariables() {
 		Vector<String> vars = new Vector<String>();
+		vars.add(name);	
 		return vars;
 	}
 
 	@Override
 	public Vector<String> getArrays() {
-		return null;
+		Vector<String> vars = new Vector<String>();
+	return vars;
 	}
 
 	@Override
 	public String toString() {
 		return "read " + name + ";";
+	}
+	public int printWithLabels(int i){
+		System.out.println("[read " + name + "]^"+i+";");
+		return ++i;
 	}
 
 	// getters and setters

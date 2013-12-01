@@ -11,6 +11,7 @@ import detectionOfSign_analysis.DSWorklist;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
+import program_slicing.ProgramSlice;
 
 /**
  * print the AST built
@@ -51,8 +52,9 @@ public class Main {
 		System.out.println(FreeVariableGenerator.printVariables());
 
 		// Program slicing
-		//ProgramSlice.getProgramSlice(fg, 9);
-		//ProgramSlice.printProgramSlice();
+		ProgramSlice.getProgramSlice(fg, 9);
+		program.printWithLabels();
+		ProgramSlice.printProgramSlice();
 
 		// Detect of signs
 		DSWorklist dsw = new DSWorklist(ProgramGraph.edges,

@@ -86,6 +86,11 @@ public class ArrayAssignStatement extends Statement {
 		return name + "[" + arrayExpression + "]" + " := " + valueExpression
 				+ ";";
 	}
+	public int printWithLabels(int i) {
+		System.out.println("["+name + "[" + arrayExpression + "]" + " := " + valueExpression
+				+ "]^"+ i+";");
+		return i++;
+	}
 
 	// getters and setters
 	public String getName() {

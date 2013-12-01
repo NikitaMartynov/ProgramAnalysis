@@ -56,7 +56,7 @@ public class WhileStatement extends Statement {
 	}
 	@Override
 	public String toString() {
-		return "while " + condition + " do \n" + body + "\n od";
+		return "while " + condition + " do \n" + body + "\nod";
 	}
 
 	// getters and setters
@@ -74,6 +74,15 @@ public class WhileStatement extends Statement {
 
 	public void setBody(Statement body) {
 		this.body = body;
+	}
+
+	@Override
+	public int printWithLabels(int _i) {
+		int i=_i;
+		System.out.println("while ["+ condition + "]^"+i+" do" );
+		i=body.printWithLabels(++i);
+		System.out.println("od");
+		return i;
 	}
 	
 	

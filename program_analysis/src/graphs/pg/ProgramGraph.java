@@ -20,14 +20,14 @@ public class ProgramGraph {
 		str = str.substring(0, str.length() - 2);
 	return str;
 	}
-	public String  printBoolEnding(){
+	public void  printBoolEnding(){
 			String str="";
 			
 			for (Edge e : boolEndingedges){
-				str+= '('+ Integer.toString(e.qs) + ',' + e.block + ','+ Integer.toString(e.qt) + "), ";
+				str+= '('+ Integer.toString(e.qs) + ',' + e.block + ','+ Integer.toString(e.qt) + ") ";
 			}
 			str = str.substring(0, str.length() - 1);
-		return str;
+		System.out.println(str);
 	}
 	public static int GreatestNumUsed;
 	public static ArrayList < Edge >  edges = new ArrayList < Edge > (); 

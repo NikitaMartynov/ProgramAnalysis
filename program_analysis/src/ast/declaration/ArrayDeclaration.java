@@ -12,10 +12,17 @@ public class ArrayDeclaration extends Declaration{
 
 	private String name;
 	private int size;
+	private SecurityLevel level;
 	
 	public ArrayDeclaration(String name, int size) {
 		this.name = name;
 		this.size = size;
+	}
+	
+	public ArrayDeclaration(SecurityLevel level, String name, int size) {
+		this.name = name;
+		this.size = size;
+		this.level = level;
 	}
 	
 	@Override
@@ -25,7 +32,13 @@ public class ArrayDeclaration extends Declaration{
 	
 	@Override
 	public String toString() {
-		return "int " + name + "[" + size + "];";
+		String ret = "";
+		if(level != null)
+			ret += level.toString() + " ";
+		
+		ret += "int " + name + "[" + size + "];";
+
+		return ret;
 	}
 	
 	public String getName(){

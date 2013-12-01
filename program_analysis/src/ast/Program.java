@@ -32,6 +32,15 @@ public class Program {
 			return statement.toString();
 		}
 	}
+	
+	public void printWithLabels(){
+		if(declaration !=null){
+			System.out.println(declaration.toString()); 
+			}
+		if(statement!=null){
+		statement.printWithLabels(1);
+		}
+	}
 
 	// getters and setters
 	public Declaration getDeclaration() {
