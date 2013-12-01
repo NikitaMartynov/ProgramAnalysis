@@ -43,10 +43,12 @@ public class ArrayAssignStatement extends Statement {
 			}
 		} catch (Exception e) {
 		}
+		vars.add("[");
 		try {
 			vars.addAll(arrayExpression.getVariables());
 		} catch (Exception e) {
 		}
+		vars.add("]");
 		vars.add("=");
 		try {
 			vars.addAll(valueExpression.getVariables());
