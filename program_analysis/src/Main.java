@@ -53,6 +53,7 @@ public class Main {
 
 		// Program slicing
 		ProgramSlice.getProgramSlice(fg, 9);
+		program.printWithLabels();
 		ProgramSlice.printProgramSlice();
 
 		// Detect of signs

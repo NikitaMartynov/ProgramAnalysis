@@ -41,6 +41,10 @@ public class ReadStatement extends Statement {
 	public String toString() {
 		return "read " + name + ";";
 	}
+	public int printWithLabels(int i){
+		System.out.println("[read " + name + "]^"+i+";");
+		return ++i;
+	}
 
 	// getters and setters
 	public String getName() {

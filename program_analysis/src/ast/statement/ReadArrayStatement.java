@@ -71,6 +71,10 @@ public class ReadArrayStatement extends Statement {
 	public String toString() {
 		return "read " + name + "[" + arrayExpression + "];";
 	}
+	public int printWithLabels(int i) {
+		System.out.println("[read " + name + "[" + arrayExpression + "]]^"+i+";");
+		return ++i;
+	}
 
 	// getters and setters
 	public String getName() {

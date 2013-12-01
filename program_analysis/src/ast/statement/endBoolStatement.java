@@ -25,6 +25,10 @@ public class endBoolStatement extends Statement {
 		return null;	
 	}
 	@Override
+	public int printWithLabels(int i) {
+		return i;	
+	}
+	@Override
 	public String toString() {
 		return ending;
 	}

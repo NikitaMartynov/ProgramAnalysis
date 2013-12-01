@@ -50,6 +50,10 @@ public class AssignStatement extends Statement {
 	public String toString() {
 		return name + " := " + expression + ";";
 	}
+	public int printWithLabels(int i){
+		System.out.println("["+name + " := " + expression + "]^"+ i+ ";");
+		return ++i;
+	}
 	//getters and setters
 	public String getName() {
 		return name;

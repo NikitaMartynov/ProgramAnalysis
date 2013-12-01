@@ -57,6 +57,12 @@ public class SeqStatement extends Statement {
 	public String toString() {
 		return statement1 + "\n" + statement2;
 	}
+	public int printWithLabels(int _i) {
+		int i=_i;
+	i=statement1.printWithLabels(i);
+	i=statement2.printWithLabels(i);
+	return i;
+	}
 
 	// getters and setters
 	public Statement getStatement1() {

@@ -75,6 +75,15 @@ public class WhileStatement extends Statement {
 	public void setBody(Statement body) {
 		this.body = body;
 	}
+
+	@Override
+	public int printWithLabels(int _i) {
+		int i=_i;
+		System.out.println("while ["+ condition + "]^"+i+" do" );
+		i=body.printWithLabels(++i);
+		System.out.println("od");
+		return i;
+	}
 	
 	
 
