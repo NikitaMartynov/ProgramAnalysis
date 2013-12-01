@@ -226,7 +226,7 @@ public class ArithDS {
 		ArithExpr arithExpr1 = multExpr.getExpression1();
 		ArithExpr arithExpr2 = multExpr.getExpression2();
 		Signs signs1, signs2, resultSigns;
-		String varName1 = null, varName2 = null;
+		String varName1 = "1", varName2 = "2";
 		
 		//Signs for expr1
 		if(arithExpr1 instanceof IdExpr){
@@ -299,7 +299,7 @@ public class ArithDS {
 		ArithExpr arithExpr1 = divExpr.getExpression1();
 		ArithExpr arithExpr2 = divExpr.getExpression2();
 		Signs signs1, signs2, resultSigns;
-		String varName1 = null, varName2 = null;
+		String varName1 = "1", varName2 = "2";
 		
 		//Signs for expr1
 		if(arithExpr1 instanceof IdExpr){

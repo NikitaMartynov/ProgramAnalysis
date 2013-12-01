@@ -13,7 +13,8 @@ public class WhileProgramGraph extends ProgramGraph {
 		Block endBoolBlock = new endBoolStatement("od");
 		int boolBlockStarting = 1;
 		if (edges.isEmpty()== false){
-			edges.add(new Edge(initialNode, boolBlock, edges.get(edges.size()-1).qt +1));
+			//edges.add(new Edge(initialNode, boolBlock, edges.get(edges.size()-1).qt +1));
+			edges.add(new Edge(initialNode, boolBlock, GreatestNumUsed +1));
 			boolBlockStarting = initialNode;
 		}
 		else 

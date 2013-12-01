@@ -51,7 +51,7 @@ public class DSWorklist {
 		while (!workList.isEmpty()) {
 			loopCounter++;
 			//if(loopCounter == 11){
-			System.out.println(toString(workList));
+			//System.out.println(toString(workList));
 		//}
 			Edge currentEdge = workList.get(0);
 			workList.remove(0);
@@ -77,9 +77,9 @@ public class DSWorklist {
 				}
 			}
 			//if(loopCounter == 11){
-			System.out.println(toString(workList));
+			//System.out.println(toString(workList));
 		//}
-			 printSolutionsTable();
+			 //printSolutionsTable();
 
 		}
 	}

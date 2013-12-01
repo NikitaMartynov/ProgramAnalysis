@@ -36,8 +36,6 @@ public class DSTransFuncs {
 			
 		else assert false : "Assert in function detectSign(), shouldn't reach it. Check, did you forget any class?";
 		
-		
-		//TODO  check what if  ()?
 	
 	}
 	
