@@ -1,0 +1,19 @@
+program
+int n;
+int x;
+int s;
+read s;
+n:=10;
+x:=5;
+while x>4 do
+x:=x+1;
+if n>10 then
+n:=3;
+read s;
+else
+n:=2;
+write s;
+fi
+od
+write n;
+end

@@ -1,0 +1,21 @@
+(* Slicing / Reaching definition        *)
+(* By: Maja Tønnesen          *)
+(* Student Id:S133398         *)
+(* Email: majaht@ruc.dk       *)
+(* Date: 11-sep-2013          *)
+
+
+
+
+program 
+  int x;
+  int y;
+  x := 10; (* L1 *)
+  y := 5;  (* L2 *)
+  if(x<5)  (* L3 *)
+    then y := x-y; (* L4 *)
+    else y := 10;  (* L5 *)
+  fi
+  write y; (* real: y = {L5, L3, L1}, expected deduction: y = {L5, L4, L3, L2, L1} *)
+end
+  

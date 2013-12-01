@@ -1,0 +1,20 @@
+
+program 
+int n; 
+int x; 
+int f1; 
+int f2; 
+int ans; 
+n := 20; (*label 1*)
+f1 := 0; (*label 2*)
+f2 := 1; (*label 3*)
+x := 2; (*label 4*)
+ans := 0; (*label 5*)
+while x <= n do  (*label 6*)
+ans := f1 + f2; (*label 7*)
+f1 := f2; (*label 8*)
+f2 := ans;(* label 9 - The point of interest *) 
+x := x + 1; (*label 10*)
+od
+write x;
+end 

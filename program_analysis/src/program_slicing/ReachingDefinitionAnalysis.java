@@ -89,7 +89,7 @@ public class ReachingDefinitionAnalysis {
 	}
 
 	public static ReachingDefinitionColln getRdEntry(int line) {
-		return rdExit.get(line - 1);
+		return rdEntry.get(line - 1);
 	}
 
 	public static void printAnalysis() {
