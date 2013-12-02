@@ -8,6 +8,7 @@ import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 
 import detectionOfSign_analysis.DSWorklist;
+import SecurityAnalysis.SecLevelWorklist;
 import ast.Program;
 import parser.TheLangLexer;
 import parser.TheLangParser;
@@ -70,5 +71,12 @@ public class Main {
 				ProgramGraph.edges);
 		IntervalAnalysis.printSolutionTable();
 		IntervalAnalysis.printViolatedEdges();
+		
+		//SecAnalysis
+		SecLevelWorklist slw= new SecLevelWorklist(ProgramGraph.edges,ProgramGraph.boolEndingedges,
+													program.getDeclaration());
+		slw.printSolutionsTable();
+		System.out.println("\nSecurity level violations:");
+		System.out.println(dsw.toString(slw.findSecurityLevelViolations(ProgramGraph.edges)));
 	}
 }

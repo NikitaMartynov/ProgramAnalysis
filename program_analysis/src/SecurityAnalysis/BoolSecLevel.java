@@ -149,6 +149,7 @@ public class BoolSecLevel {
 		}
 		else secLevel2 = new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
 		
+		//SecLevelWorklist.secLevelCtxBeforeBools.put
 		resSecLevel = (secLevel1 == SecLevel.high)|| (secLevel2 == SecLevel.high) || (ctxSecLevel == SecLevel.high)
 				? SecLevel.high : SecLevel.low;
 		//TODO check if it can be none and implement context

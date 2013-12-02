@@ -9,16 +9,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import detectionOfSign_analysis.Signs;
+import ast.arith.NumExpr;
+import ast.declaration.Declaration;
+import ast.statement.WriteStatement;
 
 public class SecLevelWorklist {
 	
 	private ArrayList<Edge> workList;
 	private Vector<HashMap<String, SecLevel>> solutionsTable;
+	public static ArrayList<Edge> secLevelCtxBeforeBools;
 	
 	int loopCounter;
 	
-	public SecLevelWorklist(ArrayList<Edge> pgEdges, Vector<String> freeVars){
+	public SecLevelWorklist(ArrayList<Edge> pgEdges,ArrayList<Edge> boolEndingEdges, Declaration declaration){
 		this.workList = new ArrayList<Edge>(pgEdges);
+		secLevelCtxBeforeBools = new ArrayList<Edge>();
 		
 		if (solutionsTable == null)
 			solutionsTable = new Vector<HashMap<String, SecLevel>>( 
@@ -27,20 +36,26 @@ public class SecLevelWorklist {
 
 
 		HashMap<String, SecLevel> allVarsZeroized = new HashMap<String, SecLevel>();
-		for( String var : freeVars){
+			String dec = declaration.toString();
+			//analyse string to get sec levels and variables
 			//if(!allVarsZeroized.containsKey(var)) allVarsZeroized.put(var, SecLevel.);//derive level from declaration
 			//TODO check if it can be none
-			//TODO derive level from declaration
+			//TODO derive level from declaration can
+			allVarsZeroized.put("x", SecLevel.high);
+			allVarsZeroized.put("y", SecLevel.low);
+			allVarsZeroized.put(SecCtx.CTX.getSecCtx(), SecLevel.low);
+		
+		HashMap<String, SecLevel> allNullVars = new HashMap<String, SecLevel>();
+		
+		for (Map.Entry<String,SecLevel> entry : allVarsZeroized.entrySet()){
+			allNullVars.put(entry.getKey(), SecLevel.none);
 		}
-		HashMap<String, SecLevel> nullVarsZeroized = new HashMap<String, SecLevel>();
-		for( String var : freeVars){
-			if(!nullVarsZeroized.containsKey(var)) nullVarsZeroized.put(var, SecLevel.none);
-		}
+		
 		// init all lines of table with   0 for all vars
 		for (int i = 0; i < solutionsTable.capacity(); i++) {
 			if(i==0)
 				solutionsTable.add(allVarsZeroized);
-			else solutionsTable.add(nullVarsZeroized);
+			else solutionsTable.add(allNullVars);
 		}
 		loopCounter = 0;
 		while(!workList.isEmpty()){
@@ -49,9 +64,9 @@ public class SecLevelWorklist {
 			workList.remove(0);
 			int startNodeIndex = currentEdge.getQs()-1;
 			int endNodeIndex = currentEdge.getQt()-1;
-			SecLevelTransFuncs dsa = new SecLevelTransFuncs(currentEdge, solutionsTable.get(startNodeIndex)
+			SecLevelTransFuncs sla = new SecLevelTransFuncs(currentEdge, solutionsTable.get(startNodeIndex)
 												 );
-			HashMap<String, SecLevel> resAfterTrFunc = dsa.getNewAllVarSecLevel();
+			HashMap<String, SecLevel> resAfterTrFunc = sla.getNewAllVarSecLevel();
 			if (resAfterTrFunc ==null){
 				resAfterTrFunc = solutionsTable.get(endNodeIndex);
 			}
@@ -61,7 +76,7 @@ public class SecLevelWorklist {
 				solutionsTable.set(endNodeIndex, mergeSecLevel("mergeUnion", 
 						resAfterTrFunc, solutionsTable.get(endNodeIndex)) );
 				for (Edge edge : pgEdges){
-					if (currentEdge.getQs() == edge.getQs()){ // TODO should be currentEdge.getQt() == edge.getQs()???
+					if (currentEdge.getQt() == edge.getQs()){ // TODO should be currentEdge.getQt() == edge.getQs()???
 						workList.add(edge);
 					}
 				}
@@ -70,13 +85,23 @@ public class SecLevelWorklist {
 		}
 	}
 	
-	public ArrayList<Edge> findLowBoundaryViolations(ArrayList<Edge> pgEdges){
+	public ArrayList<Edge> findSecurityLevelViolations(ArrayList<Edge> pgEdges) {
 		ArrayList<Edge> violatedEdges = new ArrayList<Edge>();
-		for(Edge egde : pgEdges){
-			//If B^l is a statement that includes an array as one of the free variables 
-			//If DS(q’) for index of the array contains {-} 
-			//	then cons((B^l),VL)
-		}
+		for (Edge edge : pgEdges) {
+			Vector<String> vars = null;
+			if( edge.getBlock() instanceof WriteStatement){
+				vars = edge.getBlock().getVariables();
+				if(vars == null)
+					vars = edge.getBlock().getArrays();
+				String var = vars.get(0);
+				int start = edge.getQs()-1;
+				SecLevel secLevel = solutionsTable.get(start).get(var);
+				if(secLevel== SecLevel.high){
+					violatedEdges.add(edge);
+				}
+			}
+
+		} // for
 		return violatedEdges;
 	}
 	
@@ -91,7 +116,7 @@ public class SecLevelWorklist {
 	}
 	
 	public void printSolutionsTable() {
-		System.out.println("Detection of secLevel solutions table " + loopCounter+ ":");
+		System.out.println("Security Level Analysis solutions table " + loopCounter+ ":");
 		int i = 1;
 		for (HashMap<String, SecLevel> solutions : solutionsTable) {
 			if (solutions != null) {
@@ -108,7 +133,7 @@ public class SecLevelWorklist {
 						spaceCount-=1;
 					}
 					if(strSecLevel.length()>0){
-						strSecLevel = strSecLevel.substring(0, strSecLevel.length() -1 );
+						strSecLevel = strSecLevel.substring(0, strSecLevel.length() );
 					}
 					
 					System.out.print( padRight(entry.getKey() + "={" + strSecLevel + "}",spaceCount) );
@@ -152,8 +177,11 @@ public class SecLevelWorklist {
 			for (Map.Entry<String,SecLevel> entry : secLevel1.entrySet())
 				secLevel.put(entry.getKey(), 	(entry.getValue() == SecLevel.high)|| 
 										(secLevel2.get(entry.getKey()) == SecLevel.high) 
-											? SecLevel.high : SecLevel.low);
-											//TODO check if it can be none
+											? SecLevel.high : 
+														(entry.getValue() == SecLevel.low)|| 
+														(secLevel2.get(entry.getKey()) == SecLevel.low)
+														? SecLevel.low : SecLevel.none);
+											//but none in theory couldn't be
 			
 			return secLevel;
 		}

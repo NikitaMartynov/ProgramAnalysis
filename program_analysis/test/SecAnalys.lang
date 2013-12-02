@@ -5,7 +5,7 @@ low int y;
 read x;
 while x!=1 do 
 y := 1;  
-x := x – 1;
+x := x - 1;
 od
 write y; (* security violation *)
 end	
