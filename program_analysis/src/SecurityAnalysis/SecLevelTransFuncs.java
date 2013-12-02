@@ -30,7 +30,7 @@ public class SecLevelTransFuncs {
 		else if (edge.getBlock() instanceof SkipStatement || //Skip
 				edge.getBlock() instanceof WriteStatement); //Write do nothing
 		else if  (edge.getBlock() instanceof BoolExpr)
-			newAllVarSecLevel = new BoolSecLevel( (BoolExpr)edge.getBlock(), 
+			newAllVarSecLevel = new BoolSecLevel( edge, 
 													baseElemSecLevel).getNewAllVarSecLevel();
 			
 		else assert false : "Assert in function detectSign(), shouldn't reach it. Check, did you forget any class?";

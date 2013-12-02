@@ -44,6 +44,11 @@ public class ReachingDefinition {
 
 	@Override
 	public String toString() {
+		if(lineNumber != 0){
 		return variableName + "," + String.valueOf(lineNumber);
+		}
+		else{
+			return variableName + ",?";	
+		}
 	}
 }

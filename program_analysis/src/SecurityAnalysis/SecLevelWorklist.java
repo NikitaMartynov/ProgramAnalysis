@@ -21,13 +21,13 @@ public class SecLevelWorklist {
 	
 	private ArrayList<Edge> workList;
 	private Vector<HashMap<String, SecLevel>> solutionsTable;
-	public static ArrayList<Edge> secLevelCtxBeforeBools;
+	public static HashMap<Integer, SecLevel> secLevelCtxBeforeBools;
 	
 	int loopCounter;
 	
 	public SecLevelWorklist(ArrayList<Edge> pgEdges,ArrayList<Edge> boolEndingEdges, Declaration declaration){
 		this.workList = new ArrayList<Edge>(pgEdges);
-		secLevelCtxBeforeBools = new ArrayList<Edge>();
+		secLevelCtxBeforeBools = new HashMap<Integer, SecLevel>();
 		
 		if (solutionsTable == null)
 			solutionsTable = new Vector<HashMap<String, SecLevel>>( 
@@ -43,6 +43,8 @@ public class SecLevelWorklist {
 			//TODO derive level from declaration can
 			allVarsZeroized.put("x", SecLevel.high);
 			allVarsZeroized.put("y", SecLevel.low);
+			allVarsZeroized.put("z", SecLevel.low);
+			allVarsZeroized.put("k", SecLevel.low);
 			allVarsZeroized.put(SecCtx.CTX.getSecCtx(), SecLevel.low);
 		
 		HashMap<String, SecLevel> allNullVars = new HashMap<String, SecLevel>();
@@ -64,6 +66,22 @@ public class SecLevelWorklist {
 			workList.remove(0);
 			int startNodeIndex = currentEdge.getQs()-1;
 			int endNodeIndex = currentEdge.getQt()-1;
+			
+			//Tracking context
+			Edge endingEdge = null;
+			for( Edge endEdge: boolEndingEdges){
+				if( endEdge.getQt() == currentEdge.getQs()){
+					endingEdge = endEdge;
+					break;
+				}
+			}
+			if(endingEdge!=null){
+				HashMap< String,SecLevel > tmp = Func.deepLineCopy(solutionsTable.get(startNodeIndex));
+				tmp.put(SecCtx.CTX.getSecCtx(), secLevelCtxBeforeBools.get(endingEdge.getQs()));
+				solutionsTable.setElementAt(tmp, startNodeIndex);
+				secLevelCtxBeforeBools.remove(endingEdge.getQs());
+			}
+			
 			SecLevelTransFuncs sla = new SecLevelTransFuncs(currentEdge, solutionsTable.get(startNodeIndex)
 												 );
 			HashMap<String, SecLevel> resAfterTrFunc = sla.getNewAllVarSecLevel();
@@ -81,7 +99,7 @@ public class SecLevelWorklist {
 					}
 				}
 			}
-			//printSolutionsTable();
+			printSolutionsTable();
 		}
 	}
 	

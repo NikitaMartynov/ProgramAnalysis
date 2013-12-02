@@ -34,12 +34,14 @@ public class Program {
 	}
 	
 	public void printWithLabels(){
+		System.out.println("Input Program with labels added:");
 		if(declaration !=null){
 			System.out.println(declaration.toString()); 
 			}
 		if(statement!=null){
 		statement.printWithLabels(1);
 		}
+		System.out.println();
 	}
 
 	// getters and setters

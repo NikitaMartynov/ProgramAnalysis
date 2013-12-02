@@ -2,10 +2,13 @@
 program
 high int x;
 low int y;
+low int z;
+low int k;
 read x;
 while x!=1 do 
 y := 1;  
 x := x - 1;
 od
-write y; (* security violation *)
+z := z*k;
+write z; (* security violation *)
 end	

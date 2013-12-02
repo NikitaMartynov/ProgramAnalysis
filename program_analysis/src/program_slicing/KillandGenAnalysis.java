@@ -28,7 +28,7 @@ public class KillandGenAnalysis {
 			if (b instanceof ReadStatement) {
 				killGenForReadStmt(label);
 			} else if (b instanceof ArrayAssignStatement) {
-				killGenForAssignStmt(label);
+				killGenForArrayAssignStmt(label);
 			} else if (b instanceof AssignStatement) {
 				killGenForAssignStmt(label);
 			} else {
@@ -50,14 +50,38 @@ public class KillandGenAnalysis {
 	}
 
 	private static void killGenForAssignStmt(int label) {
+		boolean created=false;
 		Vector<FreeVariable> variablesInLine = FreeVariableGenerator
 				.getFreeVariablesinLine(label);
 		for (FreeVariable fv : variablesInLine) {
-			if (fv.getVariablePosition() == VariablePosition.left) {
+			if (fv.getVariablePosition() == VariablePosition.left){
 				createKillRD(fv.getVariableName(), label);
 				createGenRD(fv.getVariableName(), label);
+				created=true;
 			}
 		}
+		if(created== false){
+				ReachingDefinitionColln rdc = null;
+				killRD.add(rdc);
+				genRD.add(rdc);
+			}
+	}
+	private static void killGenForArrayAssignStmt(int label) {
+		boolean created=false;
+		Vector<FreeVariable> variablesInLine = FreeVariableGenerator
+				.getFreeVariablesinLine(label);
+		for (FreeVariable fv : variablesInLine) {
+			if (fv.getVariablePosition() == VariablePosition.left){
+				createKillRD(fv.getVariableName(), label);
+				createGenRD(fv.getVariableName(), label);
+				created=true;
+			}
+		}
+		if(created== false){
+				ReachingDefinitionColln rdc = null;
+				killRD.add(rdc);
+				genRD.add(rdc);
+			}
 	}
 
 	private static void createKillRD(String variableName, int label) {

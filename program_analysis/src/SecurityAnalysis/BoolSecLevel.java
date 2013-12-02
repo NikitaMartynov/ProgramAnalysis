@@ -1,5 +1,7 @@
 package SecurityAnalysis;
 
+import graphs.pg.Edge;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,9 +29,12 @@ public class BoolSecLevel {
 	
 	private HashMap<String, SecLevel> baseAllVarSecLevel; //input secLevel
 	public HashMap<String, SecLevel> newAllVarSecLevel;   // secLevel after transfer function 
+	private Edge edge;
 	
-	public BoolSecLevel(BoolExpr boolExpr,HashMap<String, SecLevel> baseElemSecLevel){
+	public BoolSecLevel(Edge edge,HashMap<String, SecLevel> baseElemSecLevel){
 		
+		BoolExpr boolExpr = (BoolExpr)edge.getBlock();
+		this.edge = edge;
 		newAllVarSecLevel = Func.deepLineCopy(baseElemSecLevel);
 		this.baseAllVarSecLevel = Func.deepLineCopy(baseElemSecLevel);
 		
@@ -59,10 +64,12 @@ public class BoolSecLevel {
 		HashMap<String, SecLevel> secLevel1 =null, secLevel2 = null;
 		boolean value1, value2;
 		
-		secLevel1 = new BoolSecLevel(boolExpr1, baseAllVarSecLevel).getNewAllVarSecLevel();
+		edge.setBlock(boolExpr1);
+		secLevel1 = new BoolSecLevel(edge, baseAllVarSecLevel).getNewAllVarSecLevel();
 		value1 = secLevel1 == null ? false : true;
 		
-		secLevel2 = new BoolSecLevel(boolExpr2, baseAllVarSecLevel).getNewAllVarSecLevel();
+		edge.setBlock(boolExpr2);
+		secLevel2 = new BoolSecLevel(edge, baseAllVarSecLevel).getNewAllVarSecLevel();
 		value2 = secLevel2 == null ? false : true;
 		
 		if (value1 || value2 ){
@@ -81,10 +88,12 @@ public class BoolSecLevel {
 		HashMap<String, SecLevel> secLevel1 =null, secLevel2 = null;
 		boolean value1, value2;
 		
-		secLevel1 = new BoolSecLevel(boolExpr1, baseAllVarSecLevel).getNewAllVarSecLevel();
+		edge.setBlock(boolExpr1);
+		secLevel1 = new BoolSecLevel(edge, baseAllVarSecLevel).getNewAllVarSecLevel();
 		value1 = secLevel1 == null ? false : true;
 		
-		secLevel2 = new BoolSecLevel(boolExpr2, baseAllVarSecLevel).getNewAllVarSecLevel();
+		edge.setBlock(boolExpr2);
+		secLevel2 = new BoolSecLevel(edge, baseAllVarSecLevel).getNewAllVarSecLevel();
 		value2 = secLevel2 == null ? false : true;
 		
 		if (value1 && value2 ){
@@ -149,7 +158,9 @@ public class BoolSecLevel {
 		}
 		else secLevel2 = new ArithSec( arithExpr2, baseAllVarSecLevel).getSecLevel();
 		
-		//SecLevelWorklist.secLevelCtxBeforeBools.put
+		if(!SecLevelWorklist.secLevelCtxBeforeBools.containsKey(edge.getQs()))
+			SecLevelWorklist.secLevelCtxBeforeBools.put(edge.getQs(), ctxSecLevel);
+		
 		resSecLevel = (secLevel1 == SecLevel.high)|| (secLevel2 == SecLevel.high) || (ctxSecLevel == SecLevel.high)
 				? SecLevel.high : SecLevel.low;
 		//TODO check if it can be none and implement context
@@ -214,7 +225,8 @@ public class BoolSecLevel {
 			assert false : "Error in function NotExpr(), shouldn't reach it. Check did you forget to add smth?";
 		}
 
-		this.newAllVarSecLevel = new BoolSecLevel(newExpr, baseAllVarSecLevel)
+		edge.setBlock(newExpr);
+		this.newAllVarSecLevel = new BoolSecLevel(edge, baseAllVarSecLevel)
 												.getNewAllVarSecLevel();
 
 	}

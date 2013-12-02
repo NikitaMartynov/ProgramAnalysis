@@ -60,7 +60,9 @@ public class SeqStatement extends Statement {
 	public int printWithLabels(int _i) {
 		int i=_i;
 	i=statement1.printWithLabels(i);
+	if(statement2!=null){
 	i=statement2.printWithLabels(i);
+	}
 	return i;
 	}
 

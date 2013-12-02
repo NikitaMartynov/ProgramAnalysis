@@ -43,10 +43,12 @@ public class ArrayAssignStatement extends Statement {
 			}
 		} catch (Exception e) {
 		}
+		vars.add("[");
 		try {
 			vars.addAll(arrayExpression.getVariables());
 		} catch (Exception e) {
 		}
+		vars.add("]");
 		vars.add("=");
 		try {
 			vars.addAll(valueExpression.getVariables());
@@ -89,7 +91,7 @@ public class ArrayAssignStatement extends Statement {
 	public int printWithLabels(int i) {
 		System.out.println("["+name + "[" + arrayExpression + "]" + " := " + valueExpression
 				+ "]^"+ i+";");
-		return i++;
+		return ++i;
 	}
 
 	// getters and setters

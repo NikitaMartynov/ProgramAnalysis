@@ -59,12 +59,12 @@ public class ProgramSlice {
 			slice.add(currentLineOfInterest);
 			variablesInLine = FreeVariableGenerator
 					.getFreeVariablesinLine(currentLineOfInterest);
-			if (!variablesInLine.isEmpty()) {
+		if (!variablesInLine.isEmpty()) {
 				for (FreeVariable fv : variablesInLine) {
 					if (fv.getVariablePosition() != VariablePosition.left &&
 							!( fv.getVariablePosition()==VariablePosition.write && slice.size() >1)) {
 						udChain = getudchain(fv, currentLineOfInterest);
-						for (int label : udChain) {
+					for (int label : udChain) {
 							if (!slice.contains(label)
 									&& !workList.contains(label)
 									&& label !=0) {
@@ -92,7 +92,7 @@ public class ProgramSlice {
 	}
 
 	public static void printProgramSlice() {
-		System.out.print("The program slice w.r.t point of interest "+ pointOfInterest+" is: ");
+		System.out.print("The program slice when point of interest "+ pointOfInterest+" is: ");
 		String str="";
 		for(int i=0;i<slice.size();i++){
 			str+=slice.get(i)+",";			

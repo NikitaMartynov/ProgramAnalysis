@@ -32,7 +32,7 @@ public class FreeVariableGenerator {
 
 	public static void extractFromBlock(Block b) {
 		if (b instanceof ArrayAssignStatement)
-			addAssignFreeVariables(((ArrayAssignStatement) b).getVariables());
+			addArrayAssignVariables(((ArrayAssignStatement) b).getVariables());
 		else if (b instanceof AssignStatement)
 			addAssignFreeVariables(((AssignStatement) b).getVariables());
 		else if (b instanceof WriteStatement)
@@ -55,6 +55,39 @@ public class FreeVariableGenerator {
 			FreeVariable fv = new FreeVariable(str, VariablePosition.none,
 					labelCounter);
 			freeVariables.add(fv);
+		}
+	}
+	private static void addArrayAssignVariables(Vector<String> vars){
+		List<String> varsArray = null;
+		FreeVariable fv = null;
+		if (vars.contains("[")) {
+			varsArray = vars.subList(vars.indexOf("[")+1, vars.indexOf("]"));
+			if (varsArray != null) {
+				for (String str : varsArray) {
+					fv = new FreeVariable(str, VariablePosition.index,
+							labelCounter);
+					if (!freeVariables.contains(fv))
+						freeVariables.add(fv);
+				}
+			}
+			varsArray = vars.subList(0, vars.indexOf("["));
+			if (varsArray != null) {
+				for (String str : varsArray) {
+					fv = new FreeVariable(str, VariablePosition.left,
+							labelCounter);
+					if (!freeVariables.contains(fv))
+						freeVariables.add(fv);
+				}
+			}
+			varsArray = vars.subList(vars.indexOf("=") + 1, vars.size());
+			if (varsArray != null) {
+				for (String str : varsArray) {
+					fv = new FreeVariable(str, VariablePosition.right,
+							labelCounter);
+					if (!freeVariables.contains(fv))
+						freeVariables.add(fv);
+				}
+			}
 		}
 	}
 
