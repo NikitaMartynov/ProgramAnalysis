@@ -1,4 +1,3 @@
-
 import interval_analysis.IntervalAnalysis;
 import free_variables.FreeVariableGenerator;
 import graphs.fg.*;
@@ -24,9 +23,29 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 
-		if (args.length == 0) {
-			System.out.println("Error: No program specified.");
+		// wrong inputs
+		if (args.length <= 1) {
+			printCommands();
 			return;
+		}
+		// get cmd
+		String cmd = args[1];
+		int min = 0, max = 10;
+
+		if (cmd.equals("3")) {
+			// interval analysis require two additional inputs
+			if (args.length < 4) {
+				printCommands();
+				return;
+			}
+			try {
+				min = Integer.parseInt(args[2]);
+				max = Integer.parseInt(args[3]);
+			} catch (Exception e) {
+				// the inputs are not two integers
+				printCommands();
+				return;
+			}
 		}
 
 		// parsing
@@ -39,44 +58,64 @@ public class Main {
 		// print the ast
 		System.out.println(program.toString());
 
-		System.out.println("\nProgram graph: ");
+		
 		ProgramGraph pg = new ProgramGraph(program.getStatement());
-		System.out.println(pg.toString());
-	
-		// then take the program as the input for graph generation
-		// such as
-		System.out.println("\nFlow graph:");
+		if (cmd.equals("2") || cmd.equals("3") || cmd.equals("4")) {
+			System.out.println("\nProgram graph: ");
+			System.out.println(pg.toString());
+		}
+
+		
 		FlowGraph fg = FlowGraphFactory.create(program.getStatement());
-		System.out.println(fg.toString());
+		if (cmd.equals("1")) {
+			System.out.println("\nFlow graph:");
+			System.out.println(fg.toString());
+		}
 		// ...
 		FreeVariableGenerator.extractVariables();
-		System.out.println(FreeVariableGenerator.printVariables());
+		if (cmd.equals("1"))
+				System.out.println(FreeVariableGenerator.printVariables());
 
-		// Program slicing
-		ProgramSlice.getProgramSlice(fg, 6);
-		program.printWithLabels();
-		ProgramSlice.printProgramSlice();
+		if (cmd.equals("1")) {
+			// Program slicing
+			ProgramSlice.getProgramSlice(fg, 6);
+			program.printWithLabels();
+			ProgramSlice.printProgramSlice();
+		} else if (cmd.equals("2")) {
+			// Detect of signs
+			DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
+					FreeVariableGenerator.getAllVariables());
+			dsw.printSolutionsTable();
 
-		// Detect of signs
-		DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
-				FreeVariableGenerator.getAllVariables());
-		dsw.printSolutionsTable();
-		
-		System.out.println("\nLow boundary violations for array indexing:");
-		System.out.println(dsw.toString(dsw.findLowBoundaryViolations(ProgramGraph.edges)));
-        
+			System.out.println("\nLow boundary violations for array indexing:");
+			System.out.println(dsw.toString(dsw
+					.findLowBoundaryViolations(ProgramGraph.edges)));
+		} else if (cmd.equals("3")) {
+			// interval_analysis
+			IntervalAnalysis
+					.analyze(min, max, FreeVariableGenerator.getAllVariables(),
+							ProgramGraph.edges);
+			IntervalAnalysis.printSolutionTable();
+			IntervalAnalysis.printViolatedEdges();
+		} else if (cmd.equals("4")) {
+			// SecAnalysis
+			SecLevelWorklist slw = new SecLevelWorklist(ProgramGraph.edges,
+					ProgramGraph.boolEndingedges, program);
+			slw.printSolutionsTable();
+			System.out.println("\nSecurity level violations:");
 
-		// interval_analysis
-		IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(),
-				ProgramGraph.edges);
-		IntervalAnalysis.printSolutionTable();
-		IntervalAnalysis.printViolatedEdges();
-		
-		//SecAnalysis
-		SecLevelWorklist slw= new SecLevelWorklist(ProgramGraph.edges,ProgramGraph.boolEndingedges,
-													program);
-		slw.printSolutionsTable();
-		System.out.println("\nSecurity level violations:");
-		System.out.println(dsw.toString(slw.findSecurityLevelViolations(ProgramGraph.edges)));
+			DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
+					FreeVariableGenerator.getAllVariables());
+			System.out.println(dsw.toString(slw
+					.findSecurityLevelViolations(ProgramGraph.edges)));
+		}
+	}
+
+	public static void printCommands() {
+		System.out.println("Usage: File cmd [min max]");
+		System.out
+				.println("cmd:\t1 - program slice\n\t2 - detection of signs\n\t3 - interval analysis"
+						+ "\n\t4 - security analysis");
+		System.out.println("Example:\tfile1 1\n\t\tfile1 3 0 4");
 	}
 }
