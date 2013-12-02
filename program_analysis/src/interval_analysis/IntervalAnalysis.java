@@ -51,6 +51,10 @@ public class IntervalAnalysis {
 	}
 
 	public static void printViolatedEdges() {
+		if(violatedEdges.size() == 0) {
+			System.out.println("No array indexing violaton found.");
+			return;
+		}
 		System.out.println("Array indexing violation found:");
 		for (Edge e : violatedEdges) {
 			System.out.println("(" + e.getQs() + ", " + e.toString() + ", "
