@@ -72,7 +72,7 @@ public class Main {
 			System.out.println(fg.toString());
 		}
 		// ...
-		/*FreeVariableGenerator.extractVariables();
+		FreeVariableGenerator.extractVariables();
 		if (cmd.equals("1"))
 				System.out.println(FreeVariableGenerator.printVariables());
 
@@ -104,9 +104,7 @@ public class Main {
 			slw.printSolutionsTable();
 			System.out.println("\nSecurity level violations:");
 
-			DSWorklist dsw = new DSWorklist(ProgramGraph.edges,
-					FreeVariableGenerator.getAllVariables());
-			System.out.println(dsw.toString(slw
+			System.out.println(slw.toString(slw
 					.findSecurityLevelViolations(ProgramGraph.edges)));
 		}
 	}
