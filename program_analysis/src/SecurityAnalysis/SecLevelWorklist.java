@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import ast.Program;
+
 public class SecLevelWorklist {
 	
 	private ArrayList<Edge> workList;
@@ -17,7 +19,7 @@ public class SecLevelWorklist {
 	
 	int loopCounter;
 	
-	public SecLevelWorklist(ArrayList<Edge> pgEdges, Vector<String> freeVars){
+	public SecLevelWorklist(ArrayList<Edge> pgEdges, Vector<String> freeVars,Program program){
 		this.workList = new ArrayList<Edge>(pgEdges);
 		
 		if (solutionsTable == null)
@@ -27,11 +29,8 @@ public class SecLevelWorklist {
 
 
 		HashMap<String, SecLevel> allVarsZeroized = new HashMap<String, SecLevel>();
-		for( String var : freeVars){
-			//if(!allVarsZeroized.containsKey(var)) allVarsZeroized.put(var, SecLevel.);//derive level from declaration
-			//TODO check if it can be none
-			//TODO derive level from declaration
-		}
+		allVarsZeroized.putAll(program.getSecurityLevel());
+
 		HashMap<String, SecLevel> nullVarsZeroized = new HashMap<String, SecLevel>();
 		for( String var : freeVars){
 			if(!nullVarsZeroized.containsKey(var)) nullVarsZeroized.put(var, SecLevel.none);

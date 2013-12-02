@@ -1,5 +1,8 @@
 package ast.declaration;
 
+import java.util.HashMap;
+
+import SecurityAnalysis.SecLevel;
 import dynamic_analysis.DuplicateDefinitionException;
 import dynamic_analysis.Environment;
 
@@ -39,6 +42,12 @@ public class ArrayDeclaration extends Declaration{
 		ret += "int " + name + "[" + size + "];";
 
 		return ret;
+	}
+	
+	public HashMap<String,SecLevel> getSecurityLevel(){
+		HashMap<String,SecLevel> secLevel = new HashMap<String,SecLevel>();
+		secLevel.put(name, level.getSecurityLevel());
+		return secLevel;
 	}
 	
 	public String getName(){
