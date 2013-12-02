@@ -109,12 +109,19 @@ public class SecLevelWorklist {
 				vars = edge.getBlock().getVariables();
 				if(vars == null)
 					vars = edge.getBlock().getArrays();
-				String var = vars.get(0);
-				int start = edge.getQs()-1;
-				SecLevel secLevel = solutionsTable.get(start).get(var);
-				if(secLevel== SecLevel.high){
-					violatedEdges.add(edge);
+				if (vars.isEmpty()){
+					vars = new Vector<String>();
+					vars.add("Number");
 				}
+				String var = vars.get(0);
+				if (var != "Number"){
+					int start = edge.getQs()-1;
+					SecLevel secLevel = solutionsTable.get(start).get(var);
+					if(secLevel== SecLevel.high){
+						violatedEdges.add(edge);
+					}
+				}
+
 			}
 
 		} // for

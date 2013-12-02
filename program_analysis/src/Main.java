@@ -49,7 +49,7 @@ public class Main {
 		FlowGraph fg = FlowGraphFactory.create(program.getStatement());
 		System.out.println(fg.toString());
 		// ...
-		FreeVariableGenerator.extractVariables();
+		/*FreeVariableGenerator.extractVariables();
 		System.out.println(FreeVariableGenerator.printVariables());
 
 		// Program slicing
@@ -70,13 +70,13 @@ public class Main {
 		IntervalAnalysis.analyze(0, 4, FreeVariableGenerator.getAllVariables(),
 				ProgramGraph.edges);
 		IntervalAnalysis.printSolutionTable();
-		IntervalAnalysis.printViolatedEdges();
+		IntervalAnalysis.printViolatedEdges();*/
 		
 		//SecAnalysis
 		SecLevelWorklist slw= new SecLevelWorklist(ProgramGraph.edges,ProgramGraph.boolEndingedges,
 													program);
 		slw.printSolutionsTable();
 		System.out.println("\nSecurity level violations:");
-		System.out.println(dsw.toString(slw.findSecurityLevelViolations(ProgramGraph.edges)));
+		System.out.println(slw.toString(slw.findSecurityLevelViolations(ProgramGraph.edges)));
 	}
 }

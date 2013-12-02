@@ -1,14 +1,23 @@
-
 program
-high int x;
-low int y;
-low int z;
-low int k;
-read x;
-while x!=1 do 
-y := 1;  
-x := x - 1;
-od
-z := z*k;
-write z; (* security violation *)
-end	
+	high int h1;
+	 high int h2; 
+	high int h3;
+	low int l1;
+	 low int l2;
+	 low int l3;
+	l3 := l1 + h2; (* l3 is now HIGH *)
+	h3 := 2 + l1; (* h3 is now LOW *)
+	if h2 = 0 then
+		l2 := 5; (* l2 is now HIGH *)
+	else
+		l2 := 9; (* l2 is now HIGH *)
+	fi
+	while h1 != l1 do
+		write(0); (* Warn execution depends on HIGH expression *)
+		l1 := l1 + 1; (* l1 is now HIGH *)
+	od
+	write(l2); (* Warn l2 is HIGH*)
+	write(l3); (* Warn l3 is HIGH*)
+	write(h2);  (* Warn h2 is HIGH *)
+	write(h3);
+end
