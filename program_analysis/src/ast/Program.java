@@ -1,6 +1,10 @@
 package ast;
 
+import java.util.HashMap;
+import java.util.Vector;
+
 import dynamic_analysis.*;
+import SecurityAnalysis.SecLevel;
 import ast.declaration.*;
 import ast.statement.*;
 
@@ -31,6 +35,13 @@ public class Program {
 		else{
 			return statement.toString();
 		}
+	}
+	public HashMap<String,SecLevel> getSecurityLevel(){
+		HashMap<String,SecLevel> secLevel = new HashMap<String,SecLevel>();
+		if(declaration !=null){
+			return declaration.getSecurityLevel();
+			}
+		return secLevel;
 	}
 	
 	public void printWithLabels(){

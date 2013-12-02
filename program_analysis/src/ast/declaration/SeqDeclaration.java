@@ -1,5 +1,8 @@
 package ast.declaration;
 
+import java.util.HashMap;
+
+import SecurityAnalysis.SecLevel;
 import dynamic_analysis.DuplicateDefinitionException;
 import dynamic_analysis.Environment;
 
@@ -27,5 +30,11 @@ public class SeqDeclaration extends Declaration{
 	@Override
 	public String toString() {
 		return declaration1.toString() + "\n" + declaration2.toString();
+	}
+	public HashMap<String,SecLevel> getSecurityLevel(){
+		HashMap<String,SecLevel> secLevel = new HashMap<String,SecLevel>();
+		secLevel.putAll(declaration1.getSecurityLevel());
+		secLevel.putAll(declaration2.getSecurityLevel());
+		return secLevel;
 	}
 }

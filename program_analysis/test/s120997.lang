@@ -1,0 +1,17 @@
+(* Kévin Barré s120997@student.dtu.dk *)
+(* Imre Dobo s120939@student.dtu.dk *)
+
+(* Example program for program slicing *)
+program
+	int x;
+	int y;
+	x := 2; (* This line should be removed by slicing *)
+	x := 5;
+	y := 2; (* This line should be removed by slicing *)
+	while (x < 10)
+	do
+		x := x + 1;
+		y := y + 1; (* This line should be removed by slicing *)
+	od
+	write x; (* Point of interest *)
+end

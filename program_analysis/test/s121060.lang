@@ -1,0 +1,14 @@
+(* Andrius Andrijauskas (s121060@student.dtu.dk), Lars Bonnicshen (lfbo@dtu.dk) *)
+program
+	int a; int b; int x;
+	a:=10; (* label 1, depends on {1} *)
+	b:=5; (* label 2, depends on {2} *)
+	x := a+b; (* label 3, depends on {1,2,3} *)
+	while a < 15 do (* label 4, depends on {1, 4, 6} *) 
+		b := b * x; (* label 5, depends on {2, 3, 5} *)
+		a := a+1; (* label 6, depends on {1, 6} *)
+	od
+	write a; (* label 7, depends on {1, 6, 7} *)
+	write b + x; (* label 8, depends on {2, 3, 5, 8} *)
+	write x; (* label 9, depends on {3, 9} *)
+end

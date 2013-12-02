@@ -42,7 +42,7 @@ public class Main {
 		System.out.println("\nProgram graph: ");
 		ProgramGraph pg = new ProgramGraph(program.getStatement());
 		System.out.println(pg.toString());
-
+	
 		// then take the program as the input for graph generation
 		// such as
 		System.out.println("\nFlow graph:");
@@ -53,7 +53,7 @@ public class Main {
 		System.out.println(FreeVariableGenerator.printVariables());
 
 		// Program slicing
-		ProgramSlice.getProgramSlice(fg, 9);
+		ProgramSlice.getProgramSlice(fg, 6);
 		program.printWithLabels();
 		ProgramSlice.printProgramSlice();
 

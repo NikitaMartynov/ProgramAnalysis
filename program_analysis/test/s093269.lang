@@ -1,0 +1,15 @@
+program
+y := 3;
+read y;
+if y > 0 then
+y := 8;
+else
+write y;
+fi
+while y > 0 do
+ x := y;
+ y := 4;
+ y := x-1;
+od
+write y;
+end

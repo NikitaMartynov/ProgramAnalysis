@@ -1,0 +1,18 @@
+(* Andreas Foldager(s093285@student.dtu.dk), Alexander Paulsen (s093259@student.dtu.dk), Hans Erik Nielsen (s093296@student.dtu.dk) *)
+(*Program slicing*)
+program
+	int x; int y; int A[20]; 
+	read y; (*Label 1, {(y,1),(x,?),(A,?)}*)
+	if y < 10  then (*Label 2, {(y,?),(x,3),(A,?)}*)
+		x := 30; (*Label 3, {(y,1),(x,3),(A,?)}*)
+	else 
+		x :=10; (*Label 4, {(y,1),(x,4),(A,?)}*)
+	fi 
+	y := 3; (*Label 5, {(y,5),(x,4),(x,3),(A,?)}*)
+	while x < 20  do (*Label 6, {(y,5),(y,8),(x,4),(x,3),(x,9),(A,?),(A,7)}*)
+		A[x] := x + y; (*Label 7, {(y,5),(y,8),(x,4),(x,3),(x,9),(A,?),(A,7)}*)
+		y := y * x; (*Label 8, {(y,8),(x,4),(x,3),(x,9),(A,?),(A,7)}*)
+		x := x + 1; (*Label 9, {(y,8),(x,9),(A,?),(A,7)}*)
+	od
+	write y; (*Label 10, {(y,5),(y,8),(x,4),(x,3),(x,9),(A,?),(A,7)}*)
+end

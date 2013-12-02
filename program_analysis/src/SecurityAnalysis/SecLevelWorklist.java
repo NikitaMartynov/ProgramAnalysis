@@ -17,6 +17,8 @@ import ast.arith.NumExpr;
 import ast.declaration.Declaration;
 import ast.statement.WriteStatement;
 
+import ast.Program;
+
 public class SecLevelWorklist {
 	
 	private ArrayList<Edge> workList;
@@ -36,12 +38,8 @@ public class SecLevelWorklist {
 
 
 		HashMap<String, SecLevel> allVarsZeroized = new HashMap<String, SecLevel>();
-			String dec = declaration.toString();
-			//analyse string to get sec levels and variables
-			//if(!allVarsZeroized.containsKey(var)) allVarsZeroized.put(var, SecLevel.);//derive level from declaration
-			//TODO check if it can be none
-			//TODO derive level from declaration can
-			allVarsZeroized.put("x", SecLevel.high);
+		allVarsZeroized.putAll(program.getSecurityLevel());
+
 			allVarsZeroized.put("y", SecLevel.low);
 			allVarsZeroized.put("z", SecLevel.low);
 			allVarsZeroized.put("k", SecLevel.low);
