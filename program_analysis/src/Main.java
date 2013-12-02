@@ -74,7 +74,7 @@ public class Main {
 		
 		//SecAnalysis
 		SecLevelWorklist slw= new SecLevelWorklist(ProgramGraph.edges,ProgramGraph.boolEndingedges,
-													program.getDeclaration());
+													program);
 		slw.printSolutionsTable();
 		System.out.println("\nSecurity level violations:");
 		System.out.println(dsw.toString(slw.findSecurityLevelViolations(ProgramGraph.edges)));

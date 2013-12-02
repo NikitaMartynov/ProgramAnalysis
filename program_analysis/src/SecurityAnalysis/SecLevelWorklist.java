@@ -27,7 +27,7 @@ public class SecLevelWorklist {
 	
 	int loopCounter;
 	
-	public SecLevelWorklist(ArrayList<Edge> pgEdges,ArrayList<Edge> boolEndingEdges, Declaration declaration){
+	public SecLevelWorklist(ArrayList<Edge> pgEdges,ArrayList<Edge> boolEndingEdges, Program program){
 		this.workList = new ArrayList<Edge>(pgEdges);
 		secLevelCtxBeforeBools = new HashMap<Integer, SecLevel>();
 		
@@ -40,10 +40,10 @@ public class SecLevelWorklist {
 		HashMap<String, SecLevel> allVarsZeroized = new HashMap<String, SecLevel>();
 		allVarsZeroized.putAll(program.getSecurityLevel());
 
-			allVarsZeroized.put("y", SecLevel.low);
-			allVarsZeroized.put("z", SecLevel.low);
-			allVarsZeroized.put("k", SecLevel.low);
-			allVarsZeroized.put(SecCtx.CTX.getSecCtx(), SecLevel.low);
+			//allVarsZeroized.put("y", SecLevel.low);
+			//allVarsZeroized.put("z", SecLevel.low);
+			//allVarsZeroized.put("k", SecLevel.low);
+		allVarsZeroized.put(SecCtx.CTX.getSecCtx(), SecLevel.low);
 		
 		HashMap<String, SecLevel> allNullVars = new HashMap<String, SecLevel>();
 		
@@ -77,12 +77,12 @@ public class SecLevelWorklist {
 				HashMap< String,SecLevel > tmp = Func.deepLineCopy(solutionsTable.get(startNodeIndex));
 				tmp.put(SecCtx.CTX.getSecCtx(), secLevelCtxBeforeBools.get(endingEdge.getQs()));
 				solutionsTable.setElementAt(tmp, startNodeIndex);
-				secLevelCtxBeforeBools.remove(endingEdge.getQs());
+				//secLevelCtxBeforeBools.remove(endingEdge.getQs());
 			}
 			
 			SecLevelTransFuncs sla = new SecLevelTransFuncs(currentEdge, solutionsTable.get(startNodeIndex)
 												 );
-			HashMap<String, SecLevel> resAfterTrFunc = sla.getNewAllVarSecLevel();
+			HashMap<String, SecLevel> resAfterTrFunc = Func.deepLineCopy(sla.getNewAllVarSecLevel());
 			if (resAfterTrFunc ==null){
 				resAfterTrFunc = solutionsTable.get(endNodeIndex);
 			}
@@ -97,7 +97,7 @@ public class SecLevelWorklist {
 					}
 				}
 			}
-			printSolutionsTable();
+			//printSolutionsTable();
 		}
 	}
 	
